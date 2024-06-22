@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@aioha/aioha':
-    specifier: ^1.3.1
-    version: 1.3.1
+    specifier: ^1.3.2
+    version: 1.3.2
   '@types/react':
     specifier: ^18.2.66
     version: 18.3.3
@@ -65,8 +65,8 @@ devDependencies:
 
 packages:
 
-  /@aioha/aioha@1.3.1:
-    resolution: {integrity: sha512-Q76IZsbkGDl+BnidUAwbf+rfaD7EsOic0QmYmFl2Q+FLhdw6Jr7yyAV8ImDIPOsQBFjtSuU/oR58R33GbYz1HA==}
+  /@aioha/aioha@1.3.2:
+    resolution: {integrity: sha512-32BSltdEiyfdmw0ExoB4b5as6cpgUle6VA0EfYz1UmwWBkpQuGk4T22JehsY/NyOi1/L9IvlrE4qyuBcoF/WlQ==}
     dependencies:
       '@engrave/ledger-app-hive': 3.5.6
       '@hiveio/dhive': 1.3.0
@@ -548,7 +548,7 @@ packages:
     resolution: {integrity: sha512-XxQVl4htd018u/M66r0iu5nlHi+J6QfdPsORzDF6N39jaz+tMqItb7tUlXM/isggcuS5lc7GJo7NOuJ8rvHZaQ==}
     dependencies:
       '@ledgerhq/devices': 8.3.0
-      '@ledgerhq/errors': 6.14.0
+      '@ledgerhq/errors': 6.16.4
       events: 3.3.0
     dev: true
 
