@@ -1,9 +1,28 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, ReactNode } from 'react'
 
 interface LoginModalProps {
   displayed?: boolean
   title?: string
   onClose: Dispatch<SetStateAction<boolean>>
+}
+
+const Badge = ({ children }: { children?: ReactNode }) => {
+  return (
+    <span className="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+      {children}
+    </span>
+  )
+}
+
+const ProviderBtn = ({ children, onClick }: { children?: ReactNode; onClick?: () => any }) => {
+  return (
+    <a
+      className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow hover:cursor-pointer dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+      onClick={onClick}
+    >
+      {children}
+    </a>
+  )
 }
 
 export const AiohaLoginModal = ({ displayed = false, title = 'Connect Wallet', onClose }: LoginModalProps) => {
@@ -45,64 +64,47 @@ export const AiohaLoginModal = ({ displayed = false, title = 'Connect Wallet', o
             </p>
             <ul className="my-4 space-y-3">
               <li>
-                <a
-                  href="#"
-                  className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
-                >
+                <ProviderBtn>
                   <svg className="h-5 aspect-square">
                     <image href="/keychain.svg" className="h-5" />
                   </svg>
                   <span className="flex-1 ms-3 whitespace-nowrap">Keychain</span>
-                  <span className="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
-                    Popular
-                  </span>
-                </a>
+                  <Badge>Popular</Badge>
+                </ProviderBtn>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
-                >
+                <ProviderBtn>
                   <svg aria-hidden="true" className="h-5 aspect-square">
                     <image href="/peakvault.svg" className="h-5" />
                   </svg>
                   <span className="flex-1 ms-3 whitespace-nowrap">Peak Vault</span>
-                </a>
+                </ProviderBtn>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
-                >
-                  <svg aria-hidden="true" className="h-5 aspect-square">
-                    <image href="/hivesigner.svg" className="h-5" />
-                  </svg>
-                  <span className="flex-1 ms-3 whitespace-nowrap">HiveSigner</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
-                >
+                <ProviderBtn>
                   <svg className="h-5 aspect-square">
                     <image href="/hiveauth-light.svg" className="h-5 block dark:hidden" />
                     <image href="/hiveauth-dark.svg" className="h-5 hidden dark:block" />
                   </svg>
                   <span className="flex-1 ms-3 whitespace-nowrap">HiveAuth</span>
-                </a>
+                </ProviderBtn>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
-                >
-                  <svg className="h-4 w-5">
+                <ProviderBtn>
+                  <svg aria-hidden="true" className="h-5 aspect-square">
+                    <image href="/hivesigner.svg" className="h-5" />
+                  </svg>
+                  <span className="flex-1 ms-3 whitespace-nowrap">HiveSigner</span>
+                </ProviderBtn>
+              </li>
+              <li>
+                <ProviderBtn>
+                  <svg aria-hidden="true" className="h-4 w-5">
                     <image href="/ledger-light.svg" className="h-4 block dark:hidden" />
                     <image href="/ledger-dark.svg" className="h-4 hidden dark:block" />
                   </svg>
                   <span className="flex-1 ms-3 whitespace-nowrap">Ledger</span>
-                </a>
+                </ProviderBtn>
               </li>
             </ul>
             <div>
