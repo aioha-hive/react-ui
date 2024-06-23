@@ -21,5 +21,8 @@ export default defineConfig({
     postcss: {
       plugins: [tailwindcss()]
     }
+  },
+  define: {
+    'process.env.NODE_DEBUG': false
   }
 })

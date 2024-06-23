@@ -1,5 +1,12 @@
 import { useState } from 'react'
 import { AiohaLoginModal } from '../lib'
+import { initAioha } from '@aioha/aioha'
+
+const aioha = initAioha({
+  hiveauth: {
+    name: 'Aioha React'
+  }
+})
 
 export const App = () => {
   const [aiohaModalDisplayed, setAiohaModalDisplayed] = useState(false)
@@ -30,7 +37,7 @@ export const App = () => {
           </svg>
           Connect Wallet
         </button>
-        <AiohaLoginModal displayed={aiohaModalDisplayed} onClose={setAiohaModalDisplayed} />
+        <AiohaLoginModal aioha={aioha} displayed={aiohaModalDisplayed} onClose={setAiohaModalDisplayed} />
       </div>
     </div>
   )

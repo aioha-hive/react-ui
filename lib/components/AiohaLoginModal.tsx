@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction, ReactNode } from 'react'
+import { Aioha, Providers } from '@aioha/aioha'
 
 interface LoginModalProps {
+  aioha: Aioha
   displayed?: boolean
   title?: string
   onClose: Dispatch<SetStateAction<boolean>>
@@ -25,10 +27,34 @@ const ProviderBtn = ({ children, onClick }: { children?: ReactNode; onClick?: ()
   )
 }
 
-export const AiohaLoginModal = ({ displayed = false, title = 'Connect Wallet', onClose }: LoginModalProps) => {
+const ProviderBtnDetail = ({
+  displayName,
+  iconHref,
+  iconHrefDark,
+  iconWidth = 5,
+  iconHeight = 5
+}: {
+  displayName: string
+  iconHref: string
+  iconHrefDark?: string
+  iconWidth?: number
+  iconHeight?: number
+}) => {
+  return (
+    <>
+      <svg aria-hidden="true" className={`h-${iconHeight} w-${iconWidth}`}>
+        <image href={iconHref} className={`h-${iconHeight} ${iconHrefDark ? 'block dark:hidden' : ''}`} />
+        {iconHrefDark ? <image href={iconHrefDark} className={`h-${iconHeight} hidden dark:block`} /> : null}
+      </svg>
+      <span className="flex-1 ms-3 whitespace-nowrap">{displayName}</span>
+    </>
+  )
+}
+
+export const AiohaLoginModal = ({ aioha, displayed = false, title = 'Connect Wallet', onClose }: LoginModalProps) => {
   return (
     <div
-      id="aioha-modal"
+      id="aioha-login-modal"
       tabIndex={-1}
       aria-hidden="true"
       className={`${
@@ -43,7 +69,7 @@ export const AiohaLoginModal = ({ displayed = false, title = 'Connect Wallet', o
             <button
               type="button"
               className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-toggle="aioha-modal"
+              data-modal-toggle="aioha-login-modal"
               onClick={() => onClose(false)}
             >
               <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -63,49 +89,54 @@ export const AiohaLoginModal = ({ displayed = false, title = 'Connect Wallet', o
               Connect with one of our available Hive wallet providers.
             </p>
             <ul className="my-4 space-y-3">
-              <li>
-                <ProviderBtn>
-                  <svg className="h-5 aspect-square">
-                    <image href="/keychain.svg" className="h-5" />
-                  </svg>
-                  <span className="flex-1 ms-3 whitespace-nowrap">Keychain</span>
-                  <Badge>Popular</Badge>
-                </ProviderBtn>
-              </li>
-              <li>
-                <ProviderBtn>
-                  <svg aria-hidden="true" className="h-5 aspect-square">
-                    <image href="/peakvault.svg" className="h-5" />
-                  </svg>
-                  <span className="flex-1 ms-3 whitespace-nowrap">Peak Vault</span>
-                </ProviderBtn>
-              </li>
-              <li>
-                <ProviderBtn>
-                  <svg className="h-5 aspect-square">
-                    <image href="/hiveauth-light.svg" className="h-5 block dark:hidden" />
-                    <image href="/hiveauth-dark.svg" className="h-5 hidden dark:block" />
-                  </svg>
-                  <span className="flex-1 ms-3 whitespace-nowrap">HiveAuth</span>
-                </ProviderBtn>
-              </li>
-              <li>
-                <ProviderBtn>
-                  <svg aria-hidden="true" className="h-5 aspect-square">
-                    <image href="/hivesigner.svg" className="h-5" />
-                  </svg>
-                  <span className="flex-1 ms-3 whitespace-nowrap">HiveSigner</span>
-                </ProviderBtn>
-              </li>
-              <li>
-                <ProviderBtn>
-                  <svg aria-hidden="true" className="h-4 w-5">
-                    <image href="/ledger-light.svg" className="h-4 block dark:hidden" />
-                    <image href="/ledger-dark.svg" className="h-4 hidden dark:block" />
-                  </svg>
-                  <span className="flex-1 ms-3 whitespace-nowrap">Ledger</span>
-                </ProviderBtn>
-              </li>
+              {aioha.isProviderRegistered(Providers.Keychain) ? (
+                <li>
+                  <ProviderBtn>
+                    <ProviderBtnDetail displayName={'Keychain'} iconHref={'/keychain.svg'} />
+                    <Badge>Popular</Badge>
+                  </ProviderBtn>
+                </li>
+              ) : null}
+              {aioha.isProviderRegistered(Providers.PeakVault) ? (
+                <li>
+                  <ProviderBtn>
+                    <svg aria-hidden="true" className="h-5 aspect-square">
+                      <image href="/peakvault.svg" className="h-5" />
+                    </svg>
+                    <span className="flex-1 ms-3 whitespace-nowrap">Peak Vault</span>
+                  </ProviderBtn>
+                </li>
+              ) : null}
+              {aioha.isProviderRegistered(Providers.HiveAuth) ? (
+                <li>
+                  <ProviderBtn>
+                    <ProviderBtnDetail
+                      displayName={'HiveAuth'}
+                      iconHref={'/hiveauth-light.svg'}
+                      iconHrefDark={'/hiveauth-dark.svg'}
+                    />
+                  </ProviderBtn>
+                </li>
+              ) : null}
+              {aioha.isProviderRegistered(Providers.HiveSigner) ? (
+                <li>
+                  <ProviderBtn>
+                    <ProviderBtnDetail displayName={'HiveSigner'} iconHref={'/hivesigner.svg'} />
+                  </ProviderBtn>
+                </li>
+              ) : null}
+              {aioha.isProviderRegistered(Providers.Ledger) ? (
+                <li>
+                  <ProviderBtn>
+                    <ProviderBtnDetail
+                      displayName={'Ledger'}
+                      iconHref={'/ledger-light.svg'}
+                      iconHrefDark={'/ledger-dark.svg'}
+                      iconHeight={4}
+                    />
+                  </ProviderBtn>
+                </li>
+              ) : null}
             </ul>
             <div>
               <a
