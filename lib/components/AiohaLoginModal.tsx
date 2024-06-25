@@ -30,21 +30,17 @@ const ProviderBtn = ({ children, onClick }: { children?: ReactNode; onClick?: ()
 const ProviderBtnDetail = ({
   displayName,
   iconHref,
-  iconHrefDark,
-  iconWidth = 5,
-  iconHeight = 5
+  iconHrefDark
 }: {
   displayName: string
   iconHref: string
   iconHrefDark?: string
-  iconWidth?: number
-  iconHeight?: number
 }) => {
   return (
     <>
-      <svg aria-hidden="true" className={`h-${iconHeight} w-${iconWidth}`}>
-        <image href={iconHref} className={`h-${iconHeight} ${iconHrefDark ? 'block dark:hidden' : ''}`} />
-        {iconHrefDark ? <image href={iconHrefDark} className={`h-${iconHeight} hidden dark:block`} /> : null}
+      <svg aria-hidden="true" className={`h-5 aspect-square`}>
+        <image href={iconHref} className={`h-5 ${iconHrefDark ? 'block dark:hidden' : ''}`} />
+        {iconHrefDark ? <image href={iconHrefDark} className={`h-5 hidden dark:block`} /> : null}
       </svg>
       <span className="flex-1 ms-3 whitespace-nowrap">{displayName}</span>
     </>
@@ -100,10 +96,7 @@ export const AiohaLoginModal = ({ aioha, displayed = false, title = 'Connect Wal
               {aioha.isProviderRegistered(Providers.PeakVault) ? (
                 <li>
                   <ProviderBtn>
-                    <svg aria-hidden="true" className="h-5 aspect-square">
-                      <image href="/peakvault.svg" className="h-5" />
-                    </svg>
-                    <span className="flex-1 ms-3 whitespace-nowrap">Peak Vault</span>
+                    <ProviderBtnDetail displayName={'Peak Vault'} iconHref={'/peakvault.svg'} />
                   </ProviderBtn>
                 </li>
               ) : null}
@@ -128,12 +121,7 @@ export const AiohaLoginModal = ({ aioha, displayed = false, title = 'Connect Wal
               {aioha.isProviderRegistered(Providers.Ledger) ? (
                 <li>
                   <ProviderBtn>
-                    <ProviderBtnDetail
-                      displayName={'Ledger'}
-                      iconHref={'/ledger-light.svg'}
-                      iconHrefDark={'/ledger-dark.svg'}
-                      iconHeight={4}
-                    />
+                    <ProviderBtnDetail displayName={'Ledger'} iconHref={'/ledger-light.svg'} iconHrefDark={'/ledger-dark.svg'} />
                   </ProviderBtn>
                 </li>
               ) : null}
