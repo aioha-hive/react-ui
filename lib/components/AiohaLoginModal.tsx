@@ -43,7 +43,7 @@ export const AiohaLoginModal = ({ aioha, displayed = false, title = 'Connect Wal
             </button>
           </div>
           <div className="p-4 md:p-5">
-            <ProviderSelection aioha={aioha} />
+            <ProviderSelection aioha={aioha} onProviderSelected={(provider) => {}} />
           </div>
         </div>
       </div>

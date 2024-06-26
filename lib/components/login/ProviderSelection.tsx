@@ -9,78 +9,93 @@ const Badge = ({ children }: { children?: ReactNode }) => {
   )
 }
 
-const ProviderBtn = ({ children, onClick }: { children?: ReactNode; onClick?: () => any }) => {
+const ProviderBtn = ({
+  displayName,
+  iconHref,
+  iconHrefDark,
+  badge,
+  onClick
+}: {
+  displayName: string
+  iconHref: string
+  iconHrefDark?: string
+  badge?: string
+  onClick?: () => any
+}) => {
   return (
     <a
       className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow hover:cursor-pointer dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
       onClick={onClick}
     >
-      {children}
-    </a>
-  )
-}
-
-const ProviderBtnDetail = ({
-  displayName,
-  iconHref,
-  iconHrefDark
-}: {
-  displayName: string
-  iconHref: string
-  iconHrefDark?: string
-}) => {
-  return (
-    <>
       <svg aria-hidden="true" className={`h-5 aspect-square`}>
         <image href={iconHref} className={`h-5 ${iconHrefDark ? 'block dark:hidden' : ''}`} />
         {iconHrefDark ? <image href={iconHrefDark} className={`h-5 hidden dark:block`} /> : null}
       </svg>
       <span className="flex-1 ms-3 whitespace-nowrap">{displayName}</span>
-    </>
+      {badge ? <Badge>{badge}</Badge> : null}
+    </a>
   )
 }
 
-export const ProviderSelection = ({ aioha }: { aioha: Aioha }) => {
+export const ProviderSelection = ({
+  aioha,
+  onProviderSelected
+}: {
+  aioha: Aioha
+  onProviderSelected: (provider: Providers) => any
+}) => {
   return (
     <>
       <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
         Connect with one of our available Hive wallet providers.
       </p>
       <ul className="my-4 space-y-3">
-        {aioha.isProviderRegistered(Providers.Keychain) ? (
+        {aioha.isProviderEnabled(Providers.Keychain) ? (
           <li>
-            <ProviderBtn>
-              <ProviderBtnDetail displayName={'Keychain'} iconHref={'/keychain.svg'} />
-              <Badge>Popular</Badge>
-            </ProviderBtn>
+            <ProviderBtn
+              displayName={'Keychain'}
+              iconHref={'/keychain.svg'}
+              onClick={() => onProviderSelected(Providers.Keychain)}
+              badge={'Popular'}
+            />
           </li>
         ) : null}
-        {aioha.isProviderRegistered(Providers.PeakVault) ? (
+        {aioha.isProviderEnabled(Providers.PeakVault) ? (
           <li>
-            <ProviderBtn>
-              <ProviderBtnDetail displayName={'Peak Vault'} iconHref={'/peakvault.svg'} />
-            </ProviderBtn>
+            <ProviderBtn
+              displayName={'Peak Vault'}
+              iconHref={'/peakvault.svg'}
+              onClick={() => onProviderSelected(Providers.PeakVault)}
+            />
           </li>
         ) : null}
         {aioha.isProviderRegistered(Providers.HiveAuth) ? (
           <li>
-            <ProviderBtn>
-              <ProviderBtnDetail displayName={'HiveAuth'} iconHref={'/hiveauth-light.svg'} iconHrefDark={'/hiveauth-dark.svg'} />
-            </ProviderBtn>
+            <ProviderBtn
+              displayName={'HiveAuth'}
+              iconHref={'/hiveauth-light.svg'}
+              iconHrefDark={'/hiveauth-dark.svg'}
+              onClick={() => onProviderSelected(Providers.HiveAuth)}
+            />
           </li>
         ) : null}
         {aioha.isProviderRegistered(Providers.HiveSigner) ? (
           <li>
-            <ProviderBtn>
-              <ProviderBtnDetail displayName={'HiveSigner'} iconHref={'/hivesigner.svg'} />
-            </ProviderBtn>
+            <ProviderBtn
+              displayName={'HiveSigner'}
+              iconHref={'/hivesigner.svg'}
+              onClick={() => onProviderSelected(Providers.HiveSigner)}
+            />
           </li>
         ) : null}
         {aioha.isProviderRegistered(Providers.Ledger) ? (
           <li>
-            <ProviderBtn>
-              <ProviderBtnDetail displayName={'Ledger'} iconHref={'/ledger-light.svg'} iconHrefDark={'/ledger-dark.svg'} />
-            </ProviderBtn>
+            <ProviderBtn
+              displayName={'Ledger'}
+              iconHref={'/ledger-light.svg'}
+              iconHrefDark={'/ledger-dark.svg'}
+              onClick={() => onProviderSelected(Providers.Ledger)}
+            />
           </li>
         ) : null}
       </ul>

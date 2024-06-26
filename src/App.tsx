@@ -1,8 +1,13 @@
 import { useState } from 'react'
-import { AiohaLoginModal } from '../lib'
+import { AiohaLoginModal, HiveSignerCb } from '../lib'
 import { initAioha } from '@aioha/aioha'
 
 const aioha = initAioha({
+  hivesigner: {
+    app: 'ipfsuploader.app',
+    callbackURL: window.location.origin + '/?hivesignercb=true',
+    scope: ['login', 'vote']
+  },
   hiveauth: {
     name: 'Aioha React'
   }
@@ -10,6 +15,14 @@ const aioha = initAioha({
 
 export const App = () => {
   const [aiohaModalDisplayed, setAiohaModalDisplayed] = useState(false)
+  if (new URL(window.location.href).searchParams.get('hivesignercb') === 'true')
+    return (
+      <div className="dark">
+        <div className="min-h-screen min-w-full dark:bg-gray-800">
+          <HiveSignerCb />
+        </div>
+      </div>
+    )
   return (
     <div className="dark">
       <div className="min-h-screen min-w-full dark:bg-gray-800">
