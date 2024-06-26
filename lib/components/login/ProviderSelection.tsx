@@ -1,0 +1,101 @@
+import { ReactNode } from 'react'
+import { Aioha, Providers } from '@aioha/aioha'
+
+const Badge = ({ children }: { children?: ReactNode }) => {
+  return (
+    <span className="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+      {children}
+    </span>
+  )
+}
+
+const ProviderBtn = ({ children, onClick }: { children?: ReactNode; onClick?: () => any }) => {
+  return (
+    <a
+      className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow hover:cursor-pointer dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+      onClick={onClick}
+    >
+      {children}
+    </a>
+  )
+}
+
+const ProviderBtnDetail = ({
+  displayName,
+  iconHref,
+  iconHrefDark
+}: {
+  displayName: string
+  iconHref: string
+  iconHrefDark?: string
+}) => {
+  return (
+    <>
+      <svg aria-hidden="true" className={`h-5 aspect-square`}>
+        <image href={iconHref} className={`h-5 ${iconHrefDark ? 'block dark:hidden' : ''}`} />
+        {iconHrefDark ? <image href={iconHrefDark} className={`h-5 hidden dark:block`} /> : null}
+      </svg>
+      <span className="flex-1 ms-3 whitespace-nowrap">{displayName}</span>
+    </>
+  )
+}
+
+export const ProviderSelection = ({ aioha }: { aioha: Aioha }) => {
+  return (
+    <>
+      <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
+        Connect with one of our available Hive wallet providers.
+      </p>
+      <ul className="my-4 space-y-3">
+        {aioha.isProviderRegistered(Providers.Keychain) ? (
+          <li>
+            <ProviderBtn>
+              <ProviderBtnDetail displayName={'Keychain'} iconHref={'/keychain.svg'} />
+              <Badge>Popular</Badge>
+            </ProviderBtn>
+          </li>
+        ) : null}
+        {aioha.isProviderRegistered(Providers.PeakVault) ? (
+          <li>
+            <ProviderBtn>
+              <ProviderBtnDetail displayName={'Peak Vault'} iconHref={'/peakvault.svg'} />
+            </ProviderBtn>
+          </li>
+        ) : null}
+        {aioha.isProviderRegistered(Providers.HiveAuth) ? (
+          <li>
+            <ProviderBtn>
+              <ProviderBtnDetail displayName={'HiveAuth'} iconHref={'/hiveauth-light.svg'} iconHrefDark={'/hiveauth-dark.svg'} />
+            </ProviderBtn>
+          </li>
+        ) : null}
+        {aioha.isProviderRegistered(Providers.HiveSigner) ? (
+          <li>
+            <ProviderBtn>
+              <ProviderBtnDetail displayName={'HiveSigner'} iconHref={'/hivesigner.svg'} />
+            </ProviderBtn>
+          </li>
+        ) : null}
+        {aioha.isProviderRegistered(Providers.Ledger) ? (
+          <li>
+            <ProviderBtn>
+              <ProviderBtnDetail displayName={'Ledger'} iconHref={'/ledger-light.svg'} iconHrefDark={'/ledger-dark.svg'} />
+            </ProviderBtn>
+          </li>
+        ) : null}
+      </ul>
+      <a href="#" className="inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400">
+        <svg className="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+        Why do I need to connect with my wallet?
+      </a>
+    </>
+  )
+}
