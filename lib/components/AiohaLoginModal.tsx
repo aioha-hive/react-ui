@@ -1,23 +1,29 @@
 import { Dispatch, SetStateAction, useState } from 'react'
 import { Aioha, Providers } from '@aioha/aioha'
-import { LoginOptions } from '@aioha/aioha/build/types'
 import { ProviderSelection } from './login/ProviderSelection'
 import { UsernameInput } from './login/UsernameInput'
+import { LoginOptions } from '@aioha/aioha/build/types'
+import { HiveAuthQR } from './login/HiveAuthQR'
 
 interface LoginModalProps {
   aioha: Aioha
   displayed?: boolean
   title?: string
+  loginOptions: LoginOptions
   onClose: Dispatch<SetStateAction<boolean>>
 }
 
-export const AiohaLoginModal = ({ aioha, displayed = false, title = 'Connect Wallet', onClose }: LoginModalProps) => {
+export const AiohaLoginModal = ({
+  aioha,
+  displayed = false,
+  title = 'Connect Wallet',
+  loginOptions,
+  onClose
+}: LoginModalProps) => {
   const [page, setPage] = useState(0)
   const [chosenProvider, setProvider] = useState<Providers>()
-  const login = async (provider: Providers, username: string, options: LoginOptions) => {
-    const login = await aioha.login(provider, username, options)
-    console.log(login)
-  }
+  const [error, setError] = useState('')
+  const [hiveAuthPl, setHiveAuthPl] = useState<{ payload: string; cancel: () => void }>()
   return (
     <div
       id="aioha-login-modal"
@@ -57,14 +63,41 @@ export const AiohaLoginModal = ({ aioha, displayed = false, title = 'Connect Wal
                 onProviderSelected={async (provider) => {
                   setProvider(provider)
                   if (provider === Providers.HiveSigner) {
-                    await login(provider, '', {})
+                    const login = await aioha.login(provider, '', {})
                   } else {
+                    setError('')
                     setPage(1)
                   }
                 }}
               />
             ) : page === 1 ? (
-              <UsernameInput onPrevious={() => setPage(0)} onNext={console.log} />
+              <UsernameInput
+                onPrevious={() => {
+                  setError('')
+                  setPage(0)
+                }}
+                onNext={async (username) => {
+                  const login = await aioha.login(chosenProvider!, username, {
+                    ...loginOptions,
+                    hiveauth: {
+                      cbWait: (payload, _, cancel) => {
+                        setHiveAuthPl({
+                          payload,
+                          cancel
+                        })
+                        setPage(2)
+                      }
+                    }
+                  })
+                  if (login.error) {
+                    setError(login.error)
+                    setPage(1)
+                  }
+                }}
+                error={error}
+              />
+            ) : page === 2 ? (
+              <HiveAuthQR payload={hiveAuthPl!.payload} cancel={hiveAuthPl!.cancel} />
             ) : null}
           </div>
         </div>

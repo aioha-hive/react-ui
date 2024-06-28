@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AiohaLoginModal, HiveSignerCb } from '../lib'
-import { initAioha } from '@aioha/aioha'
+import { KeyTypes, initAioha } from '@aioha/aioha'
 
 const aioha = initAioha({
   hivesigner: {
@@ -50,7 +50,15 @@ export const App = () => {
           </svg>
           Connect Wallet
         </button>
-        <AiohaLoginModal aioha={aioha} displayed={aiohaModalDisplayed} onClose={setAiohaModalDisplayed} />
+        <AiohaLoginModal
+          aioha={aioha}
+          displayed={aiohaModalDisplayed}
+          loginOptions={{
+            msg: 'Hello World',
+            keyType: KeyTypes.Posting
+          }}
+          onClose={setAiohaModalDisplayed}
+        />
       </div>
     </div>
   )
