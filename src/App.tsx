@@ -5,7 +5,7 @@ import { initAioha } from '@aioha/aioha'
 const aioha = initAioha({
   hivesigner: {
     app: 'ipfsuploader.app',
-    callbackURL: window.location.origin + '/?hivesignercb=true',
+    callbackURL: window.location.origin + '/hivesigner',
     scope: ['login', 'vote']
   },
   hiveauth: {
@@ -15,7 +15,7 @@ const aioha = initAioha({
 
 export const App = () => {
   const [aiohaModalDisplayed, setAiohaModalDisplayed] = useState(false)
-  if (new URL(window.location.href).searchParams.get('hivesignercb') === 'true')
+  if (window.location.pathname === '/hivesigner')
     return (
       <div className="dark">
         <div className="min-h-screen min-w-full dark:bg-gray-800">
