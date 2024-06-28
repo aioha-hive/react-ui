@@ -9,6 +9,11 @@ interface UsernameInputProps {
 export const UsernameInput = ({ onPrevious, onNext, error }: UsernameInputProps) => {
   const [username, setUsername] = useState('')
   const [inProgress, setInProgress] = useState(false)
+  const proceed = async () => {
+    setInProgress(true)
+    await onNext(username)
+    setInProgress(false)
+  }
   return (
     <>
       <div className="mb-5">
@@ -45,16 +50,13 @@ export const UsernameInput = ({ onPrevious, onNext, error }: UsernameInputProps)
           placeholder="Enter Hive Username"
           value={username}
           onChange={(evt) => setUsername(evt.target.value)}
+          onKeyDown={(evt) => (evt.key === 'Enter' ? proceed() : null)}
           disabled={inProgress}
         />
         <button
           type="button"
           className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 items-center flex-none dark:bg-gray-600 dark:text-white dark:border-gray-600 dark:hover:bg-gray-500 dark:hover:border-gray-500"
-          onClick={async () => {
-            setInProgress(true)
-            await onNext(username)
-            setInProgress(false)
-          }}
+          onClick={proceed}
         >
           {inProgress ? (
             <svg
