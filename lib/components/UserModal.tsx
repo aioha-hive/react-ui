@@ -32,12 +32,14 @@ export const UserModal = ({
         <span className="sr-only">Close modal</span>
       </button>
       <div className="p-4 md:p-5 flex flex-col place-content-center text-center">
-        <img
-          className="w-16 h-16 mx-auto rounded-full"
-          src={`${imageServer}/u/${aioha.getCurrentUser()}/avatar`}
-          alt={`${aioha.getCurrentUser()}'s avatar`}
-        />
-        <h3 className="text-lg font-semibold my-2 text-gray-900 dark:text-white">{aioha.getCurrentUser()}</h3>
+        <div className="my-3">
+          <img
+            className="w-16 h-16 mx-auto rounded-full"
+            src={`${imageServer}/u/${aioha.getCurrentUser()}/avatar`}
+            alt={`${aioha.getCurrentUser()}'s avatar`}
+          />
+          <h3 className="text-lg font-semibold my-2 text-gray-900 dark:text-white">{aioha.getCurrentUser()}</h3>
+        </div>
         <div className="flex flex-col rounded-md shadow-sm mx-auto w-full" role="group">
           <button
             type="button"

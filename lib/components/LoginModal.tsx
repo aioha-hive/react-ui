@@ -64,7 +64,6 @@ export const LoginModal = ({ loginTitle = 'Connect Wallet', loginOptions, onClos
         <ErrorAlert error={error} />
         {page === 0 ? (
           <ProviderSelection
-            aioha={aioha}
             onProviderSelected={async (provider) => {
               setProvider(provider)
               if (provider === Providers.HiveSigner) {
