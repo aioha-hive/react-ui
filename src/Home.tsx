@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { AiohaLoginModal, AiohaContext } from '../lib'
+import { LoginModal, AiohaContext } from '../lib'
 import { KeyTypes } from '@aioha/aioha'
 
 export const Home = () => {
@@ -37,7 +37,7 @@ export const Home = () => {
           </div>
         )}
       </button>
-      <AiohaLoginModal
+      <LoginModal
         displayed={aiohaModalDisplayed}
         loginOptions={{
           msg: 'Hello World',

@@ -15,13 +15,7 @@ interface LoginModalProps {
   onLogin?: (result: LoginResult) => any
 }
 
-export const AiohaLoginModal = ({
-  displayed = false,
-  title = 'Connect Wallet',
-  loginOptions,
-  onClose,
-  onLogin
-}: LoginModalProps) => {
+export const LoginModal = ({ displayed = false, title = 'Connect Wallet', loginOptions, onClose, onLogin }: LoginModalProps) => {
   const aioha = useContext(AiohaContext)
   const [page, setPage] = useState(0)
   const [chosenProvider, setProvider] = useState<Providers>()
