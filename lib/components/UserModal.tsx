@@ -1,0 +1,63 @@
+import { Dispatch, SetStateAction, useContext } from 'react'
+import { AiohaContext } from './AiohaContext'
+
+export interface UserModalProps {
+  imageServer?: string
+  explorerUrl?: string
+  onClose: Dispatch<SetStateAction<boolean>>
+}
+
+export const UserModal = ({
+  imageServer = 'https://images.hive.blog',
+  explorerUrl = 'https://hivehub.dev',
+  onClose
+}: UserModalProps) => {
+  const aioha = useContext(AiohaContext)
+  return (
+    <>
+      <button
+        type="button"
+        className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+        onClick={() => onClose(false)}
+      >
+        <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+          />
+        </svg>
+        <span className="sr-only">Close modal</span>
+      </button>
+      <div className="p-4 md:p-5 flex flex-col place-content-center text-center">
+        <img
+          className="w-16 h-16 mx-auto rounded-full"
+          src={`${imageServer}/u/${aioha.getCurrentUser()}/avatar`}
+          alt={`${aioha.getCurrentUser()}'s avatar`}
+        />
+        <h3 className="text-lg font-semibold my-2 text-gray-900 dark:text-white">{aioha.getCurrentUser()}</h3>
+        <div className="flex flex-col rounded-md shadow-sm mx-auto w-full" role="group">
+          <button
+            type="button"
+            className="flex-1 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-t-lg hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-500 dark:focus:text-white"
+            onClick={() => window.open(`${explorerUrl}/@${aioha.getCurrentUser()}`)}
+          >
+            View In Explorer
+          </button>
+          <button
+            type="button"
+            className="flex-1 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-b-lg hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-500 dark:focus:text-white"
+            onClick={async () => {
+              await aioha.logout()
+              onClose(false)
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </>
+  )
+}
