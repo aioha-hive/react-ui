@@ -1,13 +1,13 @@
-import { Dispatch, SetStateAction, useState } from 'react'
-import { Aioha, Providers } from '@aioha/aioha'
+import { Dispatch, SetStateAction, useState, useContext } from 'react'
+import { Providers } from '@aioha/aioha'
 import { ProviderSelection } from './login/ProviderSelection'
 import { UsernameInput } from './login/UsernameInput'
 import { LoginOptions, LoginResult } from '@aioha/aioha/build/types'
 import { HiveAuthQR } from './login/HiveAuthQR'
 import { ErrorAlert } from './login/ErrorAlert'
+import { AiohaContext } from './AiohaContext'
 
 interface LoginModalProps {
-  aioha: Aioha
   displayed?: boolean
   title?: string
   loginOptions: LoginOptions
@@ -16,13 +16,13 @@ interface LoginModalProps {
 }
 
 export const AiohaLoginModal = ({
-  aioha,
   displayed = false,
   title = 'Connect Wallet',
   loginOptions,
   onClose,
   onLogin
 }: LoginModalProps) => {
+  const aioha = useContext(AiohaContext)
   const [page, setPage] = useState(0)
   const [chosenProvider, setProvider] = useState<Providers>()
   const [error, setError] = useState('')
