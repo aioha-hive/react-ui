@@ -40,12 +40,6 @@ devDependencies:
   eslint-plugin-react-refresh:
     specifier: ^0.4.6
     version: 0.4.7(eslint@8.57.0)
-  flowbite:
-    specifier: ^2.3.0
-    version: 2.3.0
-  flowbite-react:
-    specifier: ^0.10.0
-    version: 0.10.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.4)
   postcss:
     specifier: ^8.4.38
     version: 8.4.38
@@ -398,47 +392,6 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@floating-ui/core@1.6.2:
-    resolution: {integrity: sha512-+2XpQV9LLZeanU4ZevzRnGFg2neDeKHgFLjP6YLW+tly0IvrhqT4u8enLGjLH3qeh85g19xY5rsAusfwTdn5lg==}
-    dependencies:
-      '@floating-ui/utils': 0.2.2
-    dev: true
-
-  /@floating-ui/dom@1.6.5:
-    resolution: {integrity: sha512-Nsdud2X65Dz+1RHjAIP0t8z5e2ff/IRbei6BqFrl1urT8sDVzM1HMQ+R0XcU5ceRfyO3I6ayeqIfh+6Wb8LGTw==}
-    dependencies:
-      '@floating-ui/core': 1.6.2
-      '@floating-ui/utils': 0.2.2
-    dev: true
-
-  /@floating-ui/react-dom@2.1.0(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-lNzj5EQmEKn5FFKc04+zasr09h/uX8RtJRNj5gUXsSQIXHVWTVh+hVAg1vOMCexkX8EgvemMvIFpQfkosnVNyA==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@floating-ui/dom': 1.6.5
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    dev: true
-
-  /@floating-ui/react@0.26.17(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-ESD+jYWwqwVzaIgIhExrArdsCL1rOAzryG/Sjlu8yaD3Mtqi3uVyhbE2V7jD58Mo52qbzKz2eUY/Xgh5I86FCQ==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@floating-ui/react-dom': 2.1.0(react-dom@18.3.1)(react@18.3.1)
-      '@floating-ui/utils': 0.2.2
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      tabbable: 6.2.0
-    dev: true
-
-  /@floating-ui/utils@0.2.2:
-    resolution: {integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==}
-    dev: true
-
   /@hiveio/dhive@1.3.0:
     resolution: {integrity: sha512-5MflC3/dMPSN5ZJ/6970PAubRTzwyHDxxb62Z6fs1NXA7Ut79yoNpFGXO9BlsdEmdcFeVsfb9vJx1e0enDQ5bQ==}
     dependencies:
@@ -665,10 +618,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@popperjs/core@2.11.8:
-    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
-    dev: true
 
   /@rollup/pluginutils@5.1.0:
     resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
@@ -1556,10 +1505,6 @@ packages:
       safe-buffer: 5.2.1
     dev: true
 
-  /classnames@2.5.1:
-    resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
-    dev: true
-
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
     dependencies:
@@ -1692,11 +1637,6 @@ packages:
 
   /de-indent@1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
-    dev: true
-
-  /debounce@2.1.0:
-    resolution: {integrity: sha512-OkL3+0pPWCqoBc/nhO9u6TIQNTK44fnBnzuVtJAbp13Naxw9R6u21x+8tVTka87AhDZ3htqZ2pSSsZl9fqL2Wg==}
-    engines: {node: '>=18'}
     dev: true
 
   /debug@4.3.5:
@@ -2073,32 +2013,6 @@ packages:
 
   /flatted@3.3.1:
     resolution: {integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==}
-    dev: true
-
-  /flowbite-react@0.10.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.4):
-    resolution: {integrity: sha512-QCqIC3kExtN8asTunWPFHmgBKY2UTm3nw18STZzVVy/SeFRVyI0f5JyNlxLSh8fyStWpJzLJjTtdSMf1bEqRQA==}
-    peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
-      tailwindcss: ^3
-    dependencies:
-      '@floating-ui/core': 1.6.2
-      '@floating-ui/react': 0.26.17(react-dom@18.3.1)(react@18.3.1)
-      classnames: 2.5.1
-      debounce: 2.1.0
-      flowbite: 2.3.0
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-icons: 5.2.1(react@18.3.1)
-      tailwind-merge: 2.3.0
-      tailwindcss: 3.4.4
-    dev: true
-
-  /flowbite@2.3.0:
-    resolution: {integrity: sha512-pm3JRo8OIJHGfFYWgaGpPv8E+UdWy0Z3gEAGufw+G/1dusaU/P1zoBLiQpf2/+bYAi+GBQtPVG86KYlV0W+AFQ==}
-    dependencies:
-      '@popperjs/core': 2.11.8
-      mini-svg-data-uri: 1.4.4
     dev: true
 
   /fn.name@1.1.0:
@@ -2678,11 +2592,6 @@ packages:
       mime-db: 1.52.0
     dev: true
 
-  /mini-svg-data-uri@1.4.4:
-    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
-    hasBin: true
-    dev: true
-
   /minimalistic-assert@1.0.1:
     resolution: {integrity: sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==}
     dev: true
@@ -3035,14 +2944,6 @@ packages:
       scheduler: 0.23.2
     dev: true
 
-  /react-icons@5.2.1(react@18.3.1):
-    resolution: {integrity: sha512-zdbW5GstTzXaVKvGSyTaBalt7HSfuK5ovrzlpyiWHAFXndXTdd/1hdDHI4xBM1Mn7YriT6aqESucFl9kEXzrdw==}
-    peerDependencies:
-      react: '*'
-    dependencies:
-      react: 18.3.1
-    dev: true
-
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
@@ -3361,16 +3262,6 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
-    dev: true
-
-  /tabbable@6.2.0:
-    resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
-    dev: true
-
-  /tailwind-merge@2.3.0:
-    resolution: {integrity: sha512-vkYrLpIP+lgR0tQCG6AP7zZXCTLc1Lnv/CCRT3BqJ9CZ3ui2++GPaGb1x/ILsINIMSYqqvrpqjUFsMNLlW99EA==}
-    dependencies:
-      '@babel/runtime': 7.24.7
     dev: true
 
   /tailwindcss@3.4.4:
