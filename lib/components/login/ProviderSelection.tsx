@@ -1,5 +1,12 @@
 import { ReactNode } from 'react'
 import { Aioha, Providers } from '@aioha/aioha'
+import KeychainIcon from '../../icons/keychain.svg'
+import PeakVaultIcon from '../../icons/peakvault.svg'
+import HiveAuthIcon from '../../icons/hiveauth-light.svg'
+import HiveAuthIconDark from '../../icons/hiveauth-dark.svg'
+import HiveSignerIcon from '../../icons/hivesigner.svg'
+import LedgerIcon from '../../icons/ledger-light.svg'
+import LedgerIconDark from '../../icons/ledger-dark.svg'
 
 const Badge = ({ children }: { children?: ReactNode }) => {
   return (
@@ -54,7 +61,7 @@ export const ProviderSelection = ({
           <li>
             <ProviderBtn
               displayName={'Keychain'}
-              iconHref={'/keychain.svg'}
+              iconHref={KeychainIcon}
               onClick={() => onProviderSelected(Providers.Keychain)}
               badge={'Popular'}
             />
@@ -64,7 +71,7 @@ export const ProviderSelection = ({
           <li>
             <ProviderBtn
               displayName={'Peak Vault'}
-              iconHref={'/peakvault.svg'}
+              iconHref={PeakVaultIcon}
               onClick={() => onProviderSelected(Providers.PeakVault)}
             />
           </li>
@@ -73,8 +80,8 @@ export const ProviderSelection = ({
           <li>
             <ProviderBtn
               displayName={'HiveAuth'}
-              iconHref={'/hiveauth-light.svg'}
-              iconHrefDark={'/hiveauth-dark.svg'}
+              iconHref={HiveAuthIcon}
+              iconHrefDark={HiveAuthIconDark}
               onClick={() => onProviderSelected(Providers.HiveAuth)}
             />
           </li>
@@ -83,7 +90,7 @@ export const ProviderSelection = ({
           <li>
             <ProviderBtn
               displayName={'HiveSigner'}
-              iconHref={'/hivesigner.svg'}
+              iconHref={HiveSignerIcon}
               onClick={() => onProviderSelected(Providers.HiveSigner)}
             />
           </li>
@@ -92,8 +99,8 @@ export const ProviderSelection = ({
           <li>
             <ProviderBtn
               displayName={'Ledger'}
-              iconHref={'/ledger-light.svg'}
-              iconHrefDark={'/ledger-dark.svg'}
+              iconHref={LedgerIcon}
+              iconHrefDark={LedgerIconDark}
               onClick={() => onProviderSelected(Providers.Ledger)}
             />
           </li>
