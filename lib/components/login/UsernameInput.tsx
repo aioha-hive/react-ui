@@ -2,11 +2,10 @@ import { useState } from 'react'
 
 interface UsernameInputProps {
   onPrevious: () => any
-  onNext: (username: string) => any
-  error?: string
+  onNext: (username: string) => Promise<any>
 }
 
-export const UsernameInput = ({ onPrevious, onNext, error }: UsernameInputProps) => {
+export const UsernameInput = ({ onPrevious, onNext }: UsernameInputProps) => {
   const [username, setUsername] = useState('')
   const [inProgress, setInProgress] = useState(false)
   const proceed = async () => {
@@ -16,7 +15,7 @@ export const UsernameInput = ({ onPrevious, onNext, error }: UsernameInputProps)
   }
   return (
     <>
-      <div className="mb-5">
+      <div className="mb-3">
         <button
           type="button"
           className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm pl-4 pr-5 py-1.5 items-center inline-flex dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-800 dark:hover:border-gray-600 dark:focus:ring-gray-700"
@@ -34,14 +33,6 @@ export const UsernameInput = ({ onPrevious, onNext, error }: UsernameInputProps)
           Back
         </button>
       </div>
-      {error ? (
-        <div
-          className="flex items-center px-3 py-2 mb-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
-          role="alert"
-        >
-          {error}
-        </div>
-      ) : null}
       <div className="inline-flex flex-row gap-1.5 w-full">
         <input
           type="text"
