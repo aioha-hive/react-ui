@@ -3,6 +3,8 @@ import { Providers } from '@aioha/aioha'
 import { AiohaContext } from '../AiohaContext'
 import { ProviderInfo } from '../ProviderInfo'
 
+type ProviderCb = (provider: Providers) => any
+
 const Badge = ({ children }: { children?: ReactNode }) => {
   return (
     <span className="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
@@ -11,7 +13,7 @@ const Badge = ({ children }: { children?: ReactNode }) => {
   )
 }
 
-const ProviderBtn = ({ provider, onClick }: { provider: Providers; onClick: (provider: Providers) => any }) => {
+const ProviderBtn = ({ provider, onClick }: { provider: Providers; onClick: ProviderCb }) => {
   const aioha = useContext(AiohaContext)
   const { name, icon, iconDark, loginBadge } = ProviderInfo[provider]
   return aioha.isProviderEnabled(provider) ? (
@@ -31,18 +33,18 @@ const ProviderBtn = ({ provider, onClick }: { provider: Providers; onClick: (pro
   ) : null
 }
 
-export const ProviderSelection = ({ onProviderSelected }: { onProviderSelected: (provider: Providers) => any }) => {
+export const ProviderSelection = ({ onSelected }: { onSelected: ProviderCb }) => {
   return (
     <>
       <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
         Connect with one of our available Hive wallet providers.
       </p>
       <ul className="my-4 space-y-3">
-        <ProviderBtn provider={Providers.Keychain} onClick={onProviderSelected} />
-        <ProviderBtn provider={Providers.PeakVault} onClick={onProviderSelected} />
-        <ProviderBtn provider={Providers.HiveAuth} onClick={onProviderSelected} />
-        <ProviderBtn provider={Providers.HiveSigner} onClick={onProviderSelected} />
-        <ProviderBtn provider={Providers.Ledger} onClick={onProviderSelected} />
+        <ProviderBtn provider={Providers.Keychain} onClick={onSelected} />
+        <ProviderBtn provider={Providers.PeakVault} onClick={onSelected} />
+        <ProviderBtn provider={Providers.HiveAuth} onClick={onSelected} />
+        <ProviderBtn provider={Providers.HiveSigner} onClick={onSelected} />
+        <ProviderBtn provider={Providers.Ledger} onClick={onSelected} />
       </ul>
       <a href="#" className="inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400">
         <svg className="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
