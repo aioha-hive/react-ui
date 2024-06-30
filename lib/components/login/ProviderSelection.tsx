@@ -1,6 +1,6 @@
-import { useContext, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { Providers } from '@aioha/aioha'
-import { AiohaContext } from '../AiohaContext'
+import { useAioha } from '../AiohaContext'
 import { ProviderInfo } from '../ProviderInfo'
 
 type ProviderCb = (provider: Providers) => any
@@ -14,7 +14,7 @@ const Badge = ({ children }: { children?: ReactNode }) => {
 }
 
 const ProviderBtn = ({ provider, onClick }: { provider: Providers; onClick: ProviderCb }) => {
-  const aioha = useContext(AiohaContext)
+  const { aioha } = useAioha()
   const { name, icon, iconDark, loginBadge } = ProviderInfo[provider]
   return aioha.isProviderEnabled(provider) ? (
     <li>
@@ -33,7 +33,7 @@ const ProviderBtn = ({ provider, onClick }: { provider: Providers; onClick: Prov
   ) : null
 }
 
-export const ProviderSelection = ({ onSelected }: { onSelected: ProviderCb }) => {
+export const ProviderSelection = ({ helpUrl = '#', onSelected }: { helpUrl?: string; onSelected: ProviderCb }) => {
   return (
     <>
       <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
@@ -46,7 +46,11 @@ export const ProviderSelection = ({ onSelected }: { onSelected: ProviderCb }) =>
         <ProviderBtn provider={Providers.HiveSigner} onClick={onSelected} />
         <ProviderBtn provider={Providers.Ledger} onClick={onSelected} />
       </ul>
-      <a href="#" className="inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400">
+      <a
+        href={helpUrl}
+        target="_blank"
+        className="inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400"
+      >
         <svg className="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
           <path
             stroke="currentColor"
@@ -56,7 +60,7 @@ export const ProviderSelection = ({ onSelected }: { onSelected: ProviderCb }) =>
             d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
           />
         </svg>
-        Why do I need to connect with my wallet?
+        Need help connecting a wallet?
       </a>
     </>
   )

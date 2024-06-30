@@ -1,11 +1,11 @@
-import { Dispatch, SetStateAction, useState, useContext } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { Providers } from '@aioha/aioha'
 import { ProviderSelection } from './login/ProviderSelection'
 import { UsernameInput } from './login/UsernameInput'
 import { LoginOptions, LoginResult } from '@aioha/aioha/build/types'
 import { HiveAuthQR } from './login/HiveAuthQR'
 import { ErrorAlert } from './login/ErrorAlert'
-import { AiohaContext } from './AiohaContext'
+import { useAioha } from './AiohaContext'
 import { CloseIcon } from '../icons/CloseIcon'
 
 export interface LoginModalProps {
@@ -16,13 +16,13 @@ export interface LoginModalProps {
 }
 
 export const LoginModal = ({ loginTitle = 'Connect Wallet', loginOptions, onClose, onLogin }: LoginModalProps) => {
-  const aioha = useContext(AiohaContext)
+  const { login: aiohaLogin } = useAioha()
   const [page, setPage] = useState(0)
   const [chosenProvider, setProvider] = useState<Providers>()
   const [error, setError] = useState('')
   const [hiveAuthPl, setHiveAuthPl] = useState<{ payload: string; cancel: () => void }>()
   const login = async (provider: Providers, username: string, options: LoginOptions) => {
-    const loginResult = await aioha.login(provider, username, {
+    const loginResult = await aiohaLogin(provider, username, {
       ...options,
       hiveauth: {
         cbWait: (payload, _, cancel) => {

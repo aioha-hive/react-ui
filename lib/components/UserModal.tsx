@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, useContext } from 'react'
-import { AiohaContext } from './AiohaContext'
+import { Dispatch, SetStateAction } from 'react'
+import { useAioha } from './AiohaContext'
 import { CloseIcon } from '../icons/CloseIcon'
 
 export interface UserModalProps {
@@ -13,7 +13,7 @@ export const UserModal = ({
   explorerUrl = 'https://hivehub.dev',
   onClose
 }: UserModalProps) => {
-  const aioha = useContext(AiohaContext)
+  const { user, logout } = useAioha()
   return (
     <>
       <button
@@ -25,26 +25,22 @@ export const UserModal = ({
       </button>
       <div className="p-4 md:p-5 flex flex-col place-content-center text-center">
         <div className="my-3">
-          <img
-            className="w-16 h-16 mx-auto rounded-full"
-            src={`${imageServer}/u/${aioha.getCurrentUser()}/avatar`}
-            alt={`${aioha.getCurrentUser()}'s avatar`}
-          />
-          <h3 className="text-lg font-semibold my-2 text-gray-900 dark:text-white">{aioha.getCurrentUser()}</h3>
+          <img className="w-16 h-16 mx-auto rounded-full" src={`${imageServer}/u/${user}/avatar`} alt={`${user}'s avatar`} />
+          <h3 className="text-lg font-semibold my-2 text-gray-900 dark:text-white">{user}</h3>
         </div>
         <div className="flex flex-col rounded-md shadow-sm mx-auto w-full" role="group">
           <button
             type="button"
-            className="flex-1 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-t-lg hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-500 dark:focus:text-white"
-            onClick={() => window.open(`${explorerUrl}/@${aioha.getCurrentUser()}`)}
+            className="flex-1 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-t-lg hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500"
+            onClick={() => window.open(`${explorerUrl}/@${user}`)}
           >
             View In Explorer
           </button>
           <button
             type="button"
-            className="flex-1 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-b-lg hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-500 dark:focus:text-white"
+            className="flex-1 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-b-lg hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500"
             onClick={async () => {
-              await aioha.logout()
+              await logout()
               onClose(false)
             }}
           >

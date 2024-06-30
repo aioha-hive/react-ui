@@ -1,5 +1,4 @@
-import { useContext } from 'react'
-import { AiohaContext } from './AiohaContext'
+import { useAioha } from './AiohaContext'
 import { LoginModal, LoginModalProps } from './LoginModal'
 import { UserModal } from './UserModal'
 
@@ -8,7 +7,7 @@ interface ModalProps extends LoginModalProps {
 }
 
 export const AiohaModal = ({ displayed = false, loginTitle, loginOptions, onLogin, onClose }: ModalProps) => {
-  const aioha = useContext(AiohaContext)
+  const { aioha } = useAioha()
   return (
     <div
       id="aioha-modal"
