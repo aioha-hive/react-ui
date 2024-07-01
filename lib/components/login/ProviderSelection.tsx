@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { Providers } from '@aioha/aioha'
-import { useAioha } from '../AiohaContext'
+import { useAioha } from '@aioha/react-provider'
 import { ProviderInfo } from '../ProviderInfo'
 
 type ProviderCb = (provider: Providers) => any

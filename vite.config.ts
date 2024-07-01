@@ -10,7 +10,7 @@ import { peerDependencies } from './package.json'
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, 'lib/main.ts'),
+      entry: resolve(__dirname, 'lib/index.ts'),
       formats: ['es']
     },
     rollupOptions: {

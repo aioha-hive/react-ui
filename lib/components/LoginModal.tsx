@@ -3,9 +3,9 @@ import { Providers } from '@aioha/aioha'
 import { ProviderSelection } from './login/ProviderSelection'
 import { UsernameInput } from './login/UsernameInput'
 import { LoginOptions, LoginResult } from '@aioha/aioha/build/types'
+import { useAioha } from '@aioha/react-provider'
 import { HiveAuthQR } from './login/HiveAuthQR'
 import { ErrorAlert } from './login/ErrorAlert'
-import { useAioha } from './AiohaContext'
 import { CloseIcon } from '../icons/CloseIcon'
 
 export interface LoginModalProps {

@@ -1,4 +1,4 @@
-import { useAioha } from './AiohaContext'
+import { useAioha } from '@aioha/react-provider'
 import { LoginModal, LoginModalProps } from './LoginModal'
 import { UserModal } from './UserModal'
 

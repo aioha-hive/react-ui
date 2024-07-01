@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { useAioha } from './AiohaContext'
+import { useAioha } from '@aioha/react-provider'
 import { CloseIcon } from '../icons/CloseIcon'
 
 export interface UserModalProps {
