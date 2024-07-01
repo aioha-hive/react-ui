@@ -1,3 +1,4 @@
+import React from 'react'
 import { hivesignerCb } from '@aioha/aioha/build/lib/hivesigner-cb'
 
 export const HiveSignerCb = () => {

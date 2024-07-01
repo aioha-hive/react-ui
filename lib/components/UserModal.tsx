@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { useAioha } from '@aioha/react-provider'
 import { CloseIcon } from '../icons/CloseIcon'
 

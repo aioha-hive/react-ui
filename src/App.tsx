@@ -1,3 +1,4 @@
+import React from 'react'
 import { HiveSignerCb } from '../lib'
 import { initAioha } from '@aioha/aioha'
 import { AiohaProvider } from '../lib'

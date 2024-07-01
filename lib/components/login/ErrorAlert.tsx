@@ -1,3 +1,5 @@
+import React from 'react'
+
 export const ErrorAlert = ({ error }: { error?: string }) => {
   return error ? (
     <div

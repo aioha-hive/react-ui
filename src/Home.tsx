@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useAioha, AiohaModal } from '../lib'
 import { KeyTypes } from '@aioha/aioha'
 import { ChainIcon } from './Icons'
