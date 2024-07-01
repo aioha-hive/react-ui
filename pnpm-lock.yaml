@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@aioha/react-provider':
-    specifier: ^1.0.2
-    version: 1.0.2(@aioha/aioha@1.3.11)(react@18.3.1)
+    specifier: ^1.0.3
+    version: 1.0.3(@aioha/aioha@1.3.11)(react@18.3.1)
   react-qr-code:
     specifier: ^2.0.15
     version: 2.0.15(react@18.3.1)
@@ -87,8 +87,8 @@ packages:
       - debug
       - encoding
 
-  /@aioha/react-provider@1.0.2(@aioha/aioha@1.3.11)(react@18.3.1):
-    resolution: {integrity: sha512-K07DE4zNo7PNNKwjPlSG5H+x5Bdm2Mk8lMEm/ftHrwrxDJ6acPtPyDZ8qCoO7BWQi2jlRtjzJGiT6h89xgrvCQ==}
+  /@aioha/react-provider@1.0.3(@aioha/aioha@1.3.11)(react@18.3.1):
+    resolution: {integrity: sha512-yXUQ2U4+IopkkhcJ7HB/J/oiGoFKx78YlhIA1nOb7oUWEMSAFuisrYApZu1TxO1HKkI/xLmLhOkGSCknG6Ye1g==}
     peerDependencies:
       '@aioha/aioha': ^1.3.11
       react: ^18.3.1

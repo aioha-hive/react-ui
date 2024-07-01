@@ -62,7 +62,7 @@
     "react-dom": "^18.3.1"
   },
   "dependencies": {
-    "@aioha/react-provider": "^1.0.2",
+    "@aioha/react-provider": "^1.0.3",
     "react-qr-code": "^2.0.15"
   }
 }
