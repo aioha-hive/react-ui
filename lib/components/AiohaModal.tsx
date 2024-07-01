@@ -1,8 +1,8 @@
 import { useAioha } from '@aioha/react-provider'
 import { LoginModal, LoginModalProps } from './LoginModal'
-import { UserModal } from './UserModal'
+import { UserModal, UserModalProps } from './UserModal'
 
-interface ModalProps extends LoginModalProps {
+interface ModalProps extends LoginModalProps, UserModalProps {
   displayed?: boolean
 }
 
