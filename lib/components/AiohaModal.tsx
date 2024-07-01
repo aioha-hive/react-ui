@@ -7,7 +7,7 @@ interface ModalProps extends LoginModalProps, UserModalProps {
   displayed?: boolean
 }
 
-export const AiohaModal = ({ displayed = false, loginTitle, loginOptions, onLogin, onClose }: ModalProps) => {
+export const AiohaModal = ({ displayed = false, loginTitle, loginHelpUrl, loginOptions, onLogin, onClose }: ModalProps) => {
   const { aioha } = useAioha()
   return (
     <div
@@ -24,7 +24,13 @@ export const AiohaModal = ({ displayed = false, loginTitle, loginOptions, onLogi
           {aioha.isLoggedIn() ? (
             <UserModal onClose={onClose} />
           ) : (
-            <LoginModal loginTitle={loginTitle} loginOptions={loginOptions} onLogin={onLogin} onClose={onClose} />
+            <LoginModal
+              loginTitle={loginTitle}
+              loginHelpUrl={loginHelpUrl}
+              loginOptions={loginOptions}
+              onLogin={onLogin}
+              onClose={onClose}
+            />
           )}
         </div>
       </div>

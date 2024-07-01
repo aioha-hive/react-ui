@@ -10,12 +10,13 @@ import { CloseIcon } from '../icons/CloseIcon'
 
 export interface LoginModalProps {
   loginTitle?: string
+  loginHelpUrl?: string
   loginOptions: LoginOptions
   onLogin?: (result: LoginResult) => any
   onClose: Dispatch<SetStateAction<boolean>>
 }
 
-export const LoginModal = ({ loginTitle = 'Connect Wallet', loginOptions, onClose, onLogin }: LoginModalProps) => {
+export const LoginModal = ({ loginTitle = 'Connect Wallet', loginHelpUrl, loginOptions, onClose, onLogin }: LoginModalProps) => {
   const { login: aiohaLogin } = useAioha()
   const [page, setPage] = useState(0)
   const [chosenProvider, setProvider] = useState<Providers>()
@@ -56,6 +57,7 @@ export const LoginModal = ({ loginTitle = 'Connect Wallet', loginOptions, onClos
         <ErrorAlert error={error} />
         {page === 0 ? (
           <ProviderSelection
+            helpUrl={loginHelpUrl}
             onSelected={async (provider) => {
               setProvider(provider)
               if (provider === Providers.HiveSigner) {
