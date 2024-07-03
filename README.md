@@ -10,7 +10,7 @@ pnpm i @aioha/react-ui @aioha/aioha
 
 ## Usage
 
-1. Initialize Aioha and setup the provider at the root of your application. This may be in index.jsx, index.tsx or App.tsx depending on the framework you use.
+1. Initialize Aioha and setup the provider at the root of your application. This may be in `index.jsx`, `index.tsx` or `App.tsx` depending on the framework you use.
 
 ```tsx
 import { initAioha } from '@aioha/aioha'
