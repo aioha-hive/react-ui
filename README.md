@@ -1,30 +1,80 @@
-# React + TypeScript + Vite
+# Aioha React UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Opinionated React modal UI for Hive logins through Aioha, styled using [Tailwind CSS](https://tailwindcss.com). This provides a quick and easy way to bootstrap a React web app with ready to use Aioha-powered modal component.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```sh
+pnpm i @aioha/react-ui @aioha/aioha
+```
 
-## Expanding the ESLint configuration
+## Usage
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Initialize Aioha and setup the provider at the root of your application. This may be in index.jsx, index.tsx or App.tsx depending on the framework you use.
 
-- Configure the top-level `parserOptions` property like this:
+```tsx
+import { initAioha } from '@aioha/aioha'
+import { AiohaProvider } from '@aioha/react-ui'
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
+// See options: https://aioha.dev/docs/core/usage#instantiation
+const aioha = initAioha()
+
+const App = () => {
+  return (
+    <AiohaProvider aioha={aioha}>
+      <TheRestOfYourApplication />
+    </AiohaProvider>
+  )
 }
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Use the modal component and the [`useAioha()` hook](https://aioha.dev/docs/react/provider#usage) anywhere within `AiohaProvider`.
+
+If your application is primarily styled using Tailwind CSS, it is not required to import `@aioha/react-ui/dist/build.css`.
+
+```tsx
+import { useState } from 'react'
+import { useAioha, AiohaModal } from '@aioha/react-ui'
+import { KeyTypes } from '@aioha/aioha'
+import { Button, useColorMode } from '@chakra-ui/react'
+import '@aioha/react-ui/dist/build.css'
+
+export const AiohaPage = () => {
+  const { colorMode } = useColorMode()
+  const [modalDisplayed, setModalDisplayed] = useState(false)
+  const { user } = useAioha()
+  return (
+    <>
+      <Button onClick={() => setModalDisplayed(true)}>
+        {user ?? 'Connect Wallet'}
+      </Button>
+      <div className={colorMode}>
+        <AiohaModal
+          displayed={modalDisplayed}
+          loginOptions={{
+            msg: 'Login',
+            keyType: KeyTypes.Posting
+          }}
+          onLogin={console.log}
+          onClose={setModalDisplayed}
+        />
+      </div>
+    </>
+  )
+}
+```
+
+## `AiohaModal` component
+
+|Property|Required?|Description|Default|
+|-|-|-|-|
+|`displayed`|✅|Boolean of whether the modal is displayed.|*false*|
+|`loginTitle`|❌|Login title to be displayed.|Connect Wallet|
+|`loginHelpUrl`|❌|Help URL to be linked under provider selection view, if any.|*undefined*|
+|`loginOptions`|✅|Aioha login options. See available configuration [here](https://aioha.dev/docs/core/usage#login).||
+|`onLogin`|❌|Callback function to be called upon successful login, if any. Parameter contains login result as defined [here](https://aioha.dev/docs/core/usage#login).|
+|`onClose`|✅|Function to be called to close the modal.||
+|`imageServer`|❌|Image server URL for user avatar.|https://images.hive.blog|
+|`explorerUrl`|❌|Hive block explorer URL.|https://hivehub.dev|
+
+ℹ️ Note: `hiveauth.cbWait` in `loginOptions` will be overriden as `AiohaModal` will handle the presentation of HiveAuth QR codes.
