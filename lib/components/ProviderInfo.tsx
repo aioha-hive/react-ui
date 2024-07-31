@@ -37,5 +37,9 @@ export const ProviderInfo: {
     name: 'Ledger',
     icon: LedgerIcon,
     iconDark: LedgerIconDark
+  },
+  [Providers.Custom]: {
+    name: 'Other Wallet',
+    icon: ''
   }
 }
