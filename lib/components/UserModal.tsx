@@ -13,7 +13,7 @@ export const UserModal = ({
   explorerUrl = 'https://hivehub.dev',
   onClose
 }: UserModalProps) => {
-  const { user, logout } = useAioha()
+  const { aioha, user } = useAioha()
   return (
     <>
       <button
@@ -41,7 +41,7 @@ export const UserModal = ({
             type="button"
             className="flex-1 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-b-lg hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500"
             onClick={async () => {
-              await logout()
+              await aioha.logout()
               onClose(false)
             }}
           >

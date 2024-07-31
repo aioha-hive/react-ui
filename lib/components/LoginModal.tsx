@@ -17,13 +17,13 @@ export interface LoginModalProps {
 }
 
 export const LoginModal = ({ loginTitle = 'Connect Wallet', loginHelpUrl, loginOptions, onClose, onLogin }: LoginModalProps) => {
-  const { login: aiohaLogin } = useAioha()
+  const { aioha } = useAioha()
   const [page, setPage] = useState(0)
   const [chosenProvider, setProvider] = useState<Providers>()
   const [error, setError] = useState('')
   const [hiveAuthPl, setHiveAuthPl] = useState<{ payload: string; cancel: () => void }>()
   const login = async (provider: Providers, username: string, options: LoginOptions) => {
-    const loginResult = await aiohaLogin(provider, username, {
+    const loginResult = await aioha.login(provider, username, {
       ...options,
       hiveauth: {
         cbWait: (payload, _, cancel) => {
@@ -32,7 +32,7 @@ export const LoginModal = ({ loginTitle = 'Connect Wallet', loginHelpUrl, loginO
         }
       }
     })
-    if (loginResult.error) {
+    if (!loginResult.success) {
       setError(loginResult.error)
       if (provider !== Providers.HiveSigner) setPage(1)
     } else {
