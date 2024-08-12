@@ -5,8 +5,8 @@ import { Providers } from '@aioha/aioha'
 export const HiveSignerOcl = ({ onSuccess }: { onSuccess: () => any }) => {
   const { aioha } = useAioha()
   const [error, setError] = useState('')
-  const url = new URL(window.location.href)
   useEffect(() => {
+    const url = new URL(window.location.href)
     const loginResult = aioha.loginNonInteractive(Providers.HiveSigner, url.searchParams.get('username')!, {
       ignorePersistence: url.searchParams.get('force') === 'true',
       hivesigner: {

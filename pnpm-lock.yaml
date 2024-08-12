@@ -7,15 +7,15 @@ settings:
 dependencies:
   '@aioha/react-provider':
     specifier: ^1.4.1
-    version: 1.4.1(@aioha/aioha@1.4.0)(react@18.3.1)
+    version: 1.4.1(@aioha/aioha@1.4.1)(react@18.3.1)
   react-qr-code:
     specifier: ^2.0.15
     version: 2.0.15(react@18.3.1)
 
 devDependencies:
   '@aioha/aioha':
-    specifier: ^1.4.0
-    version: 1.4.0
+    specifier: ^1.4.1
+    version: 1.4.1
   '@types/react':
     specifier: ^18.3.3
     version: 18.3.3
@@ -70,8 +70,8 @@ devDependencies:
 
 packages:
 
-  /@aioha/aioha@1.4.0:
-    resolution: {integrity: sha512-GJxGAiW609Qy8qXbsWMO2D7ak/GjzLE0HOW73CgyTMAuC29JzEDgyhpadno3TS0J4fXwlWWwbc+fnaJGW8fiRg==}
+  /@aioha/aioha@1.4.1:
+    resolution: {integrity: sha512-Vfe4G+4CEMYgp1Ig7DLPDHAkwJR4cUHuN/M6ERwYOb1j75kX53E7dAh90csoVx2KgFp8Rbm9dE9a/N9aby2GSQ==}
     dependencies:
       '@engrave/ledger-app-hive': 3.5.6
       '@hiveio/dhive': 1.3.0
@@ -86,13 +86,13 @@ packages:
       - debug
       - encoding
 
-  /@aioha/react-provider@1.4.1(@aioha/aioha@1.4.0)(react@18.3.1):
+  /@aioha/react-provider@1.4.1(@aioha/aioha@1.4.1)(react@18.3.1):
     resolution: {integrity: sha512-7TlAc107FX8KNi0h+HeKPl9jFzw6ISKbk3uORZbz4aeQHzD9v/MuDdTbUJchD8zkoF4tFqsQLMwyq99vMKVuGg==}
     peerDependencies:
       '@aioha/aioha': ^1.4.0
       react: ^18.3.1
     dependencies:
-      '@aioha/aioha': 1.4.0
+      '@aioha/aioha': 1.4.1
       react: 18.3.1
     dev: false
 
@@ -408,7 +408,7 @@ packages:
       bigi: 1.4.2
       bs58: 4.0.1
       bytebuffer: 5.0.1
-      core-js: 3.37.1
+      core-js: 3.38.0
       cross-fetch: 3.1.8
       ecurve: 1.0.6
       https: 1.0.0
@@ -948,8 +948,8 @@ packages:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
     dev: true
 
-  /@types/node@18.19.42:
-    resolution: {integrity: sha512-d2ZFc/3lnK2YCYhos8iaNIYu9Vfhr92nHiyJHRltXWjXUBjEE+A4I58Tdbnw4VhggSW+2j5y5gTrLs4biNnubg==}
+  /@types/node@18.19.44:
+    resolution: {integrity: sha512-ZsbGerYg72WMXUIE9fYxtvfzLEuq6q8mKERdWFnqTmOvudMxnz+CBNRoOwJ2kNpFOncrKjT1hZwxjlFgQ9qvQA==}
     dependencies:
       undici-types: 5.26.5
 
@@ -1317,6 +1317,15 @@ packages:
     transitivePeerDependencies:
       - debug
 
+  /axios@1.7.3:
+    resolution: {integrity: sha512-Ar7ND9pU99eJ9GpoGQKhKf58GpUOgnzuaB7ueNQ5BMi0p+LZ5oaEnfF999fAArcTIBwXTCHAmGcHOZJaWPq9Nw==}
+    dependencies:
+      follow-redirects: 1.15.6
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+
   /balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
@@ -1616,8 +1625,8 @@ packages:
     resolution: {integrity: sha512-xFxOwqIzR/e1k1gLiWEophSCMqXcwVHIH7akf7b/vxcUeGunlj3hvZaaqxwHsTgn+IndtkQJgSztIDWeumWJDQ==}
     dev: true
 
-  /core-js@3.37.1:
-    resolution: {integrity: sha512-Xn6qmxrQZyB0FFY8E3bgRXei3lWDJHhvI+u0q9TKIYM49G8pAr0FgnnrFRAmsbptZL1yxRADVXn+x5AGsbBfyw==}
+  /core-js@3.38.0:
+    resolution: {integrity: sha512-XPpwqEodRljce9KswjZShh95qJ1URisBeKCjUdq27YdenkslVe7OO0ZJhlYXAChW7OhXaRLl8AAba7IBfoIHug==}
     requiresBuild: true
 
   /core-util-is@1.0.2:
@@ -2287,8 +2296,8 @@ packages:
     dependencies:
       '@hiveio/dhive': 1.3.0
       moment: 2.30.1
-      winston: 3.13.1
-      winston-daily-rotate-file: 4.7.1(winston@3.13.1)
+      winston: 3.14.1
+      winston-daily-rotate-file: 4.7.1(winston@3.14.1)
     transitivePeerDependencies:
       - encoding
 
@@ -2510,8 +2519,8 @@ packages:
   /keychain-sdk@0.6.2:
     resolution: {integrity: sha512-UnfI7bwq0fajh1TcBNlzwzvVEqbGEVgT+a3segyzwFe8U7K58jkt6/DZ5TDvXYgraAy9xpl4skcMiyRFpwYQxA==}
     dependencies:
-      '@types/node': 18.19.42
-      axios: 1.7.2
+      '@types/node': 18.19.44
+      axios: 1.7.3
       hive-keychain-commons: 1.2.6
       uuid: 9.0.1
     transitivePeerDependencies:
@@ -3784,7 +3793,7 @@ packages:
       isexe: 2.0.0
     dev: true
 
-  /winston-daily-rotate-file@4.7.1(winston@3.13.1):
+  /winston-daily-rotate-file@4.7.1(winston@3.14.1):
     resolution: {integrity: sha512-7LGPiYGBPNyGHLn9z33i96zx/bd71pjBn9tqQzO3I4Tayv94WPmBNwKC7CO1wPHdP9uvu+Md/1nr6VSH9h0iaA==}
     engines: {node: '>=8'}
     peerDependencies:
@@ -3793,7 +3802,7 @@ packages:
       file-stream-rotator: 0.6.1
       object-hash: 2.2.0
       triple-beam: 1.4.1
-      winston: 3.13.1
+      winston: 3.14.1
       winston-transport: 4.7.1
 
   /winston-transport@4.7.1:
@@ -3804,8 +3813,8 @@ packages:
       readable-stream: 3.6.2
       triple-beam: 1.4.1
 
-  /winston@3.13.1:
-    resolution: {integrity: sha512-SvZit7VFNvXRzbqGHsv5KSmgbEYR5EiQfDAL9gxYkRqa934Hnk++zze0wANKtMHcy/gI4W/3xmSDwlhf865WGw==}
+  /winston@3.14.1:
+    resolution: {integrity: sha512-CJi4Il/msz8HkdDfXOMu+r5Au/oyEjFiOZzbX2d23hRLY0narGjqfE5lFlrT5hfYJhPtM8b85/GNFsxIML/RVA==}
     engines: {node: '>= 12.0.0'}
     dependencies:
       '@colors/colors': 1.6.0
