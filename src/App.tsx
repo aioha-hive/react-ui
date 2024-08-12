@@ -3,6 +3,7 @@ import { HiveSignerCb } from '../lib'
 import { initAioha } from '@aioha/aioha'
 import { AiohaProvider } from '../lib'
 import { Home } from './Home'
+import { HiveSignerOcl } from '../lib/components/HiveSignerOcl'
 
 const aioha = initAioha({
   hivesigner: {
@@ -28,7 +29,11 @@ export const App = () => {
     <div className="dark">
       <div className="min-h-screen min-w-full dark:bg-gray-800">
         <AiohaProvider aioha={aioha}>
-          <Home />
+          {window.location.pathname === '/hivesigner-ocl' ? (
+            <HiveSignerOcl onSuccess={() => (window.location.pathname = '/')} />
+          ) : (
+            <Home />
+          )}
         </AiohaProvider>
       </div>
     </div>
