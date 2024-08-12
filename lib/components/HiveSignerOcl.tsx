@@ -10,7 +10,7 @@ export const HiveSignerOcl = ({ onSuccess }: { onSuccess: () => any }) => {
     const loginResult = aioha.loginNonInteractive(Providers.HiveSigner, url.searchParams.get('username')!, {
       ignorePersistence: url.searchParams.get('force') === 'true',
       hivesigner: {
-        accessToken: url.searchParams.get('access_token'),
+        accessToken: url.searchParams.get('access_token')!,
         expiry: parseInt(url.searchParams.get('expiry')!)
       }
     })
