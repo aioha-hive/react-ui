@@ -1,6 +1,6 @@
 {
   "name": "@aioha/react-ui",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Ready-made React modal for Aioha",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -37,7 +37,7 @@
     "README.md"
   ],
   "devDependencies": {
-    "@aioha/aioha": "^1.4.1",
+    "@aioha/aioha": "^1.5.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
