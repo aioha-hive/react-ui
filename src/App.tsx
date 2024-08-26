@@ -1,9 +1,8 @@
 import React from 'react'
 import { HiveSignerCb } from '../lib'
 import { initAioha } from '@aioha/aioha'
-import { AiohaProvider } from '../lib'
+import { AiohaProvider, HiveSignerOcl } from '../lib'
 import { Home } from './Home'
-import { HiveSignerOcl } from '../lib/components/HiveSignerOcl'
 
 const aioha = initAioha({
   hivesigner: {
