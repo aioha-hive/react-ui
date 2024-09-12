@@ -1,5 +1,8 @@
 import React from 'react'
-import QRCode from 'react-qr-code'
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { QRCode } from 'react-qr-code'
 
 export const HiveAuthQR = ({ payload, cancel }: { payload: string; cancel: () => void }) => {
   return (
