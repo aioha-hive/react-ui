@@ -39,6 +39,7 @@ export const UsernameInput = ({ onPrevious, onNext }: UsernameInputProps) => {
           id="small-input"
           className="bg-gray-50 border border-gray-300 text-gray-900 h-auto text-sm rounded-lg focus:outline-none focus:border-gray-900 flex-grow p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-white"
           placeholder="Enter Hive Username"
+          autoCapitalize="off"
           value={username}
           onChange={(evt) => setUsername(evt.target.value)}
           onKeyDown={(evt) => (evt.key === 'Enter' ? proceed() : null)}
