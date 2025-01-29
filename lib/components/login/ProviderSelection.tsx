@@ -16,7 +16,7 @@ const Badge = ({ children }: { children?: ReactNode }) => {
 const ProviderBtn = ({ provider, forceShow, onClick }: { provider: Providers; forceShow: boolean; onClick: ProviderCb }) => {
   const { aioha } = useAioha()
   const { name, icon, iconDark, loginBadge } = ProviderInfo[provider]
-  return aioha.isProviderEnabled(provider) || forceShow ? (
+  return aioha.isProviderEnabled(provider) || (forceShow && aioha.isProviderRegistered(provider)) ? (
     <li>
       <a
         className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow hover:cursor-pointer dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"

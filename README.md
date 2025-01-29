@@ -76,5 +76,6 @@ export const AiohaPage = () => {
 |`onClose`|✅|Function to be called to close the modal.||
 |`imageServer`|❌|Image server URL for user avatar.|https://images.hive.blog|
 |`explorerUrl`|❌|Hive block explorer URL.|https://hivehub.dev|
+|`forceShowProviders`|❌|List of `Providers` to force show as login option, which must be registered already. Clicking on unavailable providers displayed will open the URL of the provider landing page.|*[]*|
 
 ℹ️ Note: `hiveauth.cbWait` in `loginOptions` will be overriden as `AiohaModal` will handle the presentation of HiveAuth QR codes.
