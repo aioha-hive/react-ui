@@ -33,13 +33,21 @@ const ProviderBtn = ({ provider, forceShow, onClick }: { provider: Providers; fo
   ) : null
 }
 
+const ProvidersSeq: Providers[] = [
+  Providers.Keychain,
+  Providers.PeakVault,
+  Providers.HiveAuth,
+  Providers.HiveSigner,
+  Providers.Ledger
+] // in this particular order
+
 export const ProviderSelection = ({
   helpUrl,
   forceShow,
   onSelected
 }: {
   helpUrl?: string
-  forceShow: boolean
+  forceShow: Providers[]
   onSelected: ProviderCb
 }) => {
   return (
@@ -48,11 +56,9 @@ export const ProviderSelection = ({
         Connect with one of our available Hive wallet providers.
       </p>
       <ul className="mt-4 mb-2 space-y-3">
-        <ProviderBtn provider={Providers.Keychain} forceShow={forceShow} onClick={onSelected} />
-        <ProviderBtn provider={Providers.PeakVault} forceShow={forceShow} onClick={onSelected} />
-        <ProviderBtn provider={Providers.HiveAuth} forceShow={forceShow} onClick={onSelected} />
-        <ProviderBtn provider={Providers.HiveSigner} forceShow={forceShow} onClick={onSelected} />
-        <ProviderBtn provider={Providers.Ledger} forceShow={forceShow} onClick={onSelected} />
+        {ProvidersSeq.map((p) => (
+          <ProviderBtn provider={p} forceShow={forceShow.includes(p)} onClick={onSelected} />
+        ))}
       </ul>
       {helpUrl ? (
         <a

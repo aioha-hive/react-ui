@@ -27,7 +27,6 @@ export const Home = () => {
           keyType: KeyTypes.Posting
         }}
         onClose={setAiohaModalDisplayed}
-        forceShowProviders
       />
     </>
   )

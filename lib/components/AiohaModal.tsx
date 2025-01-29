@@ -12,7 +12,7 @@ export const AiohaModal = ({
   loginTitle,
   loginHelpUrl,
   loginOptions,
-  forceShowProviders = false,
+  forceShowProviders = [],
   onLogin,
   onClose
 }: ModalProps) => {

@@ -13,7 +13,7 @@ export interface LoginModalProps {
   loginTitle?: string
   loginHelpUrl?: string
   loginOptions: LoginOptions
-  forceShowProviders?: boolean
+  forceShowProviders?: Providers[]
   onLogin?: (result: LoginResult) => any
   onClose: Dispatch<SetStateAction<boolean>>
 }
@@ -22,7 +22,7 @@ export const LoginModal = ({
   loginTitle = 'Connect Wallet',
   loginHelpUrl,
   loginOptions,
-  forceShowProviders = false,
+  forceShowProviders = [],
   onClose,
   onLogin
 }: LoginModalProps) => {
