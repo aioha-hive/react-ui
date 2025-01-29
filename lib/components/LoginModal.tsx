@@ -7,16 +7,25 @@ import { useAioha } from '@aioha/react-provider'
 import { HiveAuthQR } from './login/HiveAuthQR'
 import { ErrorAlert } from './login/ErrorAlert'
 import { CloseIcon } from '../icons/CloseIcon'
+import { ProviderInfo } from './ProviderInfo'
 
 export interface LoginModalProps {
   loginTitle?: string
   loginHelpUrl?: string
   loginOptions: LoginOptions
+  forceShowProviders?: boolean
   onLogin?: (result: LoginResult) => any
   onClose: Dispatch<SetStateAction<boolean>>
 }
 
-export const LoginModal = ({ loginTitle = 'Connect Wallet', loginHelpUrl, loginOptions, onClose, onLogin }: LoginModalProps) => {
+export const LoginModal = ({
+  loginTitle = 'Connect Wallet',
+  loginHelpUrl,
+  loginOptions,
+  forceShowProviders = false,
+  onClose,
+  onLogin
+}: LoginModalProps) => {
   const { aioha } = useAioha()
   const [page, setPage] = useState(0)
   const [chosenProvider, setProvider] = useState<Providers>()
@@ -58,7 +67,12 @@ export const LoginModal = ({ loginTitle = 'Connect Wallet', loginHelpUrl, loginO
         {page === 0 ? (
           <ProviderSelection
             helpUrl={loginHelpUrl}
+            forceShow={forceShowProviders}
             onSelected={async (provider) => {
+              if (!aioha.isProviderEnabled(provider)) {
+                if (ProviderInfo[provider].url) window.open(ProviderInfo[provider].url, '_blank', 'noopener,noreferrer')
+                return
+              }
               setProvider(provider)
               if (provider === Providers.HiveSigner) {
                 await login(provider, '', {})

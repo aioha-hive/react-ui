@@ -13,16 +13,19 @@ export const ProviderInfo: {
     icon: string
     iconDark?: string
     loginBadge?: string
+    url?: string
   }
 } = {
   [Providers.Keychain]: {
     name: 'Keychain',
     icon: KeychainIcon,
-    loginBadge: 'Popular'
+    loginBadge: 'Popular',
+    url: 'https://hive-keychain.com'
   },
   [Providers.PeakVault]: {
     name: 'Peak Vault',
-    icon: PeakVaultIcon
+    icon: PeakVaultIcon,
+    url: 'https://vault.peakd.com'
   },
   [Providers.HiveAuth]: {
     name: 'HiveAuth',

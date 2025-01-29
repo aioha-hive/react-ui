@@ -13,10 +13,10 @@ const Badge = ({ children }: { children?: ReactNode }) => {
   )
 }
 
-const ProviderBtn = ({ provider, onClick }: { provider: Providers; onClick: ProviderCb }) => {
+const ProviderBtn = ({ provider, forceShow, onClick }: { provider: Providers; forceShow: boolean; onClick: ProviderCb }) => {
   const { aioha } = useAioha()
   const { name, icon, iconDark, loginBadge } = ProviderInfo[provider]
-  return aioha.isProviderEnabled(provider) ? (
+  return aioha.isProviderEnabled(provider) || forceShow ? (
     <li>
       <a
         className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow hover:cursor-pointer dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
@@ -33,18 +33,26 @@ const ProviderBtn = ({ provider, onClick }: { provider: Providers; onClick: Prov
   ) : null
 }
 
-export const ProviderSelection = ({ helpUrl, onSelected }: { helpUrl?: string; onSelected: ProviderCb }) => {
+export const ProviderSelection = ({
+  helpUrl,
+  forceShow,
+  onSelected
+}: {
+  helpUrl?: string
+  forceShow: boolean
+  onSelected: ProviderCb
+}) => {
   return (
     <>
       <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
         Connect with one of our available Hive wallet providers.
       </p>
       <ul className="mt-4 mb-2 space-y-3">
-        <ProviderBtn provider={Providers.Keychain} onClick={onSelected} />
-        <ProviderBtn provider={Providers.PeakVault} onClick={onSelected} />
-        <ProviderBtn provider={Providers.HiveAuth} onClick={onSelected} />
-        <ProviderBtn provider={Providers.HiveSigner} onClick={onSelected} />
-        <ProviderBtn provider={Providers.Ledger} onClick={onSelected} />
+        <ProviderBtn provider={Providers.Keychain} forceShow={forceShow} onClick={onSelected} />
+        <ProviderBtn provider={Providers.PeakVault} forceShow={forceShow} onClick={onSelected} />
+        <ProviderBtn provider={Providers.HiveAuth} forceShow={forceShow} onClick={onSelected} />
+        <ProviderBtn provider={Providers.HiveSigner} forceShow={forceShow} onClick={onSelected} />
+        <ProviderBtn provider={Providers.Ledger} forceShow={forceShow} onClick={onSelected} />
       </ul>
       {helpUrl ? (
         <a
