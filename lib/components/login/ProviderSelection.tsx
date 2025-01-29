@@ -56,8 +56,8 @@ export const ProviderSelection = ({
         Connect with one of our available Hive wallet providers.
       </p>
       <ul className="mt-4 mb-2 space-y-3">
-        {ProvidersSeq.map((p) => (
-          <ProviderBtn provider={p} forceShow={forceShow.includes(p)} onClick={onSelected} />
+        {ProvidersSeq.map((p, i) => (
+          <ProviderBtn key={i} provider={p} forceShow={forceShow.includes(p)} onClick={onSelected} />
         ))}
       </ul>
       {helpUrl ? (
