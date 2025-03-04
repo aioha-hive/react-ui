@@ -29,7 +29,7 @@ export const UserModal = ({
           <img className="w-16 h-16 mx-auto rounded-full" src={`${imageServer}/u/${user}/avatar`} alt={`${user}'s avatar`} />
           <h3 className="text-lg font-semibold my-2 text-gray-900 dark:text-white">{user}</h3>
         </div>
-        <div className="flex flex-col rounded-md shadow-sm mx-auto w-full" role="group">
+        <div className="flex flex-col rounded-md shadow-xs mx-auto w-full" role="group">
           <button
             type="button"
             className="flex-1 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-t-lg hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500"

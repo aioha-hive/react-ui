@@ -28,7 +28,7 @@ export const AiohaModal = ({
       onMouseDown={() => onClose(false)}
     >
       <div className="relative p-4 w-full max-w-md max-h-full">
-        <div className="relative bg-white rounded-lg shadow dark:bg-gray-700" onMouseDown={(e) => e.stopPropagation()}>
+        <div className="relative bg-white rounded-lg shadow-sm dark:bg-gray-700" onMouseDown={(e) => e.stopPropagation()}>
           {aioha.isLoggedIn() ? (
             <UserModal onClose={onClose} />
           ) : (

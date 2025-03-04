@@ -7,7 +7,7 @@ type ProviderCb = (provider: Providers) => any
 
 const Badge = ({ children }: { children?: ReactNode }) => {
   return (
-    <span className="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+    <span className="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded-sm dark:bg-gray-700 dark:text-gray-400">
       {children}
     </span>
   )
@@ -19,7 +19,7 @@ const ProviderBtn = ({ provider, forceShow, onClick }: { provider: Providers; fo
   return aioha.isProviderEnabled(provider) || (forceShow && aioha.isProviderRegistered(provider)) ? (
     <li>
       <a
-        className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow hover:cursor-pointer dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+        className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow-sm hover:cursor-pointer dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
         onClick={() => onClick(provider)}
       >
         <svg aria-hidden="true" className={`h-5 aspect-square`}>
