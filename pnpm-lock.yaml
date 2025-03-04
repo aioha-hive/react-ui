@@ -16,7 +16,7 @@ importers:
         version: 2.0.15(react@18.3.1)
     devDependencies:
       '@aioha/aioha':
-        specifier: ^1.5.5
+        specifier: ^1.5.6
         version: 1.5.6
       '@tailwindcss/cli':
         specifier: ^4.0.9
@@ -25,31 +25,31 @@ importers:
         specifier: ^4.0.9
         version: 4.0.9(vite@5.4.14(@types/node@18.19.79)(lightningcss@1.29.1))
       '@types/react':
-        specifier: ^18.3.3
+        specifier: ^18.3.18
         version: 18.3.18
       '@types/react-dom':
-        specifier: ^18.2.22
+        specifier: ^18.3.5
         version: 18.3.5(@types/react@18.3.18)
       '@typescript-eslint/eslint-plugin':
-        specifier: ^7.2.0
+        specifier: ^7.18.0
         version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1)(typescript@5.8.2)
       '@typescript-eslint/parser':
-        specifier: ^7.2.0
+        specifier: ^7.18.0
         version: 7.18.0(eslint@8.57.1)(typescript@5.8.2)
       '@vitejs/plugin-react-swc':
-        specifier: ^3.5.0
+        specifier: ^3.8.0
         version: 3.8.0(vite@5.4.14(@types/node@18.19.79)(lightningcss@1.29.1))
       autoprefixer:
-        specifier: ^10.4.19
+        specifier: ^10.4.20
         version: 10.4.20(postcss@8.5.3)
       eslint:
-        specifier: ^8.57.0
+        specifier: ^8.57.1
         version: 8.57.1
       eslint-plugin-react-hooks:
-        specifier: ^4.6.0
+        specifier: ^4.6.2
         version: 4.6.2(eslint@8.57.1)
       eslint-plugin-react-refresh:
-        specifier: ^0.4.6
+        specifier: ^0.4.19
         version: 0.4.19(eslint@8.57.1)
       react:
         specifier: ^18.3.1
@@ -61,10 +61,10 @@ importers:
         specifier: ^4.0.9
         version: 4.0.9
       typescript:
-        specifier: ^5.2.2
+        specifier: ^5.8.2
         version: 5.8.2
       vite:
-        specifier: ^5.2.0
+        specifier: ^5.4.14
         version: 5.4.14(@types/node@18.19.79)(lightningcss@1.29.1)
       vite-plugin-dts:
         specifier: ^3.9.1
