@@ -9,7 +9,7 @@
     "start": "vite",
     "dev": "vite",
     "clean": "rm -r dist/*",
-    "build": "tsc --p ./tsconfig.build.json; tailwindcss -o dist/build.css --minify; cp lib/icons/*.svg dist/icons",
+    "build": "tsc --p ./tsconfig.build.json; npx @tailwindcss/cli -o dist/build.css --minify; cp lib/icons/*.svg dist/icons",
     "prepublish": "pnpm run clean; pnpm run build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
@@ -38,6 +38,7 @@
   ],
   "devDependencies": {
     "@aioha/aioha": "^1.5.5",
+    "@tailwindcss/cli": "^4.0.9",
     "@tailwindcss/vite": "^4.0.9",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.2.22",
