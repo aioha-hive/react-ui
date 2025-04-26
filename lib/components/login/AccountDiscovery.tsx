@@ -60,47 +60,45 @@ export const AccountDiscovery = ({ provider, onPrevious }: AccountDiscoveryProps
       </div>
       <ErrorAlert error={error} />
       {Object.keys(discovered.current).length > 0 && (
-        <div className="w-full">
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-              <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-700 dark:divide-gray-600">
-                {Object.entries(discovered.current).map(([username, auths]) => (
-                  <tr
-                    key={username}
-                    className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
-                    onClick={() => console.log('Row clicked:', username)}
-                  >
-                    <td className="px-3 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{username}</div>
-                    </td>
-                    <td className="px-3 py-4 whitespace-nowrap">
-                      <div className="flex flex-wrap gap-2">
-                        {auths.map((auth, index) => (
-                          <span
-                            key={index}
-                            className="px-2 inline-flex text-xs leading-5 font-semplify rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                          >
-                            {auth.role}
-                          </span>
-                        ))}
-                      </div>
-                    </td>
-                    <td className="px-1 py-4 max-w-8 whitespace-nowrap">
-                      <svg
-                        className="w-4 h-4 text-gray-400 dark:text-gray-500 opacity-70"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+        <div className="w-full overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+            <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-700 dark:divide-gray-600">
+              {Object.entries(discovered.current).map(([username, auths]) => (
+                <tr
+                  key={username}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
+                  onClick={() => console.log('Row clicked:', username)}
+                >
+                  <td className="px-3 py-4 whitespace-nowrap">
+                    <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{username}</div>
+                  </td>
+                  <td className="px-3 py-4 whitespace-nowrap">
+                    <div className="flex flex-wrap gap-2">
+                      {auths.map((auth, index) => (
+                        <span
+                          key={index}
+                          className="px-2 inline-flex text-xs leading-5 font-semplify rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                        >
+                          {auth.role}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                  <td className="px-1 py-4 max-w-8 whitespace-nowrap">
+                    <svg
+                      className="w-4 h-4 text-gray-400 dark:text-gray-500 opacity-70"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
       {!completed ? (
