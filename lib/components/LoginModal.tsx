@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Providers } from '@aioha/aioha'
 import { ProviderSelection } from './login/ProviderSelection'
 import { UsernameInput } from './login/UsernameInput'
@@ -31,14 +31,21 @@ export const LoginModal = ({
   const [chosenProvider, setProvider] = useState<Providers>()
   const [error, setError] = useState('')
   const [hiveAuthPl, setHiveAuthPl] = useState<{ payload: string; cancel: () => void }>()
+  useEffect(() => {
+    aioha.on('hiveauth_login_request', (payload: string, _: any, cancel: () => void) => {
+      setHiveAuthPl({ payload, cancel })
+      setPage(2)
+    })
+    return () => {
+      aioha.off('hiveauth_login_request')
+    }
+  })
   const login = async (provider: Providers, username: string, options: LoginOptions) => {
     const loginResult = await aioha.login(provider, username, {
       ...options,
       hiveauth: {
-        cbWait: (payload, _, cancel) => {
-          setHiveAuthPl({ payload, cancel })
-          setPage(2)
-        }
+        // TODO: remove after removing the callback function in next core release
+        cbWait: () => {}
       }
     })
     if (!loginResult.success) {
