@@ -14,6 +14,7 @@ export const ProviderInfo: {
     iconDark?: string
     loginBadge?: string
     url?: string
+    discovery?: boolean
   }
 } = {
   [Providers.Keychain]: {
@@ -39,7 +40,8 @@ export const ProviderInfo: {
   [Providers.Ledger]: {
     name: 'Ledger',
     icon: LedgerIcon,
-    iconDark: LedgerIconDark
+    iconDark: LedgerIconDark,
+    discovery: true
   },
   [Providers.Custom]: {
     name: 'Other Wallet',

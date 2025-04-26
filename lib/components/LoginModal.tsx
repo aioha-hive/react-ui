@@ -8,6 +8,7 @@ import { HiveAuthQR } from './login/HiveAuthQR'
 import { ErrorAlert } from './login/ErrorAlert'
 import { CloseIcon } from '../icons/CloseIcon'
 import { ProviderInfo } from './ProviderInfo'
+import { AccountDiscovery } from './login/AccountDiscovery'
 
 export interface LoginModalProps {
   loginTitle?: string
@@ -83,6 +84,9 @@ export const LoginModal = ({
               setProvider(provider)
               if (provider === Providers.HiveSigner) {
                 await login(provider, '', {})
+              } else if (ProviderInfo[provider].discovery) {
+                setError('')
+                setPage(3)
               } else {
                 setError('')
                 setPage(1)
@@ -99,6 +103,8 @@ export const LoginModal = ({
           />
         ) : page === 2 ? (
           <HiveAuthQR payload={hiveAuthPl!.payload} cancel={hiveAuthPl!.cancel} />
+        ) : page === 3 ? (
+          <AccountDiscovery provider={chosenProvider!} onPrevious={() => setPage(0)} />
         ) : null}
       </div>
     </>
