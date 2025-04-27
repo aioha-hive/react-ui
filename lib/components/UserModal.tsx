@@ -32,14 +32,21 @@ export const UserModal = ({
         <div className="flex flex-col rounded-md shadow-xs mx-auto w-full" role="group">
           <button
             type="button"
-            className="flex-1 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-t-lg hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500"
+            className="flex-1 px-4 py-2 text-sm font-medium hover:cursor-pointer text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500 rounded-t-lg"
             onClick={() => window.open(`${explorerUrl}/@${user}`)}
           >
             View In Explorer
           </button>
           <button
             type="button"
-            className="flex-1 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-b-lg hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500"
+            className="flex-1 px-4 py-2 text-sm font-medium hover:cursor-pointer text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500"
+            onClick={() => {}}
+          >
+            Switch User
+          </button>
+          <button
+            type="button"
+            className="flex-1 px-4 py-2 text-sm font-medium hover:cursor-pointer text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500 rounded-b-lg"
             onClick={async () => {
               await aioha.logout()
               onClose(false)

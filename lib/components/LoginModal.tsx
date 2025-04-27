@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Providers } from '@aioha/aioha'
-import { ProviderSelection } from './login/ProviderSelection'
+import { Arrangement, ProviderSelection } from './login/ProviderSelection'
 import { UsernameInput } from './login/UsernameInput'
 import { LoginOptions, LoginResult } from '@aioha/aioha/build/types'
 import { useAioha } from '@aioha/react-provider'
@@ -14,6 +14,7 @@ export interface LoginModalProps {
   loginTitle?: string
   loginHelpUrl?: string
   loginOptions: LoginOptions
+  arrangement?: Arrangement
   forceShowProviders?: Providers[]
   onLogin?: (result: LoginResult) => any
   onClose: Dispatch<SetStateAction<boolean>>
@@ -23,6 +24,7 @@ export const LoginModal = ({
   loginTitle = 'Connect Wallet',
   loginHelpUrl,
   loginOptions,
+  arrangement = 'list',
   forceShowProviders = [],
   onClose,
   onLogin
@@ -76,6 +78,7 @@ export const LoginModal = ({
           <ProviderSelection
             helpUrl={loginHelpUrl}
             forceShow={forceShowProviders}
+            arrangement={arrangement}
             onSelected={async (provider) => {
               if (!aioha.isProviderEnabled(provider)) {
                 if (ProviderInfo[provider].url) window.open(ProviderInfo[provider].url, '_blank', 'noopener,noreferrer')

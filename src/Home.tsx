@@ -26,6 +26,7 @@ export const Home = () => {
           msg: 'Hello World',
           keyType: KeyTypes.Posting
         }}
+        arrangement="grid"
         onClose={setAiohaModalDisplayed}
       />
     </>

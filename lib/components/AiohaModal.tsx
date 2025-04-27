@@ -13,6 +13,7 @@ export const AiohaModal = ({
   loginHelpUrl,
   loginOptions,
   forceShowProviders = [],
+  arrangement = 'list',
   onLogin,
   onClose
 }: ModalProps) => {
@@ -35,6 +36,7 @@ export const AiohaModal = ({
               loginTitle={loginTitle}
               loginHelpUrl={loginHelpUrl}
               loginOptions={loginOptions}
+              arrangement={arrangement}
               forceShowProviders={forceShowProviders}
               onLogin={onLogin}
               onClose={onClose}

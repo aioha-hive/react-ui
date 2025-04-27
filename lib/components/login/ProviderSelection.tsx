@@ -4,6 +4,7 @@ import { useAioha } from '@aioha/react-provider'
 import { ProviderInfo } from '../ProviderInfo'
 
 type ProviderCb = (provider: Providers) => any
+export type Arrangement = 'list' | 'grid'
 
 const Badge = ({ children }: { children?: ReactNode }) => {
   return (
@@ -33,6 +34,23 @@ const ProviderBtn = ({ provider, forceShow, onClick }: { provider: Providers; fo
   ) : null
 }
 
+const ProviderBtnGrid = ({ provider, forceShow, onClick }: { provider: Providers; forceShow: boolean; onClick: ProviderCb }) => {
+  const { aioha } = useAioha()
+  const { name, icon, iconDark } = ProviderInfo[provider]
+  return aioha.isProviderEnabled(provider) || (forceShow && aioha.isProviderRegistered(provider)) ? (
+    <a
+      className="flex flex-col items-center p-6 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow-sm hover:cursor-pointer dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white"
+      onClick={() => onClick(provider)}
+    >
+      <svg aria-hidden="true" className={`h-12 aspect-square`}>
+        <image href={icon} className={`h-12 ${iconDark ? 'block dark:hidden' : ''}`} />
+        {iconDark ? <image href={iconDark} className={`h-12 hidden dark:block`} /> : null}
+      </svg>
+      <span className="mt-4 text-base font-bold dark:text-white whitespace-nowrap">{name}</span>
+    </a>
+  ) : null
+}
+
 const ProvidersSeq: Providers[] = [
   Providers.Keychain,
   Providers.PeakVault,
@@ -44,22 +62,32 @@ const ProvidersSeq: Providers[] = [
 export const ProviderSelection = ({
   helpUrl,
   forceShow,
-  onSelected
+  onSelected,
+  arrangement
 }: {
   helpUrl?: string
   forceShow: Providers[]
   onSelected: ProviderCb
+  arrangement: Arrangement
 }) => {
   return (
     <>
       <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
         Connect with one of our available Hive wallet providers.
       </p>
-      <ul className="mt-4 mb-2 space-y-3">
-        {ProvidersSeq.map((p, i) => (
-          <ProviderBtn key={i} provider={p} forceShow={forceShow.includes(p)} onClick={onSelected} />
-        ))}
-      </ul>
+      {arrangement === 'list' ? (
+        <ul className="mt-4 mb-2 space-y-3">
+          {ProvidersSeq.map((p, i) => (
+            <ProviderBtn key={i} provider={p} forceShow={forceShow.includes(p)} onClick={onSelected} />
+          ))}
+        </ul>
+      ) : (
+        <div className="grid grid-cols-2 gap-4 mt-4 mb-2">
+          {ProvidersSeq.map((p, i) => (
+            <ProviderBtnGrid key={i} provider={p} forceShow={forceShow.includes(p)} onClick={onSelected} />
+          ))}
+        </div>
+      )}
       {helpUrl ? (
         <a
           href={helpUrl}
