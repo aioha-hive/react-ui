@@ -104,7 +104,11 @@ export const LoginModal = ({
         ) : page === 2 ? (
           <HiveAuthQR payload={hiveAuthPl!.payload} cancel={hiveAuthPl!.cancel} />
         ) : page === 3 ? (
-          <AccountDiscovery provider={chosenProvider!} onPrevious={() => setPage(0)} />
+          <AccountDiscovery
+            provider={chosenProvider!}
+            onPrevious={() => setPage(0)}
+            onNext={(username, info) => login(chosenProvider!, username, { ...loginOptions, paths: info.map((v) => v.path) })}
+          />
         ) : null}
       </div>
     </>

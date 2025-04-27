@@ -8,6 +8,7 @@ import { SpinningIcon } from '../../icons/SpinningIcon'
 interface AccountDiscoveryProps {
   provider: Providers
   onPrevious: () => any
+  onNext: (username: string, details: DiscUserAuth[]) => Promise<any>
 }
 
 interface DiscUserAuth {
@@ -20,7 +21,7 @@ interface DiscUsers {
   [user: string]: DiscUserAuth[]
 }
 
-export const AccountDiscovery = ({ provider, onPrevious }: AccountDiscoveryProps) => {
+export const AccountDiscovery = ({ provider, onPrevious, onNext }: AccountDiscoveryProps) => {
   const { aioha } = useAioha()
   const discovering = useRef(false)
   const stopDiscovery = useRef(() => {})
@@ -28,6 +29,7 @@ export const AccountDiscovery = ({ provider, onPrevious }: AccountDiscoveryProps
   const [completed, setCompleted] = useState(false)
   const [count, setCount] = useState<number>(0)
   const [error, setError] = useState<string>()
+  const [isPrompt, showPrompt] = useState<boolean>(false)
   useEffect(() => {
     const discover = async () => {
       if (discovering.current) return
@@ -53,6 +55,33 @@ export const AccountDiscovery = ({ provider, onPrevious }: AccountDiscoveryProps
     }
     discover()
   }, [])
+  const userSelected = (user: string) => {
+    showPrompt(true)
+    onNext(user, discovered.current[user])
+  }
+  if (isPrompt)
+    return (
+      <div className="flex-col gap-20 my-3">
+        <svg
+          className="w-20 h-20 ml-auto mr-auto text-gray-900 dark:text-gray-100"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M6 15h12M6 6h12m-6 12h.01M7 21h10a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1Z"
+          />
+        </svg>
+        <div className="text-lg my-3 text-gray-900 dark:text-gray-100 text-center">
+          Please approve login request on the device.
+        </div>
+      </div>
+    )
   return (
     <div className="flex-col gap-3">
       <div className="mb-3 w-full">
@@ -67,7 +96,7 @@ export const AccountDiscovery = ({ provider, onPrevious }: AccountDiscoveryProps
                 <tr
                   key={username}
                   className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
-                  onClick={() => console.log('Row clicked:', username)}
+                  onClick={() => userSelected(username)}
                 >
                   <td className="px-3 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{username}</div>
