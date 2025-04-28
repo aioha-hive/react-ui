@@ -27,8 +27,11 @@ export const AiohaModal = ({
       } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black bg-opacity-30`}
       onMouseDown={() => onClose(false)}
     >
-      <div className="relative p-4 w-full max-w-md max-h-full">
-        <div className="relative bg-white rounded-lg shadow-sm dark:bg-gray-700" onMouseDown={(e) => e.stopPropagation()}>
+      <div className={`relative p-4 ${arrangement === 'grid' ? 'md:max-w-xl max-w-md' : 'max-w-md'} max-h-full`}>
+        <div
+          className="relative bg-white rounded-lg shadow-sm dark:bg-gray-700 min-w-sm"
+          onMouseDown={(e) => e.stopPropagation()}
+        >
           {aioha.isLoggedIn() ? (
             <UserModal onClose={onClose} />
           ) : (

@@ -82,7 +82,7 @@ export const ProviderSelection = ({
           ))}
         </ul>
       ) : (
-        <div className="grid grid-cols-2 gap-4 mt-4 mb-2">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4 mb-2">
           {ProvidersSeq.map((p, i) => (
             <ProviderBtnGrid key={i} provider={p} forceShow={forceShow.includes(p)} onClick={onSelected} />
           ))}

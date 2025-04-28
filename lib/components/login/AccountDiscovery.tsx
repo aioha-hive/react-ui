@@ -113,9 +113,9 @@ export const AccountDiscovery = ({ provider, onPrevious, onNext }: AccountDiscov
                       ))}
                     </div>
                   </td>
-                  <td className="px-1 py-4 max-w-8 whitespace-nowrap">
+                  <td className="px-1 py-4 w-7 whitespace-nowrap">
                     <svg
-                      className="w-4 h-4 text-gray-400 dark:text-gray-500 opacity-70"
+                      className="w-4 h-4 mx-auto text-gray-400 dark:text-gray-500 opacity-70"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

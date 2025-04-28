@@ -36,6 +36,7 @@ export const LoginModal = ({
   const [hiveAuthPl, setHiveAuthPl] = useState<{ payload: string; cancel: () => void }>()
   useEffect(() => {
     aioha.on('hiveauth_login_request', (payload: string, _: any, cancel: () => void) => {
+      setError('')
       setHiveAuthPl({ payload, cancel })
       setPage(2)
     })
