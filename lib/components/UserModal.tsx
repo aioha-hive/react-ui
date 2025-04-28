@@ -6,14 +6,16 @@ export interface UserModalProps {
   imageServer?: string
   explorerUrl?: string
   onClose: Dispatch<SetStateAction<boolean>>
+  onSwitchUser: () => any
 }
 
 export const UserModal = ({
   imageServer = 'https://images.hive.blog',
   explorerUrl = 'https://hivehub.dev',
-  onClose
+  onClose,
+  onSwitchUser
 }: UserModalProps) => {
-  const { aioha, user } = useAioha()
+  const { aioha, user, otherUsers } = useAioha()
   return (
     <>
       <button
@@ -40,7 +42,7 @@ export const UserModal = ({
           <button
             type="button"
             className="flex-1 px-4 py-2 text-sm font-medium hover:cursor-pointer text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500"
-            onClick={() => {}}
+            onClick={onSwitchUser}
           >
             Switch User
           </button>
@@ -50,6 +52,7 @@ export const UserModal = ({
             onClick={async () => {
               await aioha.logout()
               onClose(false)
+              if (Object.keys(otherUsers).length > 0) onSwitchUser()
             }}
           >
             Logout

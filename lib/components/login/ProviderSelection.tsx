@@ -2,11 +2,12 @@ import React, { ReactNode } from 'react'
 import { Providers } from '@aioha/aioha'
 import { useAioha } from '@aioha/react-provider'
 import { ProviderInfo } from '../ProviderInfo'
+import { CloseIcon } from '../../icons/CloseIcon'
 
 type ProviderCb = (provider: Providers) => any
 export type Arrangement = 'list' | 'grid'
 
-const Badge = ({ children }: { children?: ReactNode }) => {
+export const Badge = ({ children }: { children?: ReactNode }) => {
   return (
     <span className="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded-sm dark:bg-gray-700 dark:text-gray-400">
       {children}
@@ -39,7 +40,7 @@ const ProviderBtnGrid = ({ provider, forceShow, onClick }: { provider: Providers
   const { name, icon, iconDark } = ProviderInfo[provider]
   return aioha.isProviderEnabled(provider) || (forceShow && aioha.isProviderRegistered(provider)) ? (
     <a
-      className="flex flex-col items-center p-6 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow-sm hover:cursor-pointer dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white"
+      className="flex flex-col items-center w-34 p-6 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow-sm hover:cursor-pointer dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white"
       onClick={() => onClick(provider)}
     >
       <svg aria-hidden="true" className={`h-12 aspect-square`}>
@@ -63,12 +64,14 @@ export const ProviderSelection = ({
   helpUrl,
   forceShow,
   onSelected,
-  arrangement
+  arrangement,
+  onCancel
 }: {
   helpUrl?: string
   forceShow: Providers[]
   onSelected: ProviderCb
   arrangement: Arrangement
+  onCancel?: () => any
 }) => {
   return (
     <>
@@ -105,6 +108,16 @@ export const ProviderSelection = ({
           </svg>
           Need help connecting a wallet?
         </a>
+      ) : null}
+      {typeof onCancel === 'function' ? (
+        <button
+          type="button"
+          className="flex gap-2 items-center justify-center my-3 ml-auto mr-auto text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
+          onClick={onCancel}
+        >
+          <CloseIcon srDesc="Cancel button" />
+          Cancel
+        </button>
       ) : null}
     </>
   )

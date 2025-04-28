@@ -17,6 +17,7 @@ export interface LoginModalProps {
   arrangement?: Arrangement
   forceShowProviders?: Providers[]
   onLogin?: (result: LoginResult) => any
+  onCancel?: () => any
   onClose: Dispatch<SetStateAction<boolean>>
 }
 
@@ -26,6 +27,7 @@ export const LoginModal = ({
   loginOptions,
   arrangement = 'list',
   forceShowProviders = [],
+  onCancel,
   onClose,
   onLogin
 }: LoginModalProps) => {
@@ -80,6 +82,7 @@ export const LoginModal = ({
             helpUrl={loginHelpUrl}
             forceShow={forceShowProviders}
             arrangement={arrangement}
+            onCancel={onCancel}
             onSelected={async (provider) => {
               if (!aioha.isProviderEnabled(provider)) {
                 if (ProviderInfo[provider].url) window.open(ProviderInfo[provider].url, '_blank', 'noopener,noreferrer')
