@@ -1,9 +1,10 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import { useAioha } from '@aioha/react-provider'
 import { CloseIcon } from '../icons/CloseIcon'
-import { RightAngledArrow } from './TableUtils'
+import { RightAngledArrow, RmRowIcon } from './TableUtils'
 import { Badge } from './login/ProviderSelection'
 import { PlusIcon } from '../icons/PlusIcon'
+import { EditIcon } from '../icons/EditIcon'
 
 export interface SwitchUserModalProps {
   onClose: Dispatch<SetStateAction<boolean>>
@@ -12,7 +13,15 @@ export interface SwitchUserModalProps {
 }
 
 export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModalProps) => {
-  const { user, provider, otherUsers } = useAioha()
+  const { aioha, user, provider, otherUsers } = useAioha()
+  const [editing, setEditing] = useState(false)
+  const onClickUser = (selected: string) => {
+    if (editing) {
+      selected === user ? aioha.logout() : aioha.removeOtherLogin(selected)
+    } else {
+      onSelect(selected)
+    }
+  }
   return (
     <>
       <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -29,37 +38,63 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
           <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-700 dark:divide-gray-600">
             {user && (
-              <tr key={user} className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" onClick={() => onSelect(user!)}>
+              <tr
+                key={user}
+                className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
+                onClick={() => onClickUser(user!)}
+              >
                 <td className="px-5 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{user}</div>
                 </td>
                 <td className="px-3 py-4 whitespace-nowrap">
                   <Badge>{provider}</Badge>
                 </td>
-                <RightAngledArrow w={12} />
+                {editing ? <RmRowIcon w={12} /> : <RightAngledArrow w={12} />}
               </tr>
             )}
             {Object.keys(otherUsers).map((u, i) => (
-              <tr key={i} className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" onClick={() => onSelect(u!)}>
+              <tr key={i} className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" onClick={() => onClickUser(u!)}>
                 <td className="px-5 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{u}</div>
                 </td>
                 <td className="px-3 py-4 whitespace-nowrap">
                   <Badge>{otherUsers[u]}</Badge>
                 </td>
-                <RightAngledArrow w={12} />
+                {editing ? <RmRowIcon w={12} /> : <RightAngledArrow w={12} />}
               </tr>
             ))}
           </tbody>
         </table>
-        <button
-          type="button"
-          className="flex gap-1 items-center justify-center my-5 ml-auto mr-auto text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
-          onClick={onAddAcc}
-        >
-          <PlusIcon />
-          Add account
-        </button>
+        {editing ? (
+          <div className="flex gap-2 my-5 mx-auto justify-center">
+            <button
+              type="button"
+              className="flex gap-1 items-center justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
+              onClick={() => setEditing(false)}
+            >
+              Done
+            </button>
+          </div>
+        ) : (
+          <div className="flex gap-2 my-5 mx-auto justify-center">
+            <button
+              type="button"
+              className="flex gap-1 items-center justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm pl-3.5 pr-4 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
+              onClick={() => setEditing(true)}
+            >
+              <EditIcon />
+              Edit
+            </button>
+            <button
+              type="button"
+              className="flex gap-1 items-center justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm pl-3 pr-4 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
+              onClick={onAddAcc}
+            >
+              <PlusIcon />
+              Add account
+            </button>
+          </div>
+        )}
       </div>
     </>
   )
