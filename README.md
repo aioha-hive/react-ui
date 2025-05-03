@@ -55,6 +55,7 @@ export const AiohaPage = () => {
             msg: 'Login',
             keyType: KeyTypes.Posting
           }}
+          arrangement={'grid'}
           onLogin={console.log}
           onClose={setModalDisplayed}
         />
@@ -72,6 +73,7 @@ export const AiohaPage = () => {
 |`loginTitle`|❌|Login title to be displayed.|Connect Wallet|
 |`loginHelpUrl`|❌|Help URL to be linked under provider selection view, if any.|*undefined*|
 |`loginOptions`|✅|Aioha login options. See available configuration [here](https://aioha.dev/docs/core/usage#login).||
+|`arrangement`|❌|Display view preference of provider selection. Valid values: `list` and `grid`.|list|
 |`onLogin`|❌|Callback function to be called upon successful login, if any. Parameter contains login result as defined [here](https://aioha.dev/docs/core/usage#login).|
 |`onClose`|✅|Function to be called to close the modal.||
 |`imageServer`|❌|Image server URL for user avatar.|https://images.hive.blog|
