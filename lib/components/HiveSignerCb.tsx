@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { hivesignerCb } from '@aioha/aioha/build/lib/hivesigner-cb'
+import { hivesignerCb } from '@aioha/aioha/build/lib/hivesigner-cb.js'
 
 export const HiveSignerCb = () => {
   useEffect(() => hivesignerCb(), [])

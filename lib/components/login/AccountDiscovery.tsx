@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Providers } from '@aioha/aioha'
 import { useAioha } from '@aioha/react-provider'
-import { ErrorAlert } from './ErrorAlert'
-import { BackButton } from './BackButton'
-import { SpinningIcon } from '../../icons/SpinningIcon'
-import { RightAngledArrow } from '../TableUtils'
+import { ErrorAlert } from './ErrorAlert.js'
+import { BackButton } from './BackButton.js'
+import { SpinningIcon } from '../../icons/SpinningIcon.js'
+import { RightAngledArrow } from '../TableUtils.js'
 
 interface AccountDiscoveryProps {
   provider: Providers

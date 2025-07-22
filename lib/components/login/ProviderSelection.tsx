@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react'
 import { Providers } from '@aioha/aioha'
 import { useAioha } from '@aioha/react-provider'
-import { ProviderInfo } from '../ProviderInfo'
-import { CloseIcon } from '../../icons/CloseIcon'
+import { ProviderInfo } from '../ProviderInfo.js'
+import { CloseIcon } from '../../icons/CloseIcon.js'
 
 type ProviderCb = (provider: Providers) => any
 export type Arrangement = 'list' | 'grid'

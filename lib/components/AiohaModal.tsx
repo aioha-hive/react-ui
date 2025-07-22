@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useAioha } from '@aioha/react-provider'
-import { LoginModal, LoginModalProps } from './LoginModal'
-import { UserModal, UserModalProps } from './UserModal'
-import { SwitchUserModal } from './SwitchUserModal'
+import { LoginModal, LoginModalProps } from './LoginModal.js'
+import { UserModal, UserModalProps } from './UserModal.js'
+import { SwitchUserModal } from './SwitchUserModal.js'
 
 interface ModalProps extends LoginModalProps, Omit<UserModalProps, 'onSwitchUser'> {
   displayed?: boolean

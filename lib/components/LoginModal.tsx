@@ -1,14 +1,14 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Providers } from '@aioha/aioha'
-import { Arrangement, ProviderSelection } from './login/ProviderSelection'
-import { UsernameInput } from './login/UsernameInput'
-import { LoginOptions, LoginResult } from '@aioha/aioha/build/types'
+import { Arrangement, ProviderSelection } from './login/ProviderSelection.js'
+import { UsernameInput } from './login/UsernameInput.js'
+import { LoginOptions, LoginResult } from '@aioha/aioha/build/types.js'
 import { useAioha } from '@aioha/react-provider'
-import { HiveAuthQR } from './login/HiveAuthQR'
-import { ErrorAlert } from './login/ErrorAlert'
-import { CloseIcon } from '../icons/CloseIcon'
-import { ProviderInfo } from './ProviderInfo'
-import { AccountDiscovery } from './login/AccountDiscovery'
+import { HiveAuthQR } from './login/HiveAuthQR.js'
+import { ErrorAlert } from './login/ErrorAlert.js'
+import { CloseIcon } from '../icons/CloseIcon.js'
+import { ProviderInfo } from './ProviderInfo.js'
+import { AccountDiscovery } from './login/AccountDiscovery.js'
 
 export interface LoginModalProps {
   loginTitle?: string

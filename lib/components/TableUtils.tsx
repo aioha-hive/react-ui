@@ -1,5 +1,5 @@
 import React from 'react'
-import { CloseIcon } from '../icons/CloseIcon'
+import { CloseIcon } from '../icons/CloseIcon.js'
 
 export const RightAngledArrow = ({ w = 7 }: { w?: number }) => {
   return (

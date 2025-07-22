@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import { useAioha } from '@aioha/react-provider'
-import { CloseIcon } from '../icons/CloseIcon'
-import { RightAngledArrow, RmRowIcon } from './TableUtils'
-import { Badge } from './login/ProviderSelection'
-import { PlusIcon } from '../icons/PlusIcon'
-import { EditIcon } from '../icons/EditIcon'
+import { CloseIcon } from '../icons/CloseIcon.js'
+import { RightAngledArrow, RmRowIcon } from './TableUtils.js'
+import { Badge } from './login/ProviderSelection.js'
+import { PlusIcon } from '../icons/PlusIcon.js'
+import { EditIcon } from '../icons/EditIcon.js'
 
 export interface SwitchUserModalProps {
   onClose: Dispatch<SetStateAction<boolean>>
