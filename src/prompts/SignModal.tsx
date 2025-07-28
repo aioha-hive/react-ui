@@ -32,7 +32,7 @@ export const SignModal = ({
             <CloseIcon />
           </button>
           <div className="p-4 md:p-8 flex flex-col gap-5 place-content-center text-center">
-            {trx_id ? <CircleArrowUp size={28} /> : <PenIcon size={28} />}
+            {trx_id ? <CircleArrowUp /> : <PenIcon />}
             <div className="flex flex-col gap-1">
               <div className="text-xl text-gray-900 dark:text-gray-100 text-center">
                 {trx_id ? 'Transaction Sent' : 'Please sign transaction in your wallet'}

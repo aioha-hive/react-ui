@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const EditIcon = ({ size = 6 }: { size?: number }) => {
+export const EditIcon = () => {
   return (
     <svg
-      className={`w-${size} h-${size} text-gray-800 dark:text-white`}
+      className={`w-6 h-6 text-gray-800 dark:text-white`}
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       width="24"

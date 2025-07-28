@@ -1,9 +1,14 @@
 import React from 'react'
 import { CloseIcon } from '../icons/CloseIcon.js'
 
+const sizes: { [s: number]: string } = {
+  7: 'w-7',
+  12: 'w-12'
+}
+
 export const RightAngledArrow = ({ w = 7 }: { w?: number }) => {
   return (
-    <td className={`px-1 py-4 w-${w} whitespace-nowrap`}>
+    <td className={`px-1 py-4 ${sizes[w]} whitespace-nowrap`}>
       <svg
         className="w-4 h-4 mx-auto text-gray-400 dark:text-gray-500 opacity-70"
         fill="none"
@@ -19,7 +24,7 @@ export const RightAngledArrow = ({ w = 7 }: { w?: number }) => {
 
 export const RmRowIcon = ({ w = 7 }: { w?: number }) => {
   return (
-    <td className={`px-1 py-4 w-${w} whitespace-nowrap text-gray-800 dark:text-gray-100`}>
+    <td className={`px-1 py-4 ${sizes[w]} whitespace-nowrap text-gray-800 dark:text-gray-100`}>
       <CloseIcon />
     </td>
   )

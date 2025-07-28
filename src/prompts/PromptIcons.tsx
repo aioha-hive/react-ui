@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const PenIcon = ({ size = 6 }: { size?: number }) => {
+export const PenIcon = () => {
   return (
     <svg
-      className={`size-${size} text-gray-800 dark:text-white mx-auto`}
+      className={`size-28 text-gray-800 dark:text-white mx-auto`}
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -20,9 +20,9 @@ export const PenIcon = ({ size = 6 }: { size?: number }) => {
   )
 }
 
-export const CircleArrowUp = ({ size = 6 }: { size?: number }) => (
+export const CircleArrowUp = () => (
   <svg
-    className={`size-${size} text-gray-800 dark:text-white mx-auto`}
+    className={`size-28 text-gray-800 dark:text-white mx-auto`}
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
