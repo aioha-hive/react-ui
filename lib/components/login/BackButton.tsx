@@ -4,11 +4,11 @@ export const BackButton = ({ onPrevious }: { onPrevious: () => void }) => {
   return (
     <button
       type="button"
-      className="text-gray-900 bg-white border border-gray-300 focus:outline-hidden hover:bg-gray-100 hover:cursor-pointer focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm pl-4 pr-5 py-1.5 items-center inline-flex dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-800 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+      className="ah:text-gray-900 ah:bg-white ah:border ah:border-gray-300 ah:focus:outline-hidden ah:hover:bg-gray-100 ah:hover:cursor-pointer ah:focus:ring-4 ah:focus:ring-gray-100 ah:font-medium ah:rounded-lg ah:text-sm ah:pl-4 ah:pr-5 ah:py-1.5 ah:items-center ah:inline-flex ah:dark:bg-gray-700 ah:dark:text-white ah:dark:border-gray-600 ah:dark:hover:bg-gray-800 ah:dark:hover:border-gray-600 ah:dark:focus:ring-gray-700"
       onClick={onPrevious}
     >
       <svg
-        className="w-5 h-5 text-gray-900 dark:text-white"
+        className="ah:w-5 ah:h-5 ah:text-gray-900 ah:dark:text-white"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

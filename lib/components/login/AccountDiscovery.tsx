@@ -62,9 +62,9 @@ export const AccountDiscovery = ({ provider, onPrevious, onNext }: AccountDiscov
   }
   if (isPrompt)
     return (
-      <div className="flex-col gap-20 my-3">
+      <div className="ah:flex-col ah:gap-20 ah:my-3">
         <svg
-          className="w-20 h-20 ml-auto mr-auto text-gray-900 dark:text-gray-100"
+          className="ah:w-20 ah:h-20 ah:ml-auto ah:mr-auto ah:text-gray-900 ah:dark:text-gray-100"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -78,36 +78,36 @@ export const AccountDiscovery = ({ provider, onPrevious, onNext }: AccountDiscov
             d="M6 15h12M6 6h12m-6 12h.01M7 21h10a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1Z"
           />
         </svg>
-        <div className="text-lg my-3 text-gray-900 dark:text-gray-100 text-center">
+        <div className="ah:text-lg my-3 ah:text-gray-900 ah:dark:text-gray-100 ah:text-center">
           Please approve login request on the device.
         </div>
       </div>
     )
   return (
-    <div className="flex-col gap-3">
-      <div className="mb-3 w-full">
+    <div className="ah:flex-col ah:gap-3">
+      <div className="ah:mb-3 ah:w-full">
         <BackButton onPrevious={onPrevious} />
       </div>
       <ErrorAlert error={error} />
       {Object.keys(discovered.current).length > 0 && (
-        <div className="w-full overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-            <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-700 dark:divide-gray-600">
+        <div className="ah:w-full ah:overflow-x-auto">
+          <table className="ah:min-w-full ah:divide-y ah:divide-gray-200 ah:dark:divide-gray-600">
+            <tbody className="ah:bg-white ah:divide-y ah:divide-gray-200 ah:dark:bg-gray-700 ah:dark:divide-gray-600">
               {Object.entries(discovered.current).map(([username, auths]) => (
                 <tr
                   key={username}
-                  className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
+                  className="ah:hover:bg-gray-50 ah:dark:hover:bg-gray-600 ah:cursor-pointer"
                   onClick={() => userSelected(username)}
                 >
-                  <td className="px-3 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{username}</div>
+                  <td className="ah:px-3 ah:py-4 ah:whitespace-nowrap">
+                    <div className="ah:text-sm ah:font-medium ah:text-gray-900 ah:dark:text-gray-100">{username}</div>
                   </td>
-                  <td className="px-3 py-4 whitespace-nowrap">
-                    <div className="flex flex-wrap gap-2">
+                  <td className="ah:px-3 ah:py-4 ah:whitespace-nowrap">
+                    <div className="ah:flex ah:flex-wrap ah:gap-2">
                       {auths.map((auth, index) => (
                         <span
                           key={index}
-                          className="px-2 inline-flex text-xs leading-5 font-semplify rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                          className="ah:px-2 ah:inline-flex ah:text-xs ah:leading-5 ah:font-semplify ah:rounded-full ah:bg-green-100 ah:text-green-800 ah:dark:bg-green-900 ah:dark:text-green-200"
                         >
                           {auth.role}
                         </span>
@@ -124,7 +124,7 @@ export const AccountDiscovery = ({ provider, onPrevious, onNext }: AccountDiscov
       {!completed ? (
         <button
           type="button"
-          className="flex gap-2 items-center justify-center mt-3 ml-auto mr-auto text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
+          className="ah:flex ah:gap-2 ah:items-center ah:justify-center ah:mt-3 ah:ml-auto ah:mr-auto ah:text-gray-900 ah:bg-white ah:border ah:border-gray-300 ah:focus:outline-none ah:hover:bg-gray-100 ah:font-medium ah:rounded-lg ah:text-sm ah:px-5 ah:py-2.5 ah:dark:bg-gray-700 ah:dark:text-white ah:dark:hover:bg-gray-800 ah:enabled:hover:cursor-pointer ah:disabled:hover:cursor-not-allowed"
           onClick={stopDiscovery.current}
           disabled={count === 0}
         >

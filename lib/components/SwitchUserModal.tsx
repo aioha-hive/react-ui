@@ -24,40 +24,44 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
   }
   return (
     <>
-      <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Switch User</h3>
+      <div className="ah:flex ah:items-center ah:justify-between ah:p-4 ah:md:p-5 ah:border-b ah:rounded-t ah:dark:border-gray-600">
+        <h3 className="ah:text-lg ah:font-semibold ah:text-gray-900 ah:dark:text-white">Switch User</h3>
         <button
           type="button"
-          className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+          className="ah:text-gray-400 ah:bg-transparent ah:hover:bg-gray-200 ah:hover:text-gray-900 ah:rounded-lg ah:text-sm ah:h-8 ah:w-8 ah:ms-auto ah:inline-flex ah:justify-center ah:items-center ah:dark:hover:bg-gray-600 ah:dark:hover:text-white"
           onClick={() => onClose(false)}
         >
           <CloseIcon />
         </button>
       </div>
-      <div className="w-full overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-          <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-700 dark:divide-gray-600">
+      <div className="ah:w-full ah:overflow-x-auto">
+        <table className="ah:min-w-full ah:divide-y ah:divide-gray-200 ah:dark:divide-gray-600">
+          <tbody className="ah:bg-white ah:divide-y ah:divide-gray-200 ah:dark:bg-gray-700 ah:dark:divide-gray-600">
             {user && (
               <tr
                 key={user}
-                className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
+                className="ah:hover:bg-gray-50 ah:dark:hover:bg-gray-600 ah:cursor-pointer"
                 onClick={() => onClickUser(user!)}
               >
-                <td className="px-5 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{user}</div>
+                <td className="ah:px-5 ah:py-4 ah:whitespace-nowrap">
+                  <div className="ah:text-sm ah:font-medium ah:text-gray-900 ah:dark:text-gray-100">{user}</div>
                 </td>
-                <td className="px-3 py-4 whitespace-nowrap">
+                <td className="ah:px-3 ah:py-4 ah:whitespace-nowrap">
                   <Badge>{provider}</Badge>
                 </td>
                 {editing ? <RmRowIcon w={12} /> : <RightAngledArrow w={12} />}
               </tr>
             )}
             {Object.keys(otherUsers).map((u, i) => (
-              <tr key={i} className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" onClick={() => onClickUser(u!)}>
-                <td className="px-5 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{u}</div>
+              <tr
+                key={i}
+                className="ah:hover:bg-gray-50 ah:dark:hover:bg-gray-600 ah:cursor-pointer"
+                onClick={() => onClickUser(u!)}
+              >
+                <td className="ah:px-5 ah:py-4 ah:whitespace-nowrap">
+                  <div className="ah:text-sm ah:font-medium ah:text-gray-900 ah:dark:text-gray-100">{u}</div>
                 </td>
-                <td className="px-3 py-4 whitespace-nowrap">
+                <td className="ah:px-3 ah:py-4 ah:whitespace-nowrap">
                   <Badge>{otherUsers[u]}</Badge>
                 </td>
                 {editing ? <RmRowIcon w={12} /> : <RightAngledArrow w={12} />}
@@ -66,20 +70,20 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
           </tbody>
         </table>
         {editing ? (
-          <div className="flex gap-2 my-5 mx-auto justify-center">
+          <div className="ah:flex ah:gap-2 ah:my-5 ah:mx-auto ah:justify-center">
             <button
               type="button"
-              className="flex gap-1 items-center justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
+              className="ah:flex ah:gap-1 ah:items-center ah:justify-center ah:text-gray-900 ah:bg-white ah:border ah:border-gray-300 ah:focus:outline-none ah:hover:bg-gray-100 ah:font-medium ah:rounded-lg ah:text-sm ah:px-4 ah:py-2.5 ah:dark:bg-gray-700 ah:dark:text-white ah:dark:hover:bg-gray-800 ah:enabled:hover:cursor-pointer ah:disabled:hover:cursor-not-allowed"
               onClick={() => setEditing(false)}
             >
               Done
             </button>
           </div>
         ) : (
-          <div className="flex gap-2 my-5 mx-auto justify-center">
+          <div className="ah:flex ah:gap-2 ah:my-5 ah:mx-auto ah:justify-center">
             <button
               type="button"
-              className="flex gap-1 items-center justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm pl-3.5 pr-4 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
+              className="ah:flex ah:gap-1 ah:items-center ah:justify-center ah:text-gray-900 ah:bg-white ah:border ah:border-gray-300 ah:focus:outline-none ah:hover:bg-gray-100 ah:font-medium ah:rounded-lg ah:text-sm ah:pl-3.5 ah:pr-4 ah:py-2.5 ah:dark:bg-gray-700 ah:dark:text-white ah:dark:hover:bg-gray-800 ah:enabled:hover:cursor-pointer ah:disabled:hover:cursor-not-allowed"
               onClick={() => setEditing(true)}
             >
               <EditIcon />
@@ -87,7 +91,7 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
             </button>
             <button
               type="button"
-              className="flex gap-1 items-center justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm pl-3 pr-4 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
+              className="ah:flex ah:gap-1 ah:items-center ah:justify-center ah:text-gray-900 ah:bg-white ah:border ah:border-gray-300 ah:focus:outline-none ah:hover:bg-gray-100 ah:font-medium ah:rounded-lg ah:text-sm ah:pl-3 ah:pr-4 ah:py-2.5 ah:dark:bg-gray-700 ah:dark:text-white ah:dark:hover:bg-gray-800 ah:enabled:hover:cursor-pointer ah:disabled:hover:cursor-not-allowed"
               onClick={onAddAcc}
             >
               <PlusIcon />

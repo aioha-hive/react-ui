@@ -4,7 +4,7 @@ export const ChainIcon = () => {
   return (
     <svg
       aria-hidden="true"
-      className="w-4 h-4 me-2"
+      className="ah:w-4 ah:h-4 ah:me-2"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"

@@ -27,13 +27,15 @@ export const AiohaModal = ({
       id="aioha-modal"
       tabIndex={-1}
       className={`${
-        displayed ? '' : 'hidden'
-      } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black bg-opacity-30`}
+        displayed ? '' : 'ah:hidden'
+      } ah:overflow-y-auto ah:overflow-x-hidden ah:fixed ah:top-0 ah:right-0 ah:left-0 ah:z-50 ah:flex ah:justify-center ah:items-center ah:w-full ah:md:inset-0 ah:h-full ah:bg-black ah:bg-opacity-30`}
       onMouseDown={() => onClose(false)}
     >
-      <div className={`relative p-4 ${arrangement === 'grid' ? 'md:max-w-xl max-w-md' : 'max-w-md'} max-h-full`}>
+      <div
+        className={`ah:relative ah:p-4 ${arrangement === 'grid' ? 'ah:md:max-w-xl ah:max-w-md' : 'ah:max-w-md'} ah:max-h-full`}
+      >
         <div
-          className="relative bg-white rounded-lg shadow-sm dark:bg-gray-700 min-w-sm"
+          className="ah:relative ah:bg-white ah:rounded-lg ah:shadow-sm ah:dark:bg-gray-700 ah:min-w-sm"
           onMouseDown={(e) => e.stopPropagation()}
         >
           {aioha.isLoggedIn() || Object.keys(otherUsers).length > 0 ? (

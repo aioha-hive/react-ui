@@ -17,14 +17,14 @@ export const UsernameInput = ({ onPrevious, onNext }: UsernameInputProps) => {
   }
   return (
     <>
-      <div className="mb-3">
+      <div className="ah:mb-3">
         <BackButton onPrevious={onPrevious} />
       </div>
-      <div className="inline-flex flex-row gap-1.5 w-full">
+      <div className="ah:inline-flex ah:flex-row ah:gap-1.5 ah:w-full">
         <input
           type="text"
           id="small-input"
-          className="bg-gray-50 border border-gray-300 text-gray-900 h-auto text-sm rounded-lg focus:outline-hidden focus:border-gray-900 grow p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-white"
+          className="ah:bg-gray-50 ah:border ah:border-gray-300 ah:text-gray-900 ah:h-auto ah:text-sm ah:rounded-lg ah:focus:outline-hidden ah:focus:border-gray-900 ah:grow ah:p-2.5 ah:dark:bg-gray-700 ah:dark:border-gray-600 ah:dark:placeholder-gray-400 ah:dark:text-white ah:dark:focus:border-white"
           placeholder="Enter Hive Username"
           autoCapitalize="off"
           value={username}
@@ -34,7 +34,7 @@ export const UsernameInput = ({ onPrevious, onNext }: UsernameInputProps) => {
         />
         <button
           type="button"
-          className="text-gray-900 bg-white border border-gray-300 focus:outline-hidden hover:bg-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 items-center flex-none dark:bg-gray-600 dark:text-white dark:border-gray-600 dark:hover:bg-gray-500 dark:hover:border-gray-500"
+          className="ah:text-gray-900 ah:bg-white ah:border ah:border-gray-300 ah:focus:outline-hidden ah:hover:bg-gray-100 ah:font-medium ah:rounded-lg ah:text-sm ah:px-3 ah:py-1.5 ah:items-center ah:flex-none ah:dark:bg-gray-600 ah:dark:text-white ah:dark:border-gray-600 ah:dark:hover:bg-gray-500 ah:dark:hover:border-gray-500"
           onClick={proceed}
           aria-label="Proceed"
           disabled={inProgress}
@@ -43,7 +43,7 @@ export const UsernameInput = ({ onPrevious, onNext }: UsernameInputProps) => {
             <SpinningIcon />
           ) : (
             <svg
-              className="w-6 h-6 text-gray-800 dark:text-white"
+              className="ah:w-6 ah:h-6 ah:text-gray-800 ah:dark:text-white"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"

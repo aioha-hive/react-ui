@@ -21,7 +21,7 @@ export const HiveSignerOcl = ({ onSuccess }: { onSuccess: () => any }) => {
     }
   }, [])
   return (
-    <p className="ml-2 text-black dark:text-white">
+    <p className="ah:ml-2 ah:text-black ah:dark:text-white">
       {error ? 'Failed to login with one click: ' + error : 'Logging you in with one click...'}
     </p>
   )

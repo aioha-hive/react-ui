@@ -3,7 +3,7 @@ import React from 'react'
 export const PenIcon = () => {
   return (
     <svg
-      className={`size-28 text-gray-800 dark:text-white mx-auto`}
+      className={`ah:size-28 ah:text-gray-800 ah:dark:text-white ah:mx-auto`}
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -22,7 +22,7 @@ export const PenIcon = () => {
 
 export const CircleArrowUp = () => (
   <svg
-    className={`size-28 text-gray-800 dark:text-white mx-auto`}
+    className={`ah:size-28 ah:text-gray-800 ah:dark:text-white ah:mx-auto`}
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

@@ -2,14 +2,14 @@ import React from 'react'
 
 export const SpinningIcon = ({ size = 6 }: { size?: number }) => {
   const sizes: { [s: number]: string } = {
-    5: 'w-5 h-5',
-    6: 'w-6 h-6'
+    5: 'ah:w-5 ah:h-5',
+    6: 'ah:w-6 ah:h-6'
   }
   return (
     <>
       <svg
         aria-hidden="true"
-        className={`inline ${sizes[size]} text-transparent animate-spin fill-gray-600 dark:fill-gray-100`}
+        className={`ah:inline ${sizes[size]} ah:text-transparent ah:animate-spin ah:fill-gray-600 ah:dark:fill-gray-100`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.npmjs.com/package/react"
@@ -23,7 +23,7 @@ export const SpinningIcon = ({ size = 6 }: { size?: number }) => {
           fill="currentFill"
         />
       </svg>
-      <span className="sr-only">Loading...</span>
+      <span className="ah:sr-only">Loading...</span>
     </>
   )
 }

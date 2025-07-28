@@ -20,35 +20,39 @@ export const UserModal = ({
     <>
       <button
         type="button"
-        className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+        className="ah:absolute ah:top-3 ah:end-2.5 ah:text-gray-400 ah:bg-transparent ah:hover:bg-gray-200 ah:hover:text-gray-900 ah:rounded-lg ah:text-sm ah:w-8 ah:h-8 ah:ms-auto ah:inline-flex ah:justify-center ah:items-center ah:dark:hover:bg-gray-600 ah:dark:hover:text-white"
         onClick={() => onClose(false)}
         aria-label="Close"
       >
         <CloseIcon />
       </button>
-      <div className="p-4 md:p-5 flex flex-col place-content-center text-center">
-        <div className="my-3">
-          <img className="w-16 h-16 mx-auto rounded-full" src={`${imageServer}/u/${user}/avatar`} alt={`${user}'s avatar`} />
-          <h3 className="text-lg font-semibold my-2 text-gray-900 dark:text-white">{user}</h3>
+      <div className="ah:p-4 ah:md:p-5 ah:flex ah:flex-col ah:place-content-center ah:text-center">
+        <div className="ah:my-3">
+          <img
+            className="ah:w-16 ah:h-16 ah:mx-auto ah:rounded-full"
+            src={`${imageServer}/u/${user}/avatar`}
+            alt={`${user}'s avatar`}
+          />
+          <h3 className="ah:text-lg ah:font-semibold ah:my-2 ah:text-gray-900 ah:dark:text-white">{user}</h3>
         </div>
-        <div className="flex flex-col rounded-md shadow-xs mx-auto w-full" role="group">
+        <div className="ah:flex ah:flex-col ah:rounded-md ah:shadow-xs ah:mx-auto ah:w-full" role="group">
           <button
             type="button"
-            className="flex-1 px-4 py-2 text-sm font-medium hover:cursor-pointer text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500 rounded-t-lg"
+            className="ah:flex-1 ah:px-4 ah:py-2 ah:text-sm ah:font-medium ah:hover:cursor-pointer ah:text-gray-900 ah:bg-white ah:border ah:border-gray-200 ah:hover:bg-gray-100 ah:dark:bg-gray-600 ah:dark:border-gray-700 ah:dark:text-white ah:dark:hover:bg-gray-500 ah:rounded-t-lg"
             onClick={() => window.open(`${explorerUrl}/@${user}`)}
           >
             View In Explorer
           </button>
           <button
             type="button"
-            className="flex-1 px-4 py-2 text-sm font-medium hover:cursor-pointer text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500"
+            className="ah:flex-1 ah:px-4 ah:py-2 ah:text-sm ah:font-medium ah:hover:cursor-pointer ah:text-gray-900 ah:bg-white border ah:border-gray-200 ah:hover:bg-gray-100 ah:dark:bg-gray-600 ah:dark:border-gray-700 ah:dark:text-white ah:dark:hover:bg-gray-500"
             onClick={onSwitchUser}
           >
             Switch User
           </button>
           <button
             type="button"
-            className="flex-1 px-4 py-2 text-sm font-medium hover:cursor-pointer text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500 rounded-b-lg"
+            className="ah:flex-1 ah:px-4 ah:py-2 ah:text-sm ah:font-medium ah:hover:cursor-pointer ah:text-gray-900 ah:bg-white ah:border ah:border-gray-200 ah:hover:bg-gray-100 ah:dark:bg-gray-600 ah:dark:border-gray-700 ah:dark:text-white ah:dark:hover:bg-gray-500 ah:rounded-b-lg"
             onClick={async () => {
               await aioha.logout()
               onClose(false)

@@ -18,15 +18,15 @@ const aioha = initAioha({
 export const App = () => {
   if (window.location.pathname === '/hivesigner')
     return (
-      <div className="dark">
-        <div className="min-h-screen min-w-full dark:bg-gray-800">
+      <div className="ah:dark">
+        <div className="ah:min-h-screen ah:min-w-full ah:dark:bg-gray-800">
           <HiveSignerCb />
         </div>
       </div>
     )
   return (
-    <div className="dark">
-      <div className="min-h-screen min-w-full dark:bg-gray-800">
+    <div className="ah:dark">
+      <div className="ah:min-h-screen ah:min-w-full ah:dark:bg-gray-800">
         <AiohaProvider aioha={aioha}>
           {window.location.pathname === '/hivesigner-ocl' ? (
             <HiveSignerOcl onSuccess={() => (window.location.pathname = '/')} />

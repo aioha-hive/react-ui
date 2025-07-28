@@ -3,7 +3,7 @@ import React from 'react'
 export const PlusIcon = () => {
   return (
     <svg
-      className={`w-6 h-6 text-gray-800 dark:text-white`}
+      className={`ah:w-6 ah:h-6 ah:text-gray-800 ah:dark:text-white`}
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
