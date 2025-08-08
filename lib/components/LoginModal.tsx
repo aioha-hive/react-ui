@@ -37,13 +37,14 @@ export const LoginModal = ({
   const [error, setError] = useState('')
   const [hiveAuthPl, setHiveAuthPl] = useState<{ payload: string; cancel: () => void }>()
   useEffect(() => {
-    aioha.on('hiveauth_login_request', (payload: string, _: any, cancel: () => void) => {
+    const handler = (payload: string, _: any, cancel: () => void) => {
       setError('')
       setHiveAuthPl({ payload, cancel })
       setPage(2)
-    })
+    }
+    aioha.on('hiveauth_login_request', handler)
     return () => {
-      aioha.off('hiveauth_login_request')
+      aioha.off('hiveauth_login_request', handler)
     }
   })
   const login = async (provider: Providers, username: string, options: LoginOptions) => {
