@@ -88,7 +88,7 @@ export const AccountDiscovery = ({ provider, onPrevious, onNext }: AccountDiscov
       <div className="mb-3 w-full">
         <BackButton onPrevious={onPrevious} />
       </div>
-      <ErrorAlert error={error} />
+      {!!error && <ErrorAlert error={error} />}
       {Object.keys(discovered.current).length > 0 && (
         <div className="w-full overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">

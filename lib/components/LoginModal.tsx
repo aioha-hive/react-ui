@@ -77,7 +77,7 @@ export const LoginModal = ({
         </button>
       </div>
       <div className="p-4 md:p-5">
-        <ErrorAlert error={error} />
+        {!!error && <ErrorAlert error={error} />}
         {page === 0 ? (
           <ProviderSelection
             helpUrl={loginHelpUrl}
