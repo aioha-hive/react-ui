@@ -15,6 +15,8 @@ const aioha = initAioha({
   }
 })
 
+aioha.registerViewOnly()
+
 export const App = () => {
   if (window.location.pathname === '/hivesigner')
     return (

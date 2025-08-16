@@ -43,6 +43,10 @@ export const ProviderInfo: {
     iconDark: LedgerIconDark,
     discovery: true
   },
+  [Providers.ViewOnly]: {
+    name: 'View Only',
+    icon: ''
+  },
   [Providers.Custom]: {
     name: 'Other Wallet',
     icon: ''

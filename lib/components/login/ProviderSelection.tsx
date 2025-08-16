@@ -3,6 +3,7 @@ import { Providers } from '@aioha/aioha'
 import { useAioha } from '@aioha/react-provider'
 import { ProviderInfo } from '../ProviderInfo.js'
 import { CloseIcon } from '../../icons/CloseIcon.js'
+import { EyeIcon } from '../../icons/EyeIcon.js'
 
 type ProviderCb = (provider: Providers) => any
 export type Arrangement = 'list' | 'grid'
@@ -24,10 +25,14 @@ const ProviderBtn = ({ provider, forceShow, onClick }: { provider: Providers; fo
         className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow-sm hover:cursor-pointer dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
         onClick={() => onClick(provider)}
       >
-        <svg aria-hidden="true" className={`h-5 aspect-square`}>
-          <image href={icon} className={`h-5 ${iconDark ? 'block dark:hidden' : ''}`} />
-          {iconDark ? <image href={iconDark} className={`h-5 hidden dark:block`} /> : null}
-        </svg>
+        {provider === Providers.ViewOnly ? (
+          <EyeIcon />
+        ) : (
+          <svg aria-hidden="true" className={`h-5 aspect-square`}>
+            <image href={icon} className={`h-5 ${iconDark ? 'block dark:hidden' : ''}`} />
+            {iconDark ? <image href={iconDark} className={`h-5 hidden dark:block`} /> : null}
+          </svg>
+        )}
         <span className="flex-1 ms-3 whitespace-nowrap">{name}</span>
         {loginBadge ? <Badge>{loginBadge}</Badge> : null}
       </a>
@@ -43,10 +48,14 @@ const ProviderBtnGrid = ({ provider, forceShow, onClick }: { provider: Providers
       className="flex flex-col items-center w-34 p-6 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow-sm hover:cursor-pointer dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white"
       onClick={() => onClick(provider)}
     >
-      <svg aria-hidden="true" className={`h-12 aspect-square`}>
-        <image href={icon} className={`h-12 ${iconDark ? 'block dark:hidden' : ''}`} />
-        {iconDark ? <image href={iconDark} className={`h-12 hidden dark:block`} /> : null}
-      </svg>
+      {provider === Providers.ViewOnly ? (
+        <EyeIcon size={12} />
+      ) : (
+        <svg aria-hidden="true" className={`h-12 aspect-square`}>
+          <image href={icon} className={`h-12 ${iconDark ? 'block dark:hidden' : ''}`} />
+          {iconDark ? <image href={iconDark} className={`h-12 hidden dark:block`} /> : null}
+        </svg>
+      )}
       <span className="mt-4 text-base font-bold dark:text-white whitespace-nowrap">{name}</span>
     </a>
   ) : null
@@ -57,7 +66,8 @@ const ProvidersSeq: Providers[] = [
   Providers.PeakVault,
   Providers.HiveAuth,
   Providers.HiveSigner,
-  Providers.Ledger
+  Providers.Ledger,
+  Providers.ViewOnly
 ] // in this particular order
 
 export const ProviderSelection = ({
