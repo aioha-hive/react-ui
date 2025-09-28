@@ -48,6 +48,7 @@ export const ProviderInfo: {
     name: 'MetaMask',
     loginBadge: 'Hive Snap',
     icon: MetaMaskIcon,
+    url: 'https://snaps.metamask.io/snap/npm/hiveio/metamask-snap',
     discovery: true
   },
   [Providers.ViewOnly]: {
