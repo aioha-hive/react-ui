@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Providers } from '@aioha/aioha'
 import { Arrangement, ProviderSelection } from './login/ProviderSelection.js'
 import { UsernameInput } from './login/UsernameInput.js'
-import { LoginOptions, LoginResult } from '@aioha/aioha/build/types.js'
+import { DiscoverOptions, LoginOptions, LoginResult } from '@aioha/aioha/build/types.js'
 import { useAioha } from '@aioha/react-provider'
 import { HiveAuthQR } from './login/HiveAuthQR.js'
 import { ErrorAlert } from './login/ErrorAlert.js'
@@ -14,6 +14,7 @@ export interface LoginModalProps {
   loginTitle?: string
   loginHelpUrl?: string
   loginOptions: LoginOptions
+  discOptions?: DiscoverOptions
   arrangement?: Arrangement
   forceShowProviders?: Providers[]
   onLogin?: (result: LoginResult) => any

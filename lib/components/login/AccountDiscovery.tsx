@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Providers } from '@aioha/aioha'
 import { useAioha } from '@aioha/react-provider'
+import { DiscoverOptions } from '@aioha/aioha/build/types.js'
 import { ErrorAlert } from './ErrorAlert.js'
 import { BackButton } from './BackButton.js'
 import { SpinningIcon } from '../../icons/SpinningIcon.js'
@@ -8,6 +9,7 @@ import { RightAngledArrow } from '../TableUtils.js'
 
 interface AccountDiscoveryProps {
   provider: Providers
+  options?: DiscoverOptions
   onPrevious: () => any
   onNext: (username: string, details: DiscUserAuth[]) => Promise<any>
 }
@@ -22,7 +24,7 @@ interface DiscUsers {
   [user: string]: DiscUserAuth[]
 }
 
-export const AccountDiscovery = ({ provider, onPrevious, onNext }: AccountDiscoveryProps) => {
+export const AccountDiscovery = ({ provider, options, onPrevious, onNext }: AccountDiscoveryProps) => {
   const { aioha } = useAioha()
   const discovering = useRef(false)
   const stopDiscovery = useRef(() => {})
@@ -35,20 +37,24 @@ export const AccountDiscovery = ({ provider, onPrevious, onNext }: AccountDiscov
     const discover = async () => {
       if (discovering.current) return
       discovering.current = true
-      const result = await aioha.discoverAccounts(provider, (disc, stop) => {
-        stopDiscovery.current = stop
-        const d: DiscUserAuth = {
-          pubkey: disc.pubkey!,
-          path: disc.path!,
-          role: disc.role!
-        }
-        if (!discovered.current[disc.username]) {
-          discovered.current[disc.username] = [d]
-        } else if (!discovered.current[disc.username].find((a) => a.role === d.role)) {
-          discovered.current[disc.username].push(d)
-        }
-        setCount((c) => c + 1)
-      })
+      const result = await aioha.discoverAccounts(
+        provider,
+        (disc, stop) => {
+          stopDiscovery.current = stop
+          const d: DiscUserAuth = {
+            pubkey: disc.pubkey!,
+            path: disc.path!,
+            role: disc.role!
+          }
+          if (!discovered.current[disc.username]) {
+            discovered.current[disc.username] = [d]
+          } else if (!discovered.current[disc.username].find((a) => a.role === d.role)) {
+            discovered.current[disc.username].push(d)
+          }
+          setCount((c) => c + 1)
+        },
+        options
+      )
       setCompleted(true)
       if (!result.success) {
         setError(result.error)
