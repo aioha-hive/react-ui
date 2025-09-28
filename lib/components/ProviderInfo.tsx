@@ -6,6 +6,7 @@ import HiveAuthIconDark from '../icons/hiveauth-dark.svg'
 import HiveSignerIcon from '../icons/hivesigner.svg'
 import LedgerIcon from '../icons/ledger-light.svg'
 import LedgerIconDark from '../icons/ledger-dark.svg'
+import MetaMaskIcon from '../icons/metamask.svg'
 
 export const ProviderInfo: {
   [provider in Providers]: {
@@ -41,6 +42,12 @@ export const ProviderInfo: {
     name: 'Ledger',
     icon: LedgerIcon,
     iconDark: LedgerIconDark,
+    discovery: true
+  },
+  [Providers.MetaMaskSnap]: {
+    name: 'MetaMask',
+    loginBadge: 'Hive Snap',
+    icon: MetaMaskIcon,
     discovery: true
   },
   [Providers.ViewOnly]: {

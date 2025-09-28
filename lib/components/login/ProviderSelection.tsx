@@ -64,6 +64,7 @@ const ProviderBtnGrid = ({ provider, forceShow, onClick }: { provider: Providers
 const ProvidersSeq: Providers[] = [
   Providers.Keychain,
   Providers.PeakVault,
+  Providers.MetaMaskSnap,
   Providers.HiveAuth,
   Providers.HiveSigner,
   Providers.Ledger,
