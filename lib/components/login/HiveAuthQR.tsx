@@ -7,7 +7,7 @@ import { QRCode } from 'react-qr-code'
 export const HiveAuthQR = ({ payload, cancel }: { payload: string; cancel: () => void }) => {
   return (
     <>
-      <p className="text-sm font-normal max-w-[375px] text-gray-500 dark:text-gray-400">
+      <p className="text-sm font-normal max-w-[375px] text-gray-500 dark:text-gray-300">
         Scan the QR code using a HiveAuth-compatible mobile app.
       </p>
       <a href={payload}>

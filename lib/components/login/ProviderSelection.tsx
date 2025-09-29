@@ -86,7 +86,7 @@ export const ProviderSelection = ({
 }) => {
   return (
     <>
-      <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
+      <p className="text-sm font-normal text-gray-500 dark:text-gray-300">
         Connect with one of our available Hive wallet providers.
       </p>
       {arrangement === 'list' ? (
@@ -106,7 +106,7 @@ export const ProviderSelection = ({
         <a
           href={helpUrl}
           target="_blank"
-          className="inline-flex items-center mt-2 text-xs font-normal text-gray-500 hover:underline dark:text-gray-400"
+          className="inline-flex items-center mt-2 text-xs font-normal text-gray-500 hover:underline dark:text-gray-300"
         >
           <svg className="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
             <path

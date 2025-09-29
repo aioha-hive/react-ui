@@ -28,7 +28,7 @@ export const AiohaModal = ({
       tabIndex={-1}
       className={`${
         displayed ? '' : 'hidden'
-      } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black bg-opacity-30`}
+      } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black/60`}
       onMouseDown={() => onClose(false)}
     >
       <div className={`relative p-4 ${arrangement === 'grid' ? 'md:max-w-xl max-w-md' : 'max-w-md'} max-h-full`}>
@@ -73,7 +73,10 @@ export const AiohaModal = ({
               loginOptions={loginOptions}
               arrangement={arrangement}
               forceShowProviders={forceShowProviders}
-              onLogin={onLogin}
+              onLogin={(r) => {
+                setSwitchingUser(false)
+                if (typeof onLogin === 'function') onLogin(r)
+              }}
               onClose={onClose}
             />
           )}
