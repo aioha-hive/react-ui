@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Providers } from '@aioha/aioha'
-import { useAioha } from '@aioha/react-provider'
+import { useAioha } from '@aioha/providers/react'
 import { DiscoverOptions } from '@aioha/aioha/build/types.js'
 import { ErrorAlert } from './ErrorAlert.js'
 import { BackButton } from './BackButton.js'

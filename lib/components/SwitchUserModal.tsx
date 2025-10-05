@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
-import { useAioha } from '@aioha/react-provider'
+import { useAioha } from '@aioha/providers/react'
 import { CloseIcon } from '../icons/CloseIcon.js'
 import { RightAngledArrow, RmRowIcon } from './TableUtils.js'
 import { Badge } from './login/ProviderSelection.js'

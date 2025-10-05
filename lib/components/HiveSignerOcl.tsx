@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useAioha } from '@aioha/react-provider'
+import { useAioha } from '@aioha/providers/react'
 import { Providers } from '@aioha/aioha'
 
 export const HiveSignerOcl = ({ onSuccess }: { onSuccess: () => any }) => {

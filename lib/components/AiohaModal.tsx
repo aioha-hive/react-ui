@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useAioha } from '@aioha/react-provider'
+import { useAioha } from '@aioha/providers/react'
 import { LoginModal, LoginModalProps } from './LoginModal.js'
 import { UserModal, UserModalProps } from './UserModal.js'
 import { SwitchUserModal } from './SwitchUserModal.js'

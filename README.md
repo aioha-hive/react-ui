@@ -28,7 +28,7 @@ const App = () => {
 }
 ```
 
-2. Use the modal component and the [`useAioha()` hook](https://aioha.dev/docs/react/provider#usage) anywhere within `AiohaProvider`.
+2. Use the modal component and the [`useAioha()` hook](https://aioha.dev/docs/framework/react#usage) anywhere within `AiohaProvider`.
 
 If your application is primarily styled using Tailwind CSS, it is not required to import `@aioha/react-ui/dist/build.css`.
 

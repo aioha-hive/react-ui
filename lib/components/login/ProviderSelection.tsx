@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import { Providers } from '@aioha/aioha'
-import { useAioha } from '@aioha/react-provider'
+import { useAioha } from '@aioha/providers/react'
 import { ProviderInfo } from '../ProviderInfo.js'
 import { CloseIcon } from '../../icons/CloseIcon.js'
 import { EyeIcon } from '../../icons/EyeIcon.js'
