@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { CloseIcon } from '../../lib/icons/CloseIcon.js'
+import { CloseIcon } from '../../lib/components/Icons.js'
 import { CircleArrowUp, PenIcon } from './PromptIcons.js'
 
 export const SignModal = ({

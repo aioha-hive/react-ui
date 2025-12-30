@@ -1,5 +1,5 @@
 import React from 'react'
-import { CloseIcon } from '../icons/CloseIcon.js'
+import { CloseIcon } from './Icons.js'
 
 const sizes: { [s: number]: string } = {
   7: 'w-7',

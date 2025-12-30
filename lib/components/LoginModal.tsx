@@ -6,7 +6,7 @@ import { DiscoverOptions, LoginOptions, LoginResult } from '@aioha/aioha/build/t
 import { useAioha } from '@aioha/providers/react'
 import { HiveAuthQR } from './login/HiveAuthQR.js'
 import { ErrorAlert } from './login/ErrorAlert.js'
-import { CloseIcon } from '../icons/CloseIcon.js'
+import { CloseIcon } from './Icons.js'
 import { ProviderInfo } from './ProviderInfo.js'
 import { AccountDiscovery } from './login/AccountDiscovery.js'
 

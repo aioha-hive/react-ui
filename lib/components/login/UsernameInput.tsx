@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BackButton } from './BackButton.js'
-import { SpinningIcon } from '../../icons/SpinningIcon.js'
+import { SpinningIcon } from '../Icons.js'
 
 interface UsernameInputProps {
   onPrevious: () => any

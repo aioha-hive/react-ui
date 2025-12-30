@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { useAioha } from '@aioha/providers/react'
-import { CloseIcon } from '../icons/CloseIcon.js'
+import { CloseIcon } from './Icons.js'
 
 export interface UserModalProps {
   imageServer?: string

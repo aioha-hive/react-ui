@@ -4,7 +4,7 @@ import { useAioha } from '@aioha/providers/react'
 import { DiscoverOptions } from '@aioha/aioha/build/types.js'
 import { ErrorAlert } from './ErrorAlert.js'
 import { BackButton } from './BackButton.js'
-import { SpinningIcon } from '../../icons/SpinningIcon.js'
+import { SpinningIcon } from '../Icons.js'
 import { RightAngledArrow } from '../TableUtils.js'
 
 interface AccountDiscoveryProps {
