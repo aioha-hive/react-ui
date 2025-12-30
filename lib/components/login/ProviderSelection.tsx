@@ -27,14 +27,14 @@ const ProviderBtn = ({ provider, forceShow, onClick }: { provider: Providers; fo
         {provider === Providers.ViewOnly ? (
           <EyeIcon />
         ) : !!iconDark ? (
-          <div>
+          <>
             <svg aria-hidden="true" className="h-5 aspect-square block dark:hidden">
               <image href={icon} className="h-5" />
             </svg>
             <svg aria-hidden="true" className="h-5 aspect-square hidden dark:block">
               <image href={iconDark} className="h-5" />
             </svg>
-          </div>
+          </>
         ) : (
           <svg aria-hidden="true" className="h-5 aspect-square">
             <image href={icon} className="h-5" />
@@ -58,14 +58,14 @@ const ProviderBtnGrid = ({ provider, forceShow, onClick }: { provider: Providers
       {provider === Providers.ViewOnly ? (
         <EyeIcon size={12} />
       ) : !!iconDark ? (
-        <div>
+        <>
           <svg aria-hidden="true" className="h-12 aspect-square block dark:hidden">
             <image href={icon} className="h-12" />
           </svg>
           <svg aria-hidden="true" className="h-12 aspect-square hidden dark:block">
             <image href={iconDark} className="h-12" />
           </svg>
-        </div>
+        </>
       ) : (
         <svg aria-hidden="true" className="h-12 aspect-square">
           <image href={icon} className="h-12" />
