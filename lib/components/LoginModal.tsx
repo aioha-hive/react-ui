@@ -26,6 +26,7 @@ export const LoginModal = ({
   loginTitle = 'Connect Wallet',
   loginHelpUrl,
   loginOptions,
+  discOptions,
   arrangement = 'list',
   forceShowProviders = [],
   onCancel,
@@ -117,6 +118,7 @@ export const LoginModal = ({
             provider={chosenProvider!}
             onPrevious={() => setPage(0)}
             onNext={(username, info) => login(chosenProvider!, username, { ...loginOptions, paths: info.map((v) => v.path) })}
+            options={discOptions}
           />
         ) : null}
       </div>

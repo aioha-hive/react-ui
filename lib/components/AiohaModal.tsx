@@ -13,8 +13,11 @@ export const AiohaModal = ({
   loginTitle,
   loginHelpUrl,
   loginOptions,
+  discOptions,
   forceShowProviders = [],
   arrangement = 'list',
+  imageServer,
+  explorerUrl,
   onLogin,
   onClose
 }: ModalProps) => {
@@ -52,6 +55,7 @@ export const AiohaModal = ({
                   loginTitle={'Add Account'}
                   loginHelpUrl={loginHelpUrl}
                   loginOptions={loginOptions}
+                  discOptions={discOptions}
                   arrangement={arrangement}
                   forceShowProviders={forceShowProviders}
                   onLogin={(r) => {
@@ -64,13 +68,19 @@ export const AiohaModal = ({
                 />
               )
             ) : (
-              <UserModal onClose={onClose} onSwitchUser={() => setSwitchingUser(true)} />
+              <UserModal
+                imageServer={imageServer}
+                explorerUrl={explorerUrl}
+                onClose={onClose}
+                onSwitchUser={() => setSwitchingUser(true)}
+              />
             )
           ) : (
             <LoginModal
               loginTitle={loginTitle}
               loginHelpUrl={loginHelpUrl}
               loginOptions={loginOptions}
+              discOptions={discOptions}
               arrangement={arrangement}
               forceShowProviders={forceShowProviders}
               onLogin={(r) => {
