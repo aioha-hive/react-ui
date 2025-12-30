@@ -26,10 +26,18 @@ const ProviderBtn = ({ provider, forceShow, onClick }: { provider: Providers; fo
       >
         {provider === Providers.ViewOnly ? (
           <EyeIcon />
+        ) : !!iconDark ? (
+          <div>
+            <svg aria-hidden="true" className="h-5 aspect-square block dark:hidden">
+              <image href={icon} className="h-5" />
+            </svg>
+            <svg aria-hidden="true" className="h-5 aspect-square hidden dark:block">
+              <image href={iconDark} className="h-5" />
+            </svg>
+          </div>
         ) : (
-          <svg aria-hidden="true" className={`h-5 aspect-square`}>
-            <image href={icon} className={`h-5 ${iconDark ? 'block dark:hidden' : ''}`} />
-            {iconDark ? <image href={iconDark} className={`h-5 hidden dark:block`} /> : null}
+          <svg aria-hidden="true" className="h-5 aspect-square">
+            <image href={icon} className="h-5" />
           </svg>
         )}
         <span className="flex-1 ms-3 whitespace-nowrap">{name}</span>
@@ -49,10 +57,18 @@ const ProviderBtnGrid = ({ provider, forceShow, onClick }: { provider: Providers
     >
       {provider === Providers.ViewOnly ? (
         <EyeIcon size={12} />
+      ) : !!iconDark ? (
+        <div>
+          <svg aria-hidden="true" className="h-12 aspect-square block dark:hidden">
+            <image href={icon} className="h-12" />
+          </svg>
+          <svg aria-hidden="true" className="h-12 aspect-square hidden dark:block">
+            <image href={iconDark} className="h-12" />
+          </svg>
+        </div>
       ) : (
-        <svg aria-hidden="true" className={`h-12 aspect-square`}>
-          <image href={icon} className={`h-12 ${iconDark ? 'block dark:hidden' : ''}`} />
-          {iconDark ? <image href={iconDark} className={`h-12 hidden dark:block`} /> : null}
+        <svg aria-hidden="true" className="h-12 aspect-square">
+          <image href={icon} className="h-12" />
         </svg>
       )}
       <span className="mt-4 text-base font-bold dark:text-white whitespace-nowrap">{name}</span>
