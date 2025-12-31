@@ -19,3 +19,8 @@
     border-color: var(--color-gray-200, currentColor);
   }
 }
+
+/* https://github.com/tailwindlabs/tailwindcss/issues/15005#issuecomment-3257589151 */
+:host {
+  --tw-border-style: solid;
+}

@@ -18,7 +18,7 @@ export const HiveAuthQR = ({ payload, cancel }: { payload: string; cancel: () =>
       <div className="w-full flex place-content-center">
         <button
           type="button"
-          className="text-gray-900 bg-white border border-gray-300 focus:outline-hidden hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800"
+          className="text-gray-900 bg-white border border-gray-300 focus:outline-hidden hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 cursor-pointer"
           onClick={cancel}
         >
           Cancel

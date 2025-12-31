@@ -34,7 +34,7 @@ export const UsernameInput = ({ onPrevious, onNext }: UsernameInputProps) => {
         />
         <button
           type="button"
-          className="text-gray-900 bg-white border border-gray-300 focus:outline-hidden hover:bg-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 items-center flex-none dark:bg-gray-600 dark:text-white dark:border-gray-600 dark:hover:bg-gray-500 dark:hover:border-gray-500"
+          className="text-gray-900 bg-white border border-gray-300 focus:outline-hidden hover:bg-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 items-center flex-none dark:bg-gray-600 dark:text-white dark:border-gray-600 dark:hover:bg-gray-500 dark:hover:border-gray-500 cursor-pointer"
           onClick={proceed}
           aria-label="Proceed"
           disabled={inProgress}
