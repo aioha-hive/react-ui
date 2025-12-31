@@ -25,13 +25,12 @@ export const AiohaModal = ({
   const isInactive = Object.keys(otherUsers).length > 0 && !aioha.isLoggedIn()
   const [switchingUser, setSwitchingUser] = useState<boolean>(isInactive)
   const [addingAcc, setAddingAcc] = useState<boolean>(false)
+  if (!displayed) return <></>
   return (
     <div
       id="aioha-modal"
       tabIndex={-1}
-      className={`${
-        displayed ? '' : 'hidden'
-      } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black/60`}
+      className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black/60"
       onMouseDown={() => onClose(false)}
     >
       <div className={`relative p-4 ${arrangement === 'grid' ? 'md:max-w-xl max-w-md' : 'max-w-md'} max-h-full`}>
