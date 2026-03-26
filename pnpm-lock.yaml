@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@aioha/providers':
-        specifier: link:/Users/techcoderx/aioha/providers
-        version: link:../providers
+        specifier: 1.9.0-beta.2
+        version: 1.9.0-beta.2(3097980a814991339ccddb5765eb3ee9)
       react-qr-code:
         specifier: ^2.0.18
         version: 2.0.18(react@19.1.0)
@@ -111,6 +111,42 @@ packages:
     peerDependencies:
       '@aioha/aioha': ^1.8.2
       viem: 2.x
+
+  '@aioha/providers@1.9.0-beta.2':
+    resolution: {integrity: sha512-HQFdfUWrFYlvBt2pKdHwiW6kPy5i0zi5gPmkexVJrXXgpYYhnaLL98cAh8Ep83JLuF1BM/qNBRuLOd9gfqbmHQ==}
+    peerDependencies:
+      '@aioha/aioha': ^1.8.2
+      '@aioha/magi': ^0.0.3
+      '@lit/context': ^1.1.0
+      '@wagmi/core': ^3.4.0
+      '@wagmi/vue': ^0.5.0
+      lit: ^3.3.0
+      react: ^19.1.0
+      svelte: ^5.0.0
+      viem: ^2.0.0
+      vue: ^3.0.0
+      wagmi: ^3.0.0
+    peerDependenciesMeta:
+      '@aioha/magi':
+        optional: true
+      '@lit/context':
+        optional: true
+      '@wagmi/core':
+        optional: true
+      '@wagmi/vue':
+        optional: true
+      lit:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      viem:
+        optional: true
+      vue:
+        optional: true
+      wagmi:
+        optional: true
 
   '@aioha/tx-digest@2.0.2':
     resolution: {integrity: sha512-sY4fLevN7MjggVO4lG+H8iibw6k22ChXmE4mYVU5GitL3mLvoj+VU/zA3KQVxcsszziF1Y/5+TYnnd99vGtx5g==}
@@ -3752,6 +3788,17 @@ snapshots:
       '@aioha/aioha': 1.8.2(webextension-polyfill@0.12.0)
       multiformats: 13.4.2
       viem: 2.47.6(bufferutil@4.1.0)(typescript@5.8.3)(utf-8-validate@6.0.6)(zod@3.25.76)
+
+  '@aioha/providers@1.9.0-beta.2(3097980a814991339ccddb5765eb3ee9)':
+    dependencies:
+      '@aioha/aioha': 1.8.2(webextension-polyfill@0.12.0)
+    optionalDependencies:
+      '@aioha/magi': 0.0.3(@aioha/aioha@1.8.2(webextension-polyfill@0.12.0))(viem@2.47.6(bufferutil@4.1.0)(typescript@5.8.3)(utf-8-validate@6.0.6)(zod@3.25.76))
+      '@wagmi/core': 3.4.0(@tanstack/query-core@5.94.5)(@types/react@19.1.8)(ox@0.14.7(typescript@5.8.3)(zod@3.25.76))(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.47.6(bufferutil@4.1.0)(typescript@5.8.3)(utf-8-validate@6.0.6)(zod@3.25.76))
+      lit: 3.3.0
+      react: 19.1.0
+      viem: 2.47.6(bufferutil@4.1.0)(typescript@5.8.3)(utf-8-validate@6.0.6)(zod@3.25.76)
+      wagmi: 3.5.0(@safe-global/safe-apps-provider@0.18.6(bufferutil@4.1.0)(typescript@5.8.3)(utf-8-validate@6.0.6)(zod@3.25.76))(@safe-global/safe-apps-sdk@9.1.0(bufferutil@4.1.0)(typescript@5.8.3)(utf-8-validate@6.0.6)(zod@3.25.76))(@tanstack/query-core@5.94.5)(@tanstack/react-query@5.94.5(react@19.1.0))(@types/react@19.1.8)(ox@0.14.7(typescript@5.8.3)(zod@3.25.76))(react@19.1.0)(typescript@5.8.3)(viem@2.47.6(bufferutil@4.1.0)(typescript@5.8.3)(utf-8-validate@6.0.6)(zod@3.25.76))
 
   '@aioha/tx-digest@2.0.2':
     dependencies:
