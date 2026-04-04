@@ -16,7 +16,9 @@ export const SignModal = ({
   return (
     <div
       id="aioha-sign-modal"
-      tabIndex={-1}
+      role="dialog"
+      aria-modal="true"
+      aria-label={trx_id ? 'Transaction Sent' : 'Sign transaction'}
       className={`${
         displayed ? '' : 'hidden'
       } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black bg-opacity-30`}

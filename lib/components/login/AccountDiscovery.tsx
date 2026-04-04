@@ -103,7 +103,16 @@ export const AccountDiscovery = ({ provider, options, onPrevious, onNext }: Acco
                 <tr
                   key={username}
                   className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Login as ${username}`}
                   onClick={() => userSelected(username)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      userSelected(username)
+                    }
+                  }}
                 >
                   <td className="px-3 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{username}</div>

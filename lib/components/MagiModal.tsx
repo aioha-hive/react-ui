@@ -132,7 +132,7 @@ export const MagiModal = ({
     return (
       <>
         <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Connect Ethereum Wallet</h3>
+          <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">Connect Ethereum Wallet</h3>
           <button
             type="button"
             className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
@@ -159,7 +159,7 @@ export const MagiModal = ({
     return (
       <>
         <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Connect Wallet</h3>
+          <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">Connect Wallet</h3>
           <button
             type="button"
             className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
@@ -182,9 +182,12 @@ export const MagiModal = ({
   return (
     <div
       id="magi-modal"
-      tabIndex={-1}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="aioha-modal-title"
       className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black/60"
       onMouseDown={() => onClose(false)}
+      onKeyDown={(e) => { if (e.key === 'Escape') onClose(false) }}
     >
       <div className="relative p-4 max-w-md max-h-full">
         <div

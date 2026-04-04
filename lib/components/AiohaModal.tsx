@@ -29,9 +29,12 @@ export const AiohaModal = ({
   return (
     <div
       id="aioha-modal"
-      tabIndex={-1}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="aioha-modal-title"
       className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black/60"
       onMouseDown={() => onClose(false)}
+      onKeyDown={(e) => { if (e.key === 'Escape') onClose(false) }}
     >
       <div className={`relative p-4 ${arrangement === 'grid' ? 'md:max-w-xl max-w-md' : 'max-w-md'} max-h-full`}>
         <div

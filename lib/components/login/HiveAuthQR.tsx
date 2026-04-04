@@ -10,7 +10,7 @@ export const HiveAuthQR = ({ payload, cancel }: { payload: string; cancel: () =>
       <p className="text-sm font-normal max-w-[375px] text-gray-500 dark:text-gray-300">
         Scan the QR code using a HiveAuth-compatible mobile app.
       </p>
-      <a href={payload}>
+      <a href={payload} aria-label="Open HiveAuth payload link">
         <div className="bg-white p-4 w-64 aspect-square mx-auto my-5">
           <QRCode value={payload} className="w-full h-full" />
         </div>

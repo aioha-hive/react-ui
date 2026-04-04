@@ -11,6 +11,7 @@ export const RightAngledArrow = ({ w = 7 }: { w?: number }) => {
     <td className={`px-1 py-4 ${sizes[w]} whitespace-nowrap`}>
       <svg
         className="w-4 h-4 mx-auto text-gray-400 dark:text-gray-500 opacity-70"
+        aria-hidden="true"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -25,7 +26,7 @@ export const RightAngledArrow = ({ w = 7 }: { w?: number }) => {
 export const RmRowIcon = ({ w = 7 }: { w?: number }) => {
   return (
     <td className={`px-1 py-4 ${sizes[w]} whitespace-nowrap text-gray-800 dark:text-gray-100`}>
-      <CloseIcon />
+      <CloseIcon srDesc="Remove account" />
     </td>
   )
 }

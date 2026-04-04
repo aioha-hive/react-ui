@@ -20,8 +20,9 @@ const ProviderBtn = ({ provider, forceShow, onClick }: { provider: Providers; fo
   const { name, icon, iconDark, loginBadge } = ProviderInfo[provider]
   return aioha.isProviderEnabled(provider) || (forceShow && aioha.isProviderRegistered(provider)) ? (
     <li>
-      <a
-        className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow-sm hover:cursor-pointer dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+      <button
+        type="button"
+        className="flex items-center w-full p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow-sm hover:cursor-pointer dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
         onClick={() => onClick(provider)}
       >
         {provider === Providers.ViewOnly ? (
@@ -42,7 +43,7 @@ const ProviderBtn = ({ provider, forceShow, onClick }: { provider: Providers; fo
         )}
         <span className="flex-1 ms-3 whitespace-nowrap">{name}</span>
         {loginBadge ? <Badge>{loginBadge}</Badge> : null}
-      </a>
+      </button>
     </li>
   ) : null
 }
@@ -51,7 +52,8 @@ const ProviderBtnGrid = ({ provider, forceShow, onClick }: { provider: Providers
   const { aioha } = useAioha()
   const { name, icon, iconDark } = ProviderInfo[provider]
   return aioha.isProviderEnabled(provider) || (forceShow && aioha.isProviderRegistered(provider)) ? (
-    <a
+    <button
+      type="button"
       className="flex flex-col items-center w-34 p-6 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow-sm hover:cursor-pointer dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white"
       onClick={() => onClick(provider)}
     >
@@ -72,7 +74,7 @@ const ProviderBtnGrid = ({ provider, forceShow, onClick }: { provider: Providers
         </svg>
       )}
       <span className="mt-4 text-base font-bold dark:text-white whitespace-nowrap">{name}</span>
-    </a>
+    </button>
   ) : null
 }
 

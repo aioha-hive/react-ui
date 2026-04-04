@@ -23,7 +23,7 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
   return (
     <>
       <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Switch User</h3>
+        <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">Switch User</h3>
         <button
           type="button"
           className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -39,7 +39,16 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
               <tr
                 key={user}
                 className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
+                role="button"
+                tabIndex={0}
+                aria-label={editing ? `Remove ${user}` : `Switch to ${user}`}
                 onClick={() => onClickUser(user!)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    onClickUser(user!)
+                  }
+                }}
               >
                 <td className="px-5 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{user}</div>
@@ -51,7 +60,20 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
               </tr>
             )}
             {Object.keys(otherUsers).map((u, i) => (
-              <tr key={i} className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" onClick={() => onClickUser(u!)}>
+              <tr
+                key={i}
+                className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
+                role="button"
+                tabIndex={0}
+                aria-label={editing ? `Remove ${u}` : `Switch to ${u}`}
+                onClick={() => onClickUser(u!)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    onClickUser(u!)
+                  }
+                }}
+              >
                 <td className="px-5 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{u}</div>
                 </td>

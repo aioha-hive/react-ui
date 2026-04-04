@@ -21,6 +21,7 @@ export const UsernameInput = ({ onPrevious, onNext }: UsernameInputProps) => {
         <BackButton onPrevious={onPrevious} />
       </div>
       <div className="inline-flex flex-row gap-1.5 w-full">
+        <label htmlFor="small-input" className="sr-only">Hive Username</label>
         <input
           type="text"
           id="small-input"
