@@ -2,21 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { Wallet } from '@aioha/magi'
 import { useAioha } from '@aioha/providers/react'
 import { useMagi } from '@aioha/providers/magi/react'
+import { I18nextProvider, useTranslation } from 'react-i18next'
 import { LoginModal, LoginModalProps } from './LoginModal.js'
 import { UserModal, UserModalProps } from './UserModal.js'
 import { SwitchUserModal } from './SwitchUserModal.js'
 import { WalletTypeSelection } from './magi/WalletTypeSelection.js'
 import { CloseIcon } from './Icons.js'
+import { i18n } from '../i18n.js'
 
 type MagiView = 'select' | 'hive' | 'ethereum'
 
 interface MagiModalProps extends LoginModalProps, Omit<UserModalProps, 'onSwitchUser'> {
   displayed?: boolean
+  language?: string
   openEthModal: () => void
 }
 
-export const MagiModal = ({
+const MagiModalInner = ({
   displayed = false,
+  language = 'en',
   loginTitle,
   loginHelpUrl,
   loginOptions,
@@ -31,6 +35,11 @@ export const MagiModal = ({
 }: MagiModalProps) => {
   const { aioha, user: hiveUser, otherUsers } = useAioha()
   const { magi, wallet } = useMagi()
+  const { t } = useTranslation('aioha')
+
+  useEffect(() => {
+    i18n.changeLanguage(language)
+  }, [language])
 
   const getInitialView = (): MagiView => {
     if (magi.getWallet() === Wallet.Hive && aioha.isLoggedIn()) return 'hive'
@@ -78,7 +87,7 @@ export const MagiModal = ({
         if (addingAcc) {
           return (
             <LoginModal
-              loginTitle="Add Account"
+              loginTitle={t('addAccount')}
               loginHelpUrl={loginHelpUrl}
               loginOptions={loginOptions}
               discOptions={discOptions}
@@ -132,23 +141,23 @@ export const MagiModal = ({
     return (
       <>
         <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-          <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">Connect Ethereum Wallet</h3>
+          <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">{t('connectEthWallet')}</h3>
           <button
             type="button"
             className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
             onClick={() => onClose(false)}
           >
-            <CloseIcon />
+            <CloseIcon srDesc={t('closeModal')} />
           </button>
         </div>
         <div className="p-4 md:p-5 text-center">
-          <p className="text-sm text-gray-500 dark:text-gray-300 mb-4">Complete the connection in the wallet popup.</p>
+          <p className="text-sm text-gray-500 dark:text-gray-300 mb-4">{t('ethWalletInstruction')}</p>
           <button
             type="button"
             className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer"
             onClick={() => setView('select')}
           >
-            Back
+            {t('back')}
           </button>
         </div>
       </>
@@ -159,13 +168,13 @@ export const MagiModal = ({
     return (
       <>
         <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-          <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">Connect Wallet</h3>
+          <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">{t('connectWallet')}</h3>
           <button
             type="button"
             className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
             onClick={() => onClose(false)}
           >
-            <CloseIcon />
+            <CloseIcon srDesc={t('closeModal')} />
           </button>
         </div>
         <div className="p-4 md:p-5">
@@ -204,5 +213,13 @@ export const MagiModal = ({
         </div>
       </div>
     </div>
+  )
+}
+
+export const MagiModal = (props: MagiModalProps) => {
+  return (
+    <I18nextProvider i18n={i18n}>
+      <MagiModalInner {...props} />
+    </I18nextProvider>
   )
 }

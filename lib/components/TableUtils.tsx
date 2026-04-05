@@ -23,10 +23,10 @@ export const RightAngledArrow = ({ w = 7 }: { w?: number }) => {
   )
 }
 
-export const RmRowIcon = ({ w = 7 }: { w?: number }) => {
+export const RmRowIcon = ({ w = 7, srDesc = 'Remove account' }: { w?: number; srDesc?: string }) => {
   return (
     <td className={`px-1 py-4 ${sizes[w]} whitespace-nowrap text-gray-800 dark:text-gray-100`}>
-      <CloseIcon srDesc="Remove account" />
+      <CloseIcon srDesc={srDesc} />
     </td>
   )
 }

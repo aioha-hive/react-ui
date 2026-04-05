@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Providers } from '@aioha/aioha'
 import { useAioha } from '@aioha/providers/react'
+import { useTranslation } from 'react-i18next'
 import { DiscoverOptions } from '@aioha/aioha/build/types.js'
 import { ErrorAlert } from './ErrorAlert.js'
 import { BackButton } from './BackButton.js'
@@ -26,6 +27,7 @@ interface DiscUsers {
 
 export const AccountDiscovery = ({ provider, options, onPrevious, onNext }: AccountDiscoveryProps) => {
   const { aioha } = useAioha()
+  const { t } = useTranslation('aioha')
   const discovering = useRef(false)
   const stopDiscovery = useRef(() => {})
   const discovered = useRef<DiscUsers>({})
@@ -85,7 +87,7 @@ export const AccountDiscovery = ({ provider, options, onPrevious, onNext }: Acco
           />
         </svg>
         <div className="text-lg my-3 text-gray-900 dark:text-gray-100 text-center">
-          Please approve login request on the device.
+          {t('deviceApproval')}
         </div>
       </div>
     )
@@ -105,7 +107,7 @@ export const AccountDiscovery = ({ provider, options, onPrevious, onNext }: Acco
                   className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
                   role="button"
                   tabIndex={0}
-                  aria-label={`Login as ${username}`}
+                  aria-label={t('loginAsUser', { username })}
                   onClick={() => userSelected(username)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -144,7 +146,7 @@ export const AccountDiscovery = ({ provider, options, onPrevious, onNext }: Acco
           disabled={count === 0}
         >
           <SpinningIcon size={5} />
-          Stop
+          {t('stop')}
         </button>
       ) : null}
     </div>

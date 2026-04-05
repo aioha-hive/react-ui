@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { useAioha } from '@aioha/providers/react'
+import { useTranslation } from 'react-i18next'
 import { CloseIcon } from './Icons.js'
 
 export interface UserModalProps {
@@ -16,19 +17,20 @@ export const UserModal = ({
   onSwitchUser
 }: UserModalProps) => {
   const { aioha, user, otherUsers } = useAioha()
+  const { t } = useTranslation('aioha')
   return (
     <>
       <button
         type="button"
         className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
         onClick={() => onClose(false)}
-        aria-label="Close"
+        aria-label={t('closeModal')}
       >
-        <CloseIcon />
+        <CloseIcon srDesc={t('closeModal')} />
       </button>
       <div className="p-4 md:p-5 flex flex-col place-content-center text-center">
         <div className="my-3">
-          <img className="w-16 h-16 mx-auto rounded-full" src={`${imageServer}/u/${user}/avatar`} alt={`${user}'s avatar`} />
+          <img className="w-16 h-16 mx-auto rounded-full" src={`${imageServer}/u/${user}/avatar`} alt={t('userAvatar', { user })} />
           <h3 id="aioha-modal-title" className="text-lg font-semibold my-2 text-gray-900 dark:text-white">{user}</h3>
         </div>
         <div className="flex flex-col rounded-md shadow-xs mx-auto w-full" role="group">
@@ -37,14 +39,14 @@ export const UserModal = ({
             className="flex-1 px-4 py-2 text-sm font-medium hover:cursor-pointer text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500 rounded-t-lg"
             onClick={() => window.open(`${explorerUrl}/@${user}`)}
           >
-            View In Explorer
+            {t('viewInExplorer')}
           </button>
           <button
             type="button"
             className="flex-1 px-4 py-2 text-sm font-medium hover:cursor-pointer text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500"
             onClick={onSwitchUser}
           >
-            Switch User
+            {t('switchUser')}
           </button>
           <button
             type="button"
@@ -55,7 +57,7 @@ export const UserModal = ({
               if (Object.keys(otherUsers).length > 0) onSwitchUser()
             }}
           >
-            Logout
+            {t('logout')}
           </button>
         </div>
       </div>

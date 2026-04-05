@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { BackButton } from './BackButton.js'
 import { SpinningIcon } from '../Icons.js'
 
@@ -8,6 +9,7 @@ interface UsernameInputProps {
 }
 
 export const UsernameInput = ({ onPrevious, onNext }: UsernameInputProps) => {
+  const { t } = useTranslation('aioha')
   const [username, setUsername] = useState('')
   const [inProgress, setInProgress] = useState(false)
   const proceed = async () => {
@@ -21,12 +23,12 @@ export const UsernameInput = ({ onPrevious, onNext }: UsernameInputProps) => {
         <BackButton onPrevious={onPrevious} />
       </div>
       <div className="inline-flex flex-row gap-1.5 w-full">
-        <label htmlFor="small-input" className="sr-only">Hive Username</label>
+        <label htmlFor="small-input" className="sr-only">{t('usernameLabel')}</label>
         <input
           type="text"
           id="small-input"
           className="bg-gray-50 border border-gray-300 text-gray-900 h-auto text-sm rounded-lg focus:outline-hidden focus:border-gray-900 grow p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-white"
-          placeholder="Enter Hive Username"
+          placeholder={t('usernamePlaceholder')}
           autoCapitalize="off"
           value={username}
           onChange={(evt) => setUsername(evt.target.value)}
@@ -37,7 +39,7 @@ export const UsernameInput = ({ onPrevious, onNext }: UsernameInputProps) => {
           type="button"
           className="text-gray-900 bg-white border border-gray-300 focus:outline-hidden hover:bg-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 items-center flex-none dark:bg-gray-600 dark:text-white dark:border-gray-600 dark:hover:bg-gray-500 dark:hover:border-gray-500 cursor-pointer"
           onClick={proceed}
-          aria-label="Proceed"
+          aria-label={t('proceed')}
           disabled={inProgress}
         >
           {inProgress ? (

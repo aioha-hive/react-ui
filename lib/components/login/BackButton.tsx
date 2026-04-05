@@ -1,6 +1,8 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const BackButton = ({ onPrevious }: { onPrevious: () => void }) => {
+  const { t } = useTranslation('aioha')
   return (
     <button
       type="button"
@@ -16,7 +18,7 @@ export const BackButton = ({ onPrevious }: { onPrevious: () => void }) => {
       >
         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m15 19-7-7 7-7" />
       </svg>
-      Back
+      {t('back')}
     </button>
   )
 }

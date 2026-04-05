@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { I18nextProvider, useTranslation } from 'react-i18next'
 import { useAioha } from '@aioha/providers/react'
 import { LoginModal, LoginModalProps } from './LoginModal.js'
 import { UserModal, UserModalProps } from './UserModal.js'
 import { SwitchUserModal } from './SwitchUserModal.js'
+import { i18n } from '../i18n.js'
 
 interface ModalProps extends LoginModalProps, Omit<UserModalProps, 'onSwitchUser'> {
   displayed?: boolean
+  language?: string
 }
 
-export const AiohaModal = ({
+const AiohaModalInner = ({
   displayed = false,
+  language = 'en',
   loginTitle,
   loginHelpUrl,
   loginOptions,
@@ -22,9 +26,15 @@ export const AiohaModal = ({
   onClose
 }: ModalProps) => {
   const { aioha, user, otherUsers } = useAioha()
+  const { t } = useTranslation('aioha')
   const isInactive = Object.keys(otherUsers).length > 0 && !aioha.isLoggedIn()
   const [switchingUser, setSwitchingUser] = useState<boolean>(isInactive)
   const [addingAcc, setAddingAcc] = useState<boolean>(false)
+
+  useEffect(() => {
+    i18n.changeLanguage(language)
+  }, [language])
+
   if (!displayed) return <></>
   return (
     <div
@@ -54,7 +64,7 @@ export const AiohaModal = ({
                 />
               ) : (
                 <LoginModal
-                  loginTitle={'Add Account'}
+                  loginTitle={t('addAccount')}
                   loginHelpUrl={loginHelpUrl}
                   loginOptions={loginOptions}
                   discOptions={discOptions}
@@ -95,5 +105,13 @@ export const AiohaModal = ({
         </div>
       </div>
     </div>
+  )
+}
+
+export const AiohaModal = (props: ModalProps) => {
+  return (
+    <I18nextProvider i18n={i18n}>
+      <AiohaModalInner {...props} />
+    </I18nextProvider>
   )
 }
