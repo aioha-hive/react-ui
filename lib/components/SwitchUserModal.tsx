@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import { useAioha } from '@aioha/providers/react'
-import { useTranslation } from 'react-i18next'
 import { CloseIcon, EditIcon, PlusIcon } from './Icons.js'
 import { RightAngledArrow, RmRowIcon } from './TableUtils.js'
 import { Badge } from './login/ProviderSelection.js'
+import { useMessages } from '../i18n.js'
 
 export interface SwitchUserModalProps {
   onClose: Dispatch<SetStateAction<boolean>>
@@ -13,7 +13,7 @@ export interface SwitchUserModalProps {
 
 export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModalProps) => {
   const { aioha, user, provider, otherUsers } = useAioha()
-  const { t } = useTranslation('aioha')
+  const m = useMessages()
   const [editing, setEditing] = useState(false)
   const onClickUser = (selected: string) => {
     if (editing) {
@@ -25,13 +25,14 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
   return (
     <>
       <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-        <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">{t('switchUser')}</h3>
+        <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">{m.t('user.switch')}</h3>
         <button
           type="button"
           className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
           onClick={() => onClose(false)}
+          aria-label={m.t('modal.close')}
         >
-          <CloseIcon srDesc={t('closeModal')} />
+          <CloseIcon srDesc={m.t('modal.close')} />
         </button>
       </div>
       <div className="w-full overflow-x-auto">
@@ -43,7 +44,7 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
                 className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
                 role="button"
                 tabIndex={0}
-                aria-label={editing ? t('removeUser', { user }) : t('switchToUser', { user })}
+                aria-label={editing ? m.t('user.removeConfirm', { user }) : m.t('user.switchTo', { user })}
                 onClick={() => onClickUser(user!)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
@@ -58,7 +59,7 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
                 <td className="px-3 py-4 whitespace-nowrap">
                   <Badge>{provider}</Badge>
                 </td>
-                {editing ? <RmRowIcon w={12} srDesc={t('removeAccount')} /> : <RightAngledArrow w={12} />}
+                {editing ? <RmRowIcon w={12} srDesc={m.t('user.removeAccount')} /> : <RightAngledArrow w={12} />}
               </tr>
             )}
             {Object.keys(otherUsers).map((u, i) => (
@@ -67,7 +68,7 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
                 className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
                 role="button"
                 tabIndex={0}
-                aria-label={editing ? t('removeUser', { user: u }) : t('switchToUser', { user: u })}
+                aria-label={editing ? m.t('user.removeConfirm', { user: u }) : m.t('user.switchTo', { user: u })}
                 onClick={() => onClickUser(u!)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
@@ -82,7 +83,7 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
                 <td className="px-3 py-4 whitespace-nowrap">
                   <Badge>{otherUsers[u]}</Badge>
                 </td>
-                {editing ? <RmRowIcon w={12} srDesc={t('removeAccount')} /> : <RightAngledArrow w={12} />}
+                {editing ? <RmRowIcon w={12} srDesc={m.t('user.removeAccount')} /> : <RightAngledArrow w={12} />}
               </tr>
             ))}
           </tbody>
@@ -94,26 +95,26 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
               className="flex gap-1 items-center justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
               onClick={() => setEditing(false)}
             >
-              {t('done')}
+              {m.t('action.done')}
             </button>
           </div>
         ) : (
           <div className="flex gap-2 my-5 mx-auto justify-center">
             <button
               type="button"
-              className="flex gap-1 items-center justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm pl-3.5 pr-4 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
+              className="flex gap-1 items-center justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm ps-3.5 pe-4 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
               onClick={() => setEditing(true)}
             >
               <EditIcon />
-              {t('edit')}
+              {m.t('action.edit')}
             </button>
             <button
               type="button"
-              className="flex gap-1 items-center justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm pl-3 pr-4 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
+              className="flex gap-1 items-center justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm ps-3 pe-4 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
               onClick={onAddAcc}
             >
               <PlusIcon />
-              {t('addAccountBtn')}
+              {m.t('user.addAccountBtn')}
             </button>
           </div>
         )}

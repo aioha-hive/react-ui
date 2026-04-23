@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { I18nextProvider, useTranslation } from 'react-i18next'
 import { useAioha } from '@aioha/providers/react'
 import { LoginModal, LoginModalProps } from './LoginModal.js'
 import { UserModal, UserModalProps } from './UserModal.js'
 import { SwitchUserModal } from './SwitchUserModal.js'
-import { i18n } from '../i18n.js'
+import { defaultMessages, MessagesProvider, useMessages, type Messages } from '../i18n.js'
 
 interface ModalProps extends LoginModalProps, Omit<UserModalProps, 'onSwitchUser'> {
   displayed?: boolean
   language?: string
+  dir?: 'ltr' | 'rtl' | 'auto'
+  messages?: Messages
 }
 
 const AiohaModalInner = ({
   displayed = false,
-  language = 'en',
+  dir = 'auto',
   loginTitle,
   loginHelpUrl,
   loginOptions,
@@ -26,23 +27,22 @@ const AiohaModalInner = ({
   onClose
 }: ModalProps) => {
   const { aioha, user, otherUsers } = useAioha()
-  const { t } = useTranslation('aioha')
+  const m = useMessages()
   const isInactive = Object.keys(otherUsers).length > 0 && !aioha.isLoggedIn()
   const [switchingUser, setSwitchingUser] = useState<boolean>(isInactive)
   const [addingAcc, setAddingAcc] = useState<boolean>(false)
 
-  useEffect(() => {
-    i18n.changeLanguage(language)
-  }, [language])
-
   if (!displayed) return <></>
+  const resolvedDir: 'ltr' | 'rtl' =
+    dir === 'auto' ? (typeof document !== 'undefined' && document.dir === 'rtl' ? 'rtl' : m.getDir()) : dir
   return (
     <div
       id="aioha-modal"
       role="dialog"
       aria-modal="true"
       aria-labelledby="aioha-modal-title"
-      className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black/60"
+      dir={resolvedDir}
+      className="overflow-y-auto overflow-x-hidden fixed top-0 inset-x-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black/60"
       onMouseDown={() => onClose(false)}
       onKeyDown={(e) => { if (e.key === 'Escape') onClose(false) }}
     >
@@ -64,7 +64,7 @@ const AiohaModalInner = ({
                 />
               ) : (
                 <LoginModal
-                  loginTitle={t('addAccount')}
+                  loginTitle={m.t('user.addAccount')}
                   loginHelpUrl={loginHelpUrl}
                   loginOptions={loginOptions}
                   discOptions={discOptions}
@@ -109,9 +109,13 @@ const AiohaModalInner = ({
 }
 
 export const AiohaModal = (props: ModalProps) => {
+  const { language = 'en', messages, ...rest } = props
+  useEffect(() => {
+    ;(messages ?? defaultMessages).setLocale(language)
+  }, [language, messages])
   return (
-    <I18nextProvider i18n={i18n}>
-      <AiohaModalInner {...props} />
-    </I18nextProvider>
+    <MessagesProvider messages={messages}>
+      <AiohaModalInner {...rest} />
+    </MessagesProvider>
   )
 }

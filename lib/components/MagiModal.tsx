@@ -2,25 +2,26 @@ import React, { useEffect, useState } from 'react'
 import { Wallet } from '@aioha/magi'
 import { useAioha } from '@aioha/providers/react'
 import { useMagi } from '@aioha/providers/magi/react'
-import { I18nextProvider, useTranslation } from 'react-i18next'
 import { LoginModal, LoginModalProps } from './LoginModal.js'
 import { UserModal, UserModalProps } from './UserModal.js'
 import { SwitchUserModal } from './SwitchUserModal.js'
 import { WalletTypeSelection } from './magi/WalletTypeSelection.js'
 import { CloseIcon } from './Icons.js'
-import { i18n } from '../i18n.js'
+import { defaultMessages, MessagesProvider, useMessages, type Messages } from '../i18n.js'
 
 type MagiView = 'select' | 'hive' | 'ethereum'
 
 interface MagiModalProps extends LoginModalProps, Omit<UserModalProps, 'onSwitchUser'> {
   displayed?: boolean
   language?: string
+  dir?: 'ltr' | 'rtl' | 'auto'
+  messages?: Messages
   openEthModal: () => void
 }
 
 const MagiModalInner = ({
   displayed = false,
-  language = 'en',
+  dir = 'auto',
   loginTitle,
   loginHelpUrl,
   loginOptions,
@@ -35,11 +36,7 @@ const MagiModalInner = ({
 }: MagiModalProps) => {
   const { aioha, user: hiveUser, otherUsers } = useAioha()
   const { magi, wallet } = useMagi()
-  const { t } = useTranslation('aioha')
-
-  useEffect(() => {
-    i18n.changeLanguage(language)
-  }, [language])
+  const m = useMessages()
 
   const getInitialView = (): MagiView => {
     if (magi.getWallet() === Wallet.Hive && aioha.isLoggedIn()) return 'hive'
@@ -54,7 +51,6 @@ const MagiModalInner = ({
     if (displayed) setView(getInitialView())
   }, [displayed])
 
-  // Auto-close when Ethereum wallet connects via wagmi
   useEffect(() => {
     if (wallet === Wallet.Ethereum && magi.isConnected()) {
       onClose(false)
@@ -87,7 +83,7 @@ const MagiModalInner = ({
         if (addingAcc) {
           return (
             <LoginModal
-              loginTitle={t('addAccount')}
+              loginTitle={m.t('user.addAccount')}
               loginHelpUrl={loginHelpUrl}
               loginOptions={loginOptions}
               discOptions={discOptions}
@@ -141,23 +137,24 @@ const MagiModalInner = ({
     return (
       <>
         <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-          <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">{t('connectEthWallet')}</h3>
+          <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">{m.t('wallet.connectEthereum')}</h3>
           <button
             type="button"
             className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
             onClick={() => onClose(false)}
+            aria-label={m.t('modal.close')}
           >
-            <CloseIcon srDesc={t('closeModal')} />
+            <CloseIcon srDesc={m.t('modal.close')} />
           </button>
         </div>
         <div className="p-4 md:p-5 text-center">
-          <p className="text-sm text-gray-500 dark:text-gray-300 mb-4">{t('ethWalletInstruction')}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-300 mb-4">{m.t('wallet.ethInstruction')}</p>
           <button
             type="button"
             className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer"
             onClick={() => setView('select')}
           >
-            {t('back')}
+            {m.t('action.back')}
           </button>
         </div>
       </>
@@ -168,13 +165,14 @@ const MagiModalInner = ({
     return (
       <>
         <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-          <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">{t('connectWallet')}</h3>
+          <h3 id="aioha-modal-title" className="text-lg font-semibold text-gray-900 dark:text-white">{m.t('wallet.connect')}</h3>
           <button
             type="button"
             className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
             onClick={() => onClose(false)}
+            aria-label={m.t('modal.close')}
           >
-            <CloseIcon srDesc={t('closeModal')} />
+            <CloseIcon srDesc={m.t('modal.close')} />
           </button>
         </div>
         <div className="p-4 md:p-5">
@@ -188,13 +186,16 @@ const MagiModalInner = ({
     )
   }
 
+  const resolvedDir: 'ltr' | 'rtl' =
+    dir === 'auto' ? (typeof document !== 'undefined' && document.dir === 'rtl' ? 'rtl' : m.getDir()) : dir
   return (
     <div
       id="magi-modal"
       role="dialog"
       aria-modal="true"
       aria-labelledby="aioha-modal-title"
-      className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black/60"
+      dir={resolvedDir}
+      className="overflow-y-auto overflow-x-hidden fixed top-0 inset-x-0 z-50 flex justify-center items-center w-full md:inset-0 h-full bg-black/60"
       onMouseDown={() => onClose(false)}
       onKeyDown={(e) => { if (e.key === 'Escape') onClose(false) }}
     >
@@ -217,9 +218,13 @@ const MagiModalInner = ({
 }
 
 export const MagiModal = (props: MagiModalProps) => {
+  const { language = 'en', messages, ...rest } = props
+  useEffect(() => {
+    ;(messages ?? defaultMessages).setLocale(language)
+  }, [language, messages])
   return (
-    <I18nextProvider i18n={i18n}>
-      <MagiModalInner {...props} />
-    </I18nextProvider>
+    <MessagesProvider messages={messages}>
+      <MagiModalInner {...rest} />
+    </MessagesProvider>
   )
 }

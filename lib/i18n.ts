@@ -1,23 +1,32 @@
-import i18next from 'i18next'
-import type { i18n as I18nInstance } from 'i18next'
-import { initReactI18next } from 'react-i18next'
-import en from './locales/en.js'
+import React, { createContext, useContext, useSyncExternalStore, type ReactNode } from 'react'
+import {
+  createDefaultMessages,
+  type Catalog,
+  type DefaultMessages,
+  type Messages
+} from '@aioha/i18n-keys'
 
-export const i18n: I18nInstance = i18next.createInstance()
+export { createDefaultMessages } from '@aioha/i18n-keys'
+export type { Messages, DefaultMessages, MessageId, Catalog, MessageVars, Direction } from '@aioha/i18n-keys'
 
-i18n.use(initReactI18next).init({
-  lng: 'en',
-  fallbackLng: 'en',
-  ns: ['aioha'],
-  defaultNS: 'aioha',
-  resources: {
-    en: { aioha: en }
-  },
-  interpolation: {
-    escapeValue: false
-  }
-})
+export const defaultMessages: DefaultMessages = createDefaultMessages({ initialLocale: 'en' })
 
-export const addTranslations = (lng: string, resources: Partial<typeof en>) => {
-  i18n.addResourceBundle(lng, 'aioha', resources, true, true)
+const MessagesContext = createContext<Messages>(defaultMessages)
+
+export const MessagesProvider = ({ messages, children }: { messages?: Messages; children: ReactNode }) => {
+  return React.createElement(MessagesContext.Provider, { value: messages ?? defaultMessages }, children)
+}
+
+export function useMessages(): Messages {
+  const messages = useContext(MessagesContext)
+  useSyncExternalStore(
+    (cb) => messages.subscribe(cb),
+    () => messages.getLocale(),
+    () => messages.getLocale()
+  )
+  return messages
+}
+
+export function loadLocale(locale: string, catalog: Partial<Catalog>): void {
+  defaultMessages.addCatalog(locale, catalog)
 }

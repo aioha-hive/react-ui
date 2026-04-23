@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Providers } from '@aioha/aioha'
 import { useAioha } from '@aioha/providers/react'
-import { useTranslation } from 'react-i18next'
 import { DiscoverOptions } from '@aioha/aioha/build/types.js'
 import { ErrorAlert } from './ErrorAlert.js'
 import { BackButton } from './BackButton.js'
 import { SpinningIcon } from '../Icons.js'
 import { RightAngledArrow } from '../TableUtils.js'
+import { useMessages } from '../../i18n.js'
 
 interface AccountDiscoveryProps {
   provider: Providers
@@ -27,7 +27,7 @@ interface DiscUsers {
 
 export const AccountDiscovery = ({ provider, options, onPrevious, onNext }: AccountDiscoveryProps) => {
   const { aioha } = useAioha()
-  const { t } = useTranslation('aioha')
+  const m = useMessages()
   const discovering = useRef(false)
   const stopDiscovery = useRef(() => {})
   const discovered = useRef<DiscUsers>({})
@@ -72,7 +72,7 @@ export const AccountDiscovery = ({ provider, options, onPrevious, onNext }: Acco
     return (
       <div className="flex-col gap-20 my-3">
         <svg
-          className="w-20 h-20 ml-auto mr-auto text-gray-900 dark:text-gray-100"
+          className="w-20 h-20 mx-auto text-gray-900 dark:text-gray-100"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -87,7 +87,7 @@ export const AccountDiscovery = ({ provider, options, onPrevious, onNext }: Acco
           />
         </svg>
         <div className="text-lg my-3 text-gray-900 dark:text-gray-100 text-center">
-          {t('deviceApproval')}
+          {m.t('auth.device.approval')}
         </div>
       </div>
     )
@@ -107,7 +107,7 @@ export const AccountDiscovery = ({ provider, options, onPrevious, onNext }: Acco
                   className="hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
                   role="button"
                   tabIndex={0}
-                  aria-label={t('loginAsUser', { username })}
+                  aria-label={m.t('user.loginAs', { username })}
                   onClick={() => userSelected(username)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -141,12 +141,12 @@ export const AccountDiscovery = ({ provider, options, onPrevious, onNext }: Acco
       {!completed ? (
         <button
           type="button"
-          className="flex gap-2 items-center justify-center mt-3 ml-auto mr-auto text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
+          className="flex gap-2 items-center justify-center mt-3 mx-auto text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
           onClick={stopDiscovery.current}
           disabled={count === 0}
         >
           <SpinningIcon size={5} />
-          {t('stop')}
+          {m.t('action.stop')}
         </button>
       ) : null}
     </div>

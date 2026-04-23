@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react'
 import { Providers } from '@aioha/aioha'
 import { useAioha } from '@aioha/providers/react'
-import { useTranslation } from 'react-i18next'
 import { ProviderInfo } from '../ProviderInfo.js'
 import { CloseIcon, EyeIcon } from '../Icons.js'
+import { useMessages } from '../../i18n.js'
 
 type ProviderCb = (provider: Providers) => any
 export type Arrangement = 'list' | 'grid'
@@ -18,19 +18,19 @@ export const Badge = ({ children }: { children?: ReactNode }) => {
 
 const ProviderBtn = ({ provider, forceShow, onClick }: { provider: Providers; forceShow: boolean; onClick: ProviderCb }) => {
   const { aioha } = useAioha()
-  const { t } = useTranslation('aioha')
+  const m = useMessages()
   const { icon, iconDark } = ProviderInfo[provider]
   const name =
     provider === Providers.ViewOnly
-      ? t('providerViewOnly')
+      ? m.t('wallet.provider.viewOnly')
       : provider === Providers.Custom
-        ? t('providerOtherWallet')
+        ? m.t('wallet.provider.other')
         : ProviderInfo[provider].name
   const badge =
     provider === Providers.Keychain
-      ? t('badgePopular')
+      ? m.t('wallet.badge.popular')
       : provider === Providers.MetaMaskSnap
-        ? t('badgeHiveSnap')
+        ? m.t('wallet.badge.snap')
         : ProviderInfo[provider].loginBadge
   return aioha.isProviderEnabled(provider) || (forceShow && aioha.isProviderRegistered(provider)) ? (
     <li>
@@ -64,13 +64,13 @@ const ProviderBtn = ({ provider, forceShow, onClick }: { provider: Providers; fo
 
 const ProviderBtnGrid = ({ provider, forceShow, onClick }: { provider: Providers; forceShow: boolean; onClick: ProviderCb }) => {
   const { aioha } = useAioha()
-  const { t } = useTranslation('aioha')
+  const m = useMessages()
   const { icon, iconDark } = ProviderInfo[provider]
   const name =
     provider === Providers.ViewOnly
-      ? t('providerViewOnly')
+      ? m.t('wallet.provider.viewOnly')
       : provider === Providers.Custom
-        ? t('providerOtherWallet')
+        ? m.t('wallet.provider.other')
         : ProviderInfo[provider].name
   return aioha.isProviderEnabled(provider) || (forceShow && aioha.isProviderRegistered(provider)) ? (
     <button
@@ -122,11 +122,11 @@ export const ProviderSelection = ({
   arrangement: Arrangement
   onCancel?: () => any
 }) => {
-  const { t } = useTranslation('aioha')
+  const m = useMessages()
   return (
     <>
       <p className="text-sm font-normal text-gray-500 dark:text-gray-300">
-        {t('connectInstruction')}
+        {m.t('wallet.connectInstruction')}
       </p>
       {arrangement === 'list' ? (
         <ul className="mt-4 mb-2 space-y-3">
@@ -156,17 +156,17 @@ export const ProviderSelection = ({
               d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
             />
           </svg>
-          {t('helpLinkText')}
+          {m.t('wallet.helpLink')}
         </a>
       ) : null}
       {typeof onCancel === 'function' ? (
         <button
           type="button"
-          className="flex gap-2 items-center justify-center my-3 ml-auto mr-auto text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
+          className="flex gap-2 items-center justify-center my-3 mx-auto text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 enabled:hover:cursor-pointer disabled:hover:cursor-not-allowed"
           onClick={onCancel}
         >
-          <CloseIcon srDesc={t('cancel')} />
-          {t('cancel')}
+          <CloseIcon srDesc={m.t('action.cancel')} />
+          {m.t('action.cancel')}
         </button>
       ) : null}
     </>

@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { useAioha } from '@aioha/providers/react'
-import { useTranslation } from 'react-i18next'
 import { CloseIcon } from './Icons.js'
+import { useMessages } from '../i18n.js'
 
 export interface UserModalProps {
   imageServer?: string
@@ -17,20 +17,20 @@ export const UserModal = ({
   onSwitchUser
 }: UserModalProps) => {
   const { aioha, user, otherUsers } = useAioha()
-  const { t } = useTranslation('aioha')
+  const m = useMessages()
   return (
     <>
       <button
         type="button"
         className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
         onClick={() => onClose(false)}
-        aria-label={t('closeModal')}
+        aria-label={m.t('modal.close')}
       >
-        <CloseIcon srDesc={t('closeModal')} />
+        <CloseIcon srDesc={m.t('modal.close')} />
       </button>
       <div className="p-4 md:p-5 flex flex-col place-content-center text-center">
         <div className="my-3">
-          <img className="w-16 h-16 mx-auto rounded-full" src={`${imageServer}/u/${user}/avatar`} alt={t('userAvatar', { user })} />
+          <img className="w-16 h-16 mx-auto rounded-full" src={`${imageServer}/u/${user}/avatar`} alt={m.t('user.avatarAlt', { user: user ?? '' })} />
           <h3 id="aioha-modal-title" className="text-lg font-semibold my-2 text-gray-900 dark:text-white">{user}</h3>
         </div>
         <div className="flex flex-col rounded-md shadow-xs mx-auto w-full" role="group">
@@ -39,14 +39,14 @@ export const UserModal = ({
             className="flex-1 px-4 py-2 text-sm font-medium hover:cursor-pointer text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500 rounded-t-lg"
             onClick={() => window.open(`${explorerUrl}/@${user}`)}
           >
-            {t('viewInExplorer')}
+            {m.t('user.viewExplorer')}
           </button>
           <button
             type="button"
             className="flex-1 px-4 py-2 text-sm font-medium hover:cursor-pointer text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-500"
             onClick={onSwitchUser}
           >
-            {t('switchUser')}
+            {m.t('user.switch')}
           </button>
           <button
             type="button"
@@ -57,7 +57,7 @@ export const UserModal = ({
               if (Object.keys(otherUsers).length > 0) onSwitchUser()
             }}
           >
-            {t('logout')}
+            {m.t('user.logout')}
           </button>
         </div>
       </div>

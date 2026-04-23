@@ -46,7 +46,7 @@ export const EyeIcon = ({ size = 6 }: { size?: number }) => {
   }
   return (
     <svg
-      className={`${sizes[size]} ml-[-2.5px] mr-[-2.5px] text-gray-800 dark:text-white`}
+      className={`${sizes[size]} ms-[-2.5px] me-[-2.5px] text-gray-800 dark:text-white`}
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
