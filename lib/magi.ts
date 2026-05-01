@@ -1,5 +1,0 @@
-export { MagiProvider, useMagi } from '@aioha/providers/magi/react'
-export * from './components/MagiModal.js'
-export * from './components/magi/WalletTypeSelection.js'
-export { defaultMessages, MessagesProvider, useMessages, createDefaultMessages, loadLocale } from './i18n.js'
-export type { Messages, DefaultMessages, MessageId, Catalog, MessageVars, Direction } from './i18n.js'
