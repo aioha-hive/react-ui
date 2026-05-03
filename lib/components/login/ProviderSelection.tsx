@@ -129,13 +129,13 @@ export const ProviderSelection = ({
         {m.t('wallet.connectInstruction')}
       </p>
       {arrangement === 'list' ? (
-        <ul className="mt-4 mb-2 space-y-3">
+        <ul className="aioha-stagger mt-4 mb-2 space-y-3">
           {ProvidersSeq.map((p, i) => (
             <ProviderBtn key={i} provider={p} forceShow={forceShow.includes(p)} onClick={onSelected} />
           ))}
         </ul>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4 mb-2">
+        <div className="aioha-stagger grid grid-cols-2 md:grid-cols-3 gap-4 mt-4 mb-2">
           {ProvidersSeq.map((p, i) => (
             <ProviderBtnGrid key={i} provider={p} forceShow={forceShow.includes(p)} onClick={onSelected} />
           ))}

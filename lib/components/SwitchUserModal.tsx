@@ -37,7 +37,7 @@ export const SwitchUserModal = ({ onClose, onSelect, onAddAcc }: SwitchUserModal
       </div>
       <div className="w-full overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-          <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-700 dark:divide-gray-600">
+          <tbody className="aioha-stagger bg-white divide-y divide-gray-200 dark:bg-gray-700 dark:divide-gray-600">
             {user && (
               <tr
                 key={user}

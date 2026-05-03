@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Providers } from '@aioha/aioha'
 import { Arrangement, ProviderSelection } from './login/ProviderSelection.js'
 import { UsernameInput } from './login/UsernameInput.js'
@@ -40,6 +40,24 @@ export const LoginModal = ({
   const [chosenProvider, setProvider] = useState<Providers>()
   const [error, setError] = useState('')
   const [hiveAuthPl, setHiveAuthPl] = useState<{ payload: string; cancel: () => void }>()
+  const [viewIn, setViewIn] = useState<boolean>(true)
+  const [dir, setDir] = useState<'fwd' | 'back'>('fwd')
+  const prevPage = useRef(page)
+  useLayoutEffect(() => {
+    if (prevPage.current !== page) {
+      setDir(page >= prevPage.current ? 'fwd' : 'back')
+      prevPage.current = page
+      setViewIn(false)
+      let inner: number | undefined
+      const outer = requestAnimationFrame(() => {
+        inner = requestAnimationFrame(() => setViewIn(true))
+      })
+      return () => {
+        cancelAnimationFrame(outer)
+        if (inner !== undefined) cancelAnimationFrame(inner)
+      }
+    }
+  }, [page])
   useEffect(() => {
     const handler = (payload: string, _: any, cancel: () => void) => {
       setError('')
@@ -82,47 +100,57 @@ export const LoginModal = ({
       </div>
       <div className="p-4 md:p-5">
         {!!error && <ErrorAlert error={error} />}
-        {page === 0 ? (
-          <ProviderSelection
-            helpUrl={loginHelpUrl}
-            forceShow={forceShowProviders}
-            arrangement={arrangement}
-            onCancel={onCancel}
-            onSelected={async (provider) => {
-              if (!aioha.isProviderEnabled(provider)) {
-                if (ProviderInfo[provider].url) window.open(ProviderInfo[provider].url, '_blank', 'noopener,noreferrer')
-                return
-              }
-              setProvider(provider)
-              if (provider === Providers.HiveSigner) {
-                await login(provider, '', {})
-              } else if (ProviderInfo[provider].discovery) {
+        <div
+          className={`transition-[opacity,translate,scale] duration-200 motion-reduce:transition-none ease-[cubic-bezier(0.32,0.72,0,1)] ${
+            viewIn
+              ? 'opacity-100 translate-x-0'
+              : dir === 'fwd'
+                ? 'opacity-0 translate-x-2'
+                : 'opacity-0 -translate-x-2'
+          }`}
+        >
+          {page === 0 ? (
+            <ProviderSelection
+              helpUrl={loginHelpUrl}
+              forceShow={forceShowProviders}
+              arrangement={arrangement}
+              onCancel={onCancel}
+              onSelected={async (provider) => {
+                if (!aioha.isProviderEnabled(provider)) {
+                  if (ProviderInfo[provider].url) window.open(ProviderInfo[provider].url, '_blank', 'noopener,noreferrer')
+                  return
+                }
+                setProvider(provider)
+                if (provider === Providers.HiveSigner) {
+                  await login(provider, '', {})
+                } else if (ProviderInfo[provider].discovery) {
+                  setError('')
+                  setPage(3)
+                } else {
+                  setError('')
+                  setPage(1)
+                }
+              }}
+            />
+          ) : page === 1 ? (
+            <UsernameInput
+              onPrevious={() => {
                 setError('')
-                setPage(3)
-              } else {
-                setError('')
-                setPage(1)
-              }
-            }}
-          />
-        ) : page === 1 ? (
-          <UsernameInput
-            onPrevious={() => {
-              setError('')
-              setPage(0)
-            }}
-            onNext={(username) => login(chosenProvider!, username, loginOptions)}
-          />
-        ) : page === 2 ? (
-          <HiveAuthQR payload={hiveAuthPl!.payload} cancel={hiveAuthPl!.cancel} />
-        ) : page === 3 ? (
-          <AccountDiscovery
-            provider={chosenProvider!}
-            onPrevious={() => setPage(0)}
-            onNext={(username, info) => login(chosenProvider!, username, { ...loginOptions, paths: info.map((v) => v.path) })}
-            options={discOptions}
-          />
-        ) : null}
+                setPage(0)
+              }}
+              onNext={(username) => login(chosenProvider!, username, loginOptions)}
+            />
+          ) : page === 2 ? (
+            <HiveAuthQR payload={hiveAuthPl!.payload} cancel={hiveAuthPl!.cancel} />
+          ) : page === 3 ? (
+            <AccountDiscovery
+              provider={chosenProvider!}
+              onPrevious={() => setPage(0)}
+              onNext={(username, info) => login(chosenProvider!, username, { ...loginOptions, paths: info.map((v) => v.path) })}
+              options={discOptions}
+            />
+          ) : null}
+        </div>
       </div>
     </>
   )
